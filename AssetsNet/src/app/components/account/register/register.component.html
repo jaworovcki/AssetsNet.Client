@@ -9,39 +9,62 @@
 
           <div class="panel-body p-3">
 
-            <form>
+            <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
 
               <div class="form-group pt-3">
-                <div class="input-field">
+                <div class="input-field" [class.is-invalid]="submitted && registerForm.get('email')?.errors">
                   <span class="fa fa-envelope p-2"></span>
-                  <input type="text" placeholder="Email" />
+                  <input formControlName="email" type="text" placeholder="Email"/>
                 </div>
+                <span class="text-danger" *ngIf="submitted && registerForm.get('email')?.hasError('required')">
+                  Email is required
+                </span>
+                <span class="text-danger" *ngIf="submitted && registerForm.get('email')?.hasError('pattern')">
+                  Invalid email address
+                </span>
               </div>
 
 
               <div class="form-group pt-4">
-                <div class="input-field">
+                <div class="input-field" [class.is-invalid]="submitted && registerForm.get('username')?.errors">
                   <span class="fa fa-user p-2"></span>
-                  <input type="text" placeholder="Username" />
+                  <input formControlName="username" type="text" placeholder="Username"/>
                 </div>
+                <span class="text-danger" *ngIf="submitted && registerForm.get('username')?.hasError('required')">
+                  Username is required
+                </span>
+                <span class="text-danger" *ngIf="submitted &&
+                 registerForm.get('username')?.hasError('minlength') || registerForm.get('username')?.hasError('maxlength')">
+                  First name should be at least (2) and maximum (50) characters
+                </span>
               </div>
 
               <div class="form-group pt-4">
-                <div class="input-field">
+                <div class="input-field" [class.is-invalid]="submitted && registerForm.get('password')?.errors">
                   <span class="fa fa-lock p-2"></span>
-                  <input type="password" placeholder="Password">
+                  <input formControlName="password" type="password" placeholder="Password"/>
                 </div>
+                <span class="text-danger" *ngIf="submitted && registerForm.get('password')?.hasError('required')">
+                  Password is required
+                </span>
+                <span class="text-danger" *ngIf="submitted &&
+                 registerForm.get('password')?.hasError('minlength') || registerForm.get('password')?.hasError('maxlength')">
+                  Password should be at least (5) and maximum (50) characters
+                </span>
               </div>
 
               <div class="form-group pt-4">
-                <div class="input-field">
+                <div class="input-field" [class.is-invalid]="submitted && registerForm.get('confirmPassword')?.errors">
                   <span class="fa fa-lock p-2"></span>
-                  <input type="password" placeholder="Repeat your password">
+                  <input formControlName="confirmPassword" type="password" placeholder="Repeat your password"/>
                 </div>
+                <span class="text-danger" *ngIf="submitted && registerForm.controls['confirmPassword'].errors?.['notMatching']">
+                  Passwords do not match
+                </span>
               </div>
 
               <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Sign up</button>
-              <div class="text-center pt-4 text-muted">Already have an account? <a id="forgot" href="/login">Log in</a></div>
+              <div class="text-center pt-4 text-muted">Already have an account? <a id="forgot" routerLink="/login">Log in</a></div>
             </form>
           </div>
         </div>
