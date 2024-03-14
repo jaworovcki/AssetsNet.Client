@@ -5,11 +5,9 @@
             <h1 class="title">Latest Stock News</h1>
 
             <div class="dropdown">
-                <button class="dropbtn">Readdle &dtrif;</button>
+                <button class="dropbtn">{{selectedCompany?.name}} &dtrif;</button>
                 <div class="dropdown-content">
-                    <a href="#">Softserve</a>
-                    <a href="#">Apple</a>
-                    <a href="#">Microsoft</a>
+                    <a *ngFor="let company of availableCompanies" (click)="onCompanySelected(company)">{{company.name}}</a>
                 </div>
             </div>
         </div>
