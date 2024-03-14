@@ -14,97 +14,18 @@
             </div>
         </div>
 
-        <div class="one-liner">
+        <div class="one-liner" *ngFor="let novation of news">
             <div class="extras">
-                <p class="publisher">The Washington Post</p>
-                <p class="time">12/08/2024</p>
+                <p class="publisher">{{novation.publisher}}</p>
+                <p class="time">{{novation?.providerPublishTime | date:'medium'}}</p>
             </div>
             <div class="novation">
                 <img class="thumbnail"
                     src="https://s.yimg.com/uu/api/res/1.2/6b7RAUTD39Q.IDCr_O0uPQ--~B/aD0xNDEyO3c9MjEyMjthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/techcrunch_350/9e20df6ad4b1e0c74b78df88ad84fa9d"
-                    alt="">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae praesentium earum officiis.
-                    Deserunt
-                    repellat quia enim deleniti blanditiis doloremqu</p>
+                    alt="thumbnail">
+                <p class="news-title">{{novation.title}}</p>
             </div>
         </div>
-
-        <div class="one-liner">
-            <div class="extras">
-                <p class="publisher">The Washington Post</p>
-                <p class="time">12/08/2024</p>
-            </div>
-            <div class="novation">
-                <img class="thumbnail"
-                    src="https://s.yimg.com/uu/api/res/1.2/6b7RAUTD39Q.IDCr_O0uPQ--~B/aD0xNDEyO3c9MjEyMjthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/techcrunch_350/9e20df6ad4b1e0c74b78df88ad84fa9d"
-                    alt="">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae praesentium earum officiis.
-                    Deserunt
-                    repellat quia enim deleniti blanditiis doloremqu</p>
-            </div>
-        </div>
-
-        <div class="one-liner">
-            <div class="extras">
-                <p class="publisher">The Washington Post</p>
-                <p class="time">12/08/2024</p>
-            </div>
-            <div class="novation">
-                <img class="thumbnail"
-                    src="https://s.yimg.com/uu/api/res/1.2/6b7RAUTD39Q.IDCr_O0uPQ--~B/aD0xNDEyO3c9MjEyMjthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/techcrunch_350/9e20df6ad4b1e0c74b78df88ad84fa9d"
-                    alt="">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae praesentium earum officiis.
-                    Deserunt
-                    repellat quia enim deleniti blanditiis doloremqu</p>
-            </div>
-        </div>
-
-        <div class="one-liner">
-            <div class="extras">
-                <p class="publisher">The Washington Post</p>
-                <p class="time">12/08/2024</p>
-            </div>
-            <div class="novation">
-                <img class="thumbnail"
-                    src="https://s.yimg.com/uu/api/res/1.2/6b7RAUTD39Q.IDCr_O0uPQ--~B/aD0xNDEyO3c9MjEyMjthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/techcrunch_350/9e20df6ad4b1e0c74b78df88ad84fa9d"
-                    alt="">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae praesentium earum officiis.
-                    Deserunt
-                    repellat quia enim deleniti blanditiis doloremqu</p>
-            </div>
-        </div>
-
-        <div class="one-liner">
-            <div class="extras">
-                <p class="publisher">The Washington Post</p>
-                <p class="time">12/08/2024</p>
-            </div>
-            <div class="novation">
-                <img class="thumbnail"
-                    src="https://s.yimg.com/uu/api/res/1.2/6b7RAUTD39Q.IDCr_O0uPQ--~B/aD0xNDEyO3c9MjEyMjthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/techcrunch_350/9e20df6ad4b1e0c74b78df88ad84fa9d"
-                    alt="">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae praesentium earum officiis.
-                    Deserunt
-                    repellat quia enim deleniti blanditiis doloremqu</p>
-            </div>
-        </div>
-
-        <div class="one-liner">
-            <div class="extras">
-                <p class="publisher">The Washington Post</p>
-                <p class="time">12/08/2024</p>
-            </div>
-            <div class="novation">
-                <img class="thumbnail"
-                    src="https://s.yimg.com/uu/api/res/1.2/6b7RAUTD39Q.IDCr_O0uPQ--~B/aD0xNDEyO3c9MjEyMjthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/techcrunch_350/9e20df6ad4b1e0c74b78df88ad84fa9d"
-                    alt="">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae praesentium earum officiis.
-                    Deserunt
-                    repellat quia enim deleniti blanditiis doloremqu</p>
-            </div>
-        </div>
-
-
         <div class="read-more">
             <button>Read More</button>
         </div>

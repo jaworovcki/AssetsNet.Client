@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { News } from '../models/news';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,6 @@ export class NewsService {
 
   getLatestNews(companyName: string, region: string = "US") {
     const url = `${this.baseUrl}news?companyName=${companyName}&region=${region}`;
-    return this.http.get(url);
+    return this.http.get<News[]>(url);
   }
 }
