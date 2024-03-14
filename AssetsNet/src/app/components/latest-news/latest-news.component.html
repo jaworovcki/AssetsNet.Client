@@ -20,9 +20,8 @@
                 <p class="time">{{novation?.providerPublishTime | date:'medium'}}</p>
             </div>
             <div class="novation">
-                <img class="thumbnail"
-                    src="https://s.yimg.com/uu/api/res/1.2/6b7RAUTD39Q.IDCr_O0uPQ--~B/aD0xNDEyO3c9MjEyMjthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/techcrunch_350/9e20df6ad4b1e0c74b78df88ad84fa9d"
-                    alt="thumbnail">
+                <img *ngIf="novation.thumbnail.resolutions[0]?.url" class="thumbnail"
+                    src="{{novation.thumbnail.resolutions[0].url}}" alt="thumbnail">
                 <p class="news-title">{{novation.title}}</p>
             </div>
         </div>
