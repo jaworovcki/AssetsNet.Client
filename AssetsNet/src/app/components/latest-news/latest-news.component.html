@@ -7,12 +7,13 @@
             <div class="dropdown">
                 <button class="dropbtn">{{selectedCompany?.name}} &dtrif;</button>
                 <div class="dropdown-content">
-                    <a *ngFor="let company of availableCompanies" (click)="onCompanySelected(company)">{{company.name}}</a>
+                    <a *ngFor="let company of availableCompanies"
+                        (click)="onCompanySelected(company)">{{company.name}}</a>
                 </div>
             </div>
         </div>
 
-        <div class="one-liner" *ngFor="let novation of news">
+        <div class="one-liner" *ngFor="let novation of getCurrentPageNews()">
             <div class="extras">
                 <p class="publisher">{{novation.publisher}}</p>
                 <p class="time">{{novation?.providerPublishTime | date:'medium'}}</p>
@@ -24,7 +25,8 @@
             </div>
         </div>
         <div class="read-more">
-            <button>Read More</button>
+            <button (click)="previousPage()" [disabled]="!hasPreviousPage()">Previous</button>
+            <button (click)="nextPage()" [disabled]="!hasNextPage()">Next</button>
         </div>
     </div>
 </div>
