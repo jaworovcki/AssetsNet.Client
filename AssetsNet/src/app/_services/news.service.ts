@@ -33,7 +33,7 @@ export class NewsService {
       link: "https://example.com/news",
       publisher: this.generateString(8),
       providerPublishTime: new Date(),
-      title: this.generateString(40),
+      title: this.generateString(70),
       type: "article",
       uuid: "1234567890",
       thumbnail: {
