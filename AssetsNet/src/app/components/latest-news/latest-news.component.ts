@@ -28,9 +28,12 @@ export class LatestNewsComponent implements OnInit {
 
   loadNews() {
     this.newsService.getLatestNews(this.selectedCompany?.value).subscribe((news: News[]) => {
-      this.news = news;
+      if(news) {
+        this.news = news;
+      }
       console.log(this.news);
     }, (error) => {
+      this.news = this.newsService.generateMockNewsArray(6);
       console.log(error);
     });
   }

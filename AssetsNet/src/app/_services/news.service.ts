@@ -16,4 +16,34 @@ export class NewsService {
     const url = `${this.baseUrl}news?companyName=${companyName}&region=${region}`;
     return this.http.get<News[]>(url);
   }
+
+  generateMockNewsArray(count: number): News[] {
+    const mockNewsArray: News[] = [];
+    for (let i = 0; i < count; i++) {
+      mockNewsArray.push(this.generateMockNews());
+    }
+    return mockNewsArray;
+  }
+
+
+  generateMockNews(): News {
+    return {
+      link: "https://example.com/news",
+      publisher: "Example News",
+      providerPublishTime: new Date(),
+      title: "Sample News Title",
+      type: "article",
+      uuid: "1234567890",
+      thumbnail: {
+        resolutions: [
+          {
+            url: "https://fakeimg.pl/300/",
+            width: "300",
+            height: "200",
+            tag: "thumbnail"
+          }
+        ]
+      }
+    };
+  }
 }
