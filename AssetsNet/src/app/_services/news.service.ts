@@ -17,6 +17,9 @@ export class NewsService {
     return this.http.get<News[]>(url);
   }
 
+
+  // Fake data generator
+  // REMOVE FOR PRODUCTION
   generateMockNewsArray(count: number): News[] {
     const mockNewsArray: News[] = [];
     for (let i = 0; i < count; i++) {
@@ -25,8 +28,7 @@ export class NewsService {
     return mockNewsArray;
   }
 
-
-  generateMockNews(): News {
+  private generateMockNews(): News {
     return {
       link: "https://example.com/news",
       publisher: this.generateString(8),
@@ -47,7 +49,7 @@ export class NewsService {
     };
   }
 
-  characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
   private generateString(length: number) {
     let result = ' ';
