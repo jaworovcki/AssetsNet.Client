@@ -17,6 +17,10 @@
     background-color: #F6F6F6;
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    /* Added */
+    max-width: 800px;
+    /* Adjust as needed */
 }
 
 .headers {
@@ -37,8 +41,10 @@
 }
 
 .news-title {
+    overflow-wrap: break-word;
     padding: 1em 0;
     margin: 0;
+    max-width: 550px;
 }
 
 .thumbnail {
@@ -63,7 +69,6 @@ p {
 .navigation-buttons button {
     border: 1px solid black;
     margin-left: 40px;
-
     background-color: #F6F6F6;
     text-transform: uppercase;
     padding: 10px 10px;
@@ -75,28 +80,17 @@ p {
     flex-direction: row;
 }
 
-.publisher {
-    position: relative;
-    top: 0;
-    left: 0;
-    color: dimgray;
-    font-size: 14px;
-    margin: 10px;
-}
-
+.publisher,
 .time {
-    position: relative;
-    top: 0;
-    left: 0;
     color: dimgray;
     font-size: 14px;
     margin: 10px;
 }
 
-// Dropdown
+/* Dropdown */
 .dropdown {
     display: inline-block;
-    margin-left: auto; 
+    margin-left: auto;
 }
 
 .dropbtn {
@@ -134,4 +128,25 @@ p {
 
 .dropdown:hover .dropbtn {
     background-color: #ccc;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .wrapper .headers {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .wrapper .headers .dropdown {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .wrapper .one-liner {
+        margin: 10px;
+    }
+
+    .news-title {
+        max-width: 250px;
+    }
 }
