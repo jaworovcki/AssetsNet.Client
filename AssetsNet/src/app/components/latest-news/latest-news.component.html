@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="wrapper">
+
+        <div class="headers">
+            <h1 class="title">Latest Stock News</h1>
+
+            <div class="dropdown">
+                <button class="dropbtn">{{selectedCompany.name}} &dtrif;</button>
+                <div class="dropdown-content">
+                    <a *ngFor="let company of availableCompanies"
+                        (click)="onCompanySelected(company)">{{company.name}}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="one-liner" *ngFor="let novation of getCurrentPageNews()">
+            <div class="extras">
+              <p class="publisher">{{novation.publisher}}</p>
+              <p class="time">{{novation?.providerPublishTime | date:'medium'}}</p>
+            </div>
+            <div class="novation">
+                <img *ngIf="novation.thumbnail.resolutions[0]?.url" class="thumbnail"
+                    src="{{novation.thumbnail.resolutions[0].url}}" alt="thumbnail">
+                <p class="news-title">{{novation.title}}</p>
+            </div>
+        </div>
+        <div class="navigation-buttons">
+            <button (click)="previousPage()" [disabled]="!hasPreviousPage()">Previous</button>
+            <button (click)="nextPage()" [disabled]="!hasNextPage()">Next</button>
+        </div>
+    </div>
+</div>
