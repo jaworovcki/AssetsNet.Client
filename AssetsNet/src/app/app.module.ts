@@ -8,13 +8,15 @@ import { RegisterComponent } from './components/account/register/register.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
+import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    GoogleAuthComponent
   ],
   imports: [
     BrowserModule,
