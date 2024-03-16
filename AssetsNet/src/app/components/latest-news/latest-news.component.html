@@ -15,8 +15,8 @@
 
         <div class="one-liner" *ngFor="let novation of getCurrentPageNews()">
             <div class="extras">
-                <p class="publisher">{{novation.publisher}}</p>
-                <p class="time">{{novation?.providerPublishTime | date:'medium'}}</p>
+              <p class="publisher">{{novation.publisher}}</p>
+              <p class="time">{{novation?.providerPublishTime | date:'medium'}}</p>
             </div>
             <div class="novation">
                 <img *ngIf="novation.thumbnail.resolutions[0]?.url" class="thumbnail"

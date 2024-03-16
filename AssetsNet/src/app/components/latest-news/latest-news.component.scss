@@ -1,43 +1,44 @@
 * {
-    font-family: "Andada Pro", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Andada Pro", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .wrapper {
-    border-radius: 10px;
-    background-color: #F6F6F6;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    /* Added */
-    max-width: 800px;
-    /* Adjust as needed */
+  border-radius: 10px;
+  background-color: #F6F6F6;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  /* Added */
+  max-width: 800px;
+  /* Adjust as needed */
+  margin: 20px;
 }
 
 .headers {
-    display: flex;
-    flex-direction: row;
-    margin: 0 20px;
+  display: flex;
+  flex-direction: row;
+  margin: 0 20px;
 }
 
 .novation {
-    margin-left: 30px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .novation p {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .news-title {
@@ -149,4 +150,93 @@ p {
     .news-title {
         max-width: 250px;
     }
+}
+
+@media screen and (max-width: 1300px) {
+  .wrapper {
+    padding: 5px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin: 10px; 
+  }
+
+  .dropdown {
+    margin: 10px auto;
+  }
+
+  .dropbtn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .dropdown-content a {
+    padding: 10px 14px;
+  }
+
+  .one-liner {
+    margin: 5px;
+  }
+
+  .news-title {
+    //max-width: 200px;
+    font-size: 12px;
+  }
+
+  .publisher,
+  .time {
+    font-size: 12px;
+    margin: 5px;
+  }
+
+  .navigation-buttons button {
+    padding: 8px 8px; 
+    margin: 0 10px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+      padding: 5px;
+  }
+
+  .title {
+      font-size: 24px;
+      margin: 10px; 
+  }
+
+  .dropdown {
+      margin: 10px auto;
+  }
+
+  .dropbtn {
+      padding: 8px 16px;
+      font-size: 14px;
+  }
+
+  .dropdown-content a {
+      padding: 10px 14px;
+  }
+
+  .one-liner {
+      margin: 5px;
+  }
+
+  .news-title {
+      max-width: 200px;
+      font-size: 12px;
+  }
+
+  .publisher,
+  .time {
+      font-size: 12px;
+      margin: 5px;
+  }
+
+  .navigation-buttons button {
+      padding: 8px 8px; 
+      margin: 0 10px;
+  }
 }
