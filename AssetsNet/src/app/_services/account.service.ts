@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { UserJwt } from '../models/user/userJwt';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -37,6 +37,11 @@ export class AccountService {
         }
       })
     );
+  }
+
+  loginWithGoogle(credentials: string): Observable<any> {
+    const header = new HttpHeaders().set('Content-type', 'application/json');
+    return this.http.post(this.baseUrl + "account/google-account", JSON.stringify(credentials), { headers: header, withCredentials: true });
   }
 
 
