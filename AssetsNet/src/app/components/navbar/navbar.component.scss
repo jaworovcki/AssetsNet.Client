@@ -2,14 +2,26 @@
   font-family: "Andada Pro", serif;
 }
 
+header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 .nav-area {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
 
+.nav-brand {
+  margin: 0 auto;
+}
+
 .logo {
-  height: 60px;
+  height: 70px;
   width: 70px;
 }
 
@@ -18,7 +30,7 @@
   font-size: 24px;
   text-decoration: none;
   color: inherit;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .nav-links {
@@ -48,6 +60,34 @@
 .navigation-buttons {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
   gap: 15px;
+}
+
+@media (max-width: 767px) {
+  .nav-links {
+    display: none;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center!important;
+    align-items: center!important;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .nav-brand {
+    font-size: 20px;
+  }
+
+  .nav-area {
+    justify-content: center;
+  }
+
+  .navigation-buttons {
+    justify-content: flex-end;
+  }
 }
