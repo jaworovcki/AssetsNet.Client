@@ -86,3 +86,8 @@ input[type='password'] {
 .is-invalid {
   border: 1px solid red;
 }
+
+.auth-button {
+  display: flex;
+  justify-content: center;
+}
