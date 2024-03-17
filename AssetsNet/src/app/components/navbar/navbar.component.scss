@@ -1,0 +1,100 @@
+* {
+  font-family: "Andada Pro", serif;
+}
+
+header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  margin: 0 auto;
+}
+
+.logo {
+  height: 70px;
+  width: 70px;
+}
+
+.nav-brand {
+  outline: none!important;
+  font-size: 24px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+}
+
+.nav-links {
+  margin-left: 50px;
+  display: flex;
+  gap: 30px;
+  width: 300px; /* adjust this value as needed */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navigation-buttons button {
+  border: 1px solid black;
+  background-color: #F6F6F6;
+  text-transform: uppercase;
+  padding: 5px 5px;
+  border-radius: 7px;
+}
+
+.navigation-buttons button:hover {
+  background-color: #E0E0E0;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-left: auto; /* Add margin to push the buttons further right */
+
+}
+
+@media (max-width: 767px) {
+  .nav-links {
+    display: none;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center!important;
+    align-items: center!important;
+  }
+
+  .logo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .nav-brand {
+    font-size: 20px;
+  }
+
+  .navbar-toggler {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .nav-area {
+    justify-content: center;
+  }
+
+  .navigation-buttons {
+    justify-content: flex-end;
+  }
+}

@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
+import { LatestNewsComponent } from './components/latest-news/latest-news.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { GoogleAuthComponent } from './components/google-auth/google-auth.compon
     RegisterComponent,
     HomeComponent,
     GoogleAuthComponent
+    LatestNewsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
