@@ -61,6 +61,8 @@ header {
   display: flex;
   justify-content: flex-end;
   gap: 15px;
+  margin-left: auto; /* Add margin to push the buttons further right */
+
 }
 
 @media (max-width: 767px) {
@@ -81,6 +83,11 @@ header {
 
   .nav-brand {
     font-size: 20px;
+  }
+
+  .navbar-toggler {
+    display: flex;
+    justify-content: flex-start;
   }
 
   .nav-area {
