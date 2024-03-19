@@ -1,15 +1,32 @@
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+* {
+  font-family: "Andada Pro", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.welcome-message {
+  margin-top: 110px;
+  font-weight: 700;
+}
+
+.description-message {
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 input, select {
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 2px solid #b3b1b1;
+  border-radius: 50px;
+  width: 350px;
 }
 
-select {
-  cursor: pointer;
+.search-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
 }

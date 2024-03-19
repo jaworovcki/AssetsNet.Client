@@ -1,9 +1,17 @@
-<form>
-  <input type="text" placeholder="Оберіть акцію" matInput [formControl]="stockFilter"
-  [matAutocomplete]="stockAuto">
-  <mat-autocomplete autoActiveFirstOption #stockAuto="matAutocomplete">
-    <mat-option *ngFor="let stock of filteredStockNames | async" [value]="stock">
-      {{stock}}
-    </mat-option>
-  </mat-autocomplete>
-</form>
+<div class="container">
+  <div class="welcome-area text-center">
+    <h1 class="welcome-message">Welcome to AssetsNet Search</h1>
+    <p class="description-message">Explore the new instrument for stocks prices forecasting which based on the social media posts</p>
+  </div>
+  <div class="search-area text-center">
+    <form>
+      <input type="text" placeholder="Оберіть акцію" matInput [formControl]="stockFilter"
+      [matAutocomplete]="stockAuto">
+      <mat-autocomplete autoActiveFirstOption #stockAuto="matAutocomplete">
+        <mat-option *ngFor="let stock of filteredStockNames | async" [value]="stock">
+          {{stock}}
+        </mat-option>
+      </mat-autocomplete>
+    </form>
+  </div>
+</div>
