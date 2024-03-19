@@ -12,6 +12,8 @@ import { LatestNewsComponent } from './components/latest-news/latest-news.compon
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchComponent } from './components/search/search.component';
 import { GoogleAuthComponent } from './components/account/google-auth/google-auth.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { GoogleAuthComponent } from './components/account/google-auth/google-aut
     FormsModule,
     NgbModule,
     HttpClientModule,
+    NoopAnimationsModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

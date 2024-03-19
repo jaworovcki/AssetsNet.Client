@@ -21,9 +21,14 @@ export class StocksService {
     return this.http.get<ExchangeSymbol[]>(`${this.eodhdApiUrl}exchange-symbol-list/US`, { params: queryParams });
   }
 
-  saveStockNames(symbols: ExchangeSymbol[]) {
+  saveStockNames(symbols: ExchangeSymbol[]) : string[] | null {
     let stockNames = symbols.map((symbol) => symbol.Name);
     localStorage.setItem('stockNames', JSON.stringify(stockNames));
+    return stockNames;
+  }
+
+  checkIfStockNamesExistsInLocalStorage() : boolean {
+    return localStorage.getItem('stockNames') !== null;
   }
 
 }

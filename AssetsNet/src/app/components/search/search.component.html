@@ -1,1 +1,9 @@
-<p>search works!</p>
+<form>
+  <input type="text" placeholder="Оберіть акцію" matInput [formControl]="stockFilter"
+  [matAutocomplete]="stockAuto">
+  <mat-autocomplete autoActiveFirstOption #stockAuto="matAutocomplete">
+    <mat-option *ngFor="let stock of filteredStockNames | async" [value]="stock">
+      {{stock}}
+    </mat-option>
+  </mat-autocomplete>
+</form>
