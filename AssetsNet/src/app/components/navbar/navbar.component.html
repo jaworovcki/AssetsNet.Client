@@ -23,7 +23,7 @@
             <button routerLink="/login">Login</button>
           </ng-container>
           <ng-container *ngIf="(accountService.currentUser$ | async) as user">
-            <button routerLink="/login">Logout</button>
+            <button (click)="logout()">Logout</button>
           </ng-container>
         </div>
       </div>

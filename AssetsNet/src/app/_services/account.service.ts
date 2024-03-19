@@ -52,6 +52,11 @@ export class AccountService {
     this.setUserRoles(user);
   }
 
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUserSource.next(null);
+  }
+
   setUserRoles(userJwt: UserJwt) {
     this.userRolesSource.next(userJwt.roles);
   }
