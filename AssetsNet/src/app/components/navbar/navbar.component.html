@@ -2,7 +2,8 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <div class="nav-area">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="nav-brand" routerLink="/" style="cursor: pointer;">
@@ -17,8 +18,13 @@
           <a href="#" class="nav-link">Profile</a>
         </div>
         <div class="navigation-buttons">
-          <button routerLink="/register">Register</button>
-          <button routerLink="/login">Login</button>
+          <ng-container *ngIf="!(accountService.currentUser$ | async) as user">
+            <button routerLink="/register">Register</button>
+            <button routerLink="/login">Login</button>
+          </ng-container>
+          <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+            <button routerLink="/login">Logout</button>
+          </ng-container>
         </div>
       </div>
     </div>
