@@ -5,7 +5,7 @@
   </div>
   <div class="search-area text-center">
     <form>
-      <input type="text" placeholder="Оберіть акцію" matInput [formControl]="stockFilter"
+      <input type="text" placeholder=" Search for any stock forecast you want" matInput [formControl]="stockFilter"
       [matAutocomplete]="stockAuto">
       <mat-autocomplete autoActiveFirstOption #stockAuto="matAutocomplete">
         <mat-option *ngFor="let stock of filteredStockNames | async" [value]="stock">
