@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { News } from '../models/news/news';
+import { RedditPost } from '../models/reddit/redditPost';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class NewsService {
     return this.http.get<News[]>(url);
   }
 
+  getRedditPosts(filter: string) {
+    const url = `${this.baseUrl}news/reddit/${filter}/2`;
+    return this.http.get<RedditPost[]>(url);
+  }
 
   // Fake data generator
   // REMOVE FOR PRODUCTION
