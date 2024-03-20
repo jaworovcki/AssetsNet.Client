@@ -8,9 +8,12 @@ import { RegisterComponent } from './components/account/register/register.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
-import { GoogleAuthComponent } from './components/google-auth/google-auth.component';
 import { LatestNewsComponent } from './components/latest-news/latest-news.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SearchComponent } from './components/search/search.component';
+import { GoogleAuthComponent } from './components/account/google-auth/google-auth.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HomeComponent,
     GoogleAuthComponent,
     LatestNewsComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormsModule,
     NgbModule,
     HttpClientModule,
+    NoopAnimationsModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
