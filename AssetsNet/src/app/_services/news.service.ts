@@ -18,8 +18,8 @@ export class NewsService {
     return this.http.get<News[]>(url);
   }
 
-  getRedditPosts(filter: string) {
-    const url = `${this.baseUrl}news/reddit/${filter}/2`;
+  getRedditPosts(filter: string, searchDate: number = 2) { // 2 = Week
+    const url = `${this.baseUrl}news/reddit/${filter}/${searchDate}`;
     return this.http.get<RedditPost[]>(url);
   }
 
