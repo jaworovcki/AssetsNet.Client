@@ -31,4 +31,6 @@ export class StocksService {
     return localStorage.getItem('stockNames') !== null;
   }
 
+  
+
 }

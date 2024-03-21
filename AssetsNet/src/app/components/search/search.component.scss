@@ -30,3 +30,71 @@ input, select {
   flex-direction: column;
   margin-top: 40px;
 }
+
+.target-stock-title {
+  font-weight: 700;
+  font-size: 21px;
+}
+
+.target-stock {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.target-stock-name {
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.stock-forecast-response {
+  padding: 6px;
+  overflow: none;
+  max-width: 800px;
+  min-width: 700px;
+  min-height: 200px;
+  background-color: rgb(246, 244, 244);
+  border: 1px solid #b8b7b7;
+  border-radius: 10px;
+}
+
+.response-title {
+  font-weight: 500;
+  font-size: 17px;
+}
+
+stock-response {
+  font-weight: 300px;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 800px){
+  .stock-forecast-response {
+    min-width: 330px;
+    
+  }
+
+  input, select {
+    width: 250px;
+  }
+
+  .target-stock-title {
+    font-size: 18px;
+  }
+
+  .target-stock-name {
+    font-size: 18px;
+  }
+
+  .description-message {
+    font-size: 18px;
+  }
+
+  .welcome-message {
+    font-size: 30px;
+  }  
+}

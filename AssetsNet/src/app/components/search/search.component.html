@@ -4,7 +4,7 @@
     <p class="description-message">Explore the new instrument for stocks prices forecasting which based on the social media posts</p>
   </div>
   <div class="search-area text-center">
-    <form>
+    <form (keydown.enter)="$event.preventDefault(); getStockForecast()">
       <input type="text" placeholder=" Search for any stock forecast you want" matInput [formControl]="stockFilter"
       [matAutocomplete]="stockAuto">
       <mat-autocomplete autoActiveFirstOption #stockAuto="matAutocomplete">
@@ -14,4 +14,30 @@
       </mat-autocomplete>
     </form>
   </div>
+
+  <ng-container *ngIf="isResponseObtained">
+    <div class="target-stock">
+      <h2 class="target-stock-title">Target Stock:</h2>
+      <p class="target-stock-name">{{targetStock}}</p>
+    </div>
+    
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center flex-column align-items-center">
+        <div class="row" style="margin-top: 30px;">
+          <div class="col-12">
+            <p class="response-title">Response:</p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12 d-flex">
+            <div class="stock-forecast-response">
+              <p class="stock-response">{{aiResponse}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  
 </div>
