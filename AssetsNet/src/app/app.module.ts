@@ -14,6 +14,7 @@ import { SearchComponent } from './components/search/search.component';
 import { GoogleAuthComponent } from './components/account/google-auth/google-auth.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { StocksTableComponent } from './components/stocks-table/stocks-table.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     GoogleAuthComponent,
     LatestNewsComponent,
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    StocksTableComponent
   ],
   imports: [
     BrowserModule,

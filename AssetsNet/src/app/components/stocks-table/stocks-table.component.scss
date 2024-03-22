@@ -1,0 +1,17 @@
+.wrapper {
+	border-radius: 10px;
+	padding: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	width: 100%;
+	/* Added */
+	max-width: 800px;
+	/* Adjust as needed */
+	margin: 20px;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}

@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="wrapper">
+		
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Symbol</th>
+							<th>Price</th>
+							<th>% Change</th>
+							<th>Volume</th>
+							<th>Makrket Cap</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let stock of stocks">
+							<td>{{stock.symbol}}</td>
+							<td>{{stock.price}}</td>
+							<td>{{stock.changePercent}}</td>
+							<td>{{stock.volume}}</td>
+							<td>{{stock.marketCap}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+</div>
