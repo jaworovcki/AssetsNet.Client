@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ChatGptQuery } from '../models/chatGpt/ChatGptQuery';
+import { ChatGptQuery } from '../models/chatGpt/chatGptQuery';
 import { ChatGptResponse } from '../models/chatGpt/chatGptResponse';
 
 const PROMPT = "Analyze the latest information about the stock and give the consise answer will the stock price tend to go up or down based on the given information." +

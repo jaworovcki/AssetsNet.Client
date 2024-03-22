@@ -4,7 +4,7 @@ import { Observable, debounceTime, map, startWith } from 'rxjs';
 import { ChatGptService } from 'src/app/_services/chat-gpt.service';
 import { NewsService } from 'src/app/_services/news.service';
 import { StocksService } from 'src/app/_services/stocks.service';
-import { ChatGptQuery } from 'src/app/models/chatGpt/ChatGptQuery';
+import { ChatGptQuery } from 'src/app/models/chatGpt/chatGptQuery';
 
 @Component({
   selector: 'app-search',
