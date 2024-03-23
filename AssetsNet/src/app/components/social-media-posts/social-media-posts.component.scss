@@ -1,0 +1,72 @@
+* {
+  font-family: "Andada Pro", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+
+.title {
+	font-weight: 800;
+	margin-left: 10px;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.wrapper {
+	position: relative;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	max-width: 500px;
+	padding: 10px;
+	margin: 20px;
+	height: 860px;
+	width: 100%;
+}
+
+.post {
+	
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-bottom: 15px;
+}
+
+.publisher {
+	color: dimgray;
+	font-size: 15px;
+	padding-top: 15px;
+	margin-bottom: 5px;
+}
+
+.content {
+	overflow-wrap: break-word;
+}
+
+.link {
+	padding-top: 10px;
+}
+
+a {
+	font-weight: 800;
+	color: dimgray;
+}
+
+.navigation-buttons button {
+	border: 1px solid black;
+	background-color: #F6F6F6;
+	text-transform: uppercase;
+	margin-right: 20px;
+	padding: 5px;
+	border-radius: 7px;
+	font-size: 15px;
+}
+
+.navigation-buttons {
+	padding: 10px;
+	margin-bottom: 15px;
+	position: absolute;
+  bottom: 0;
+}

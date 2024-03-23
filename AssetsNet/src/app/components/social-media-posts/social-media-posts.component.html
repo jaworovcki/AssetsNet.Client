@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="wrapper">
+		<h1 class="title">Posts</h1>
+		<div class="post" *ngFor="let post of getCurrentPosts()">
+			<p class="publisher">{{post.author}}</p>
+			<div class="content">{{post.content}}</div>
+			<div class="link"><a href="{{post.link}}">Link for post</a></div>
+		</div>
+		<div class="navigation-buttons">
+			<button (click)="previousPage()" [disabled]="!hasPreviousPage()">Previous</button>
+			<button (click)="nextPage()" [disabled]="!hasNextPage()">Next</button>
+		</div>
+	</div>
+</div>
