@@ -30,15 +30,16 @@ export class LatestNewsComponent implements OnInit {
   }
 
   loadNews() {
-    this.newsService.getLatestNews(this.selectedCompany?.value).subscribe((news: News[]) => {
-      if(news) {
-        this.news = news;
-      }
-      console.log(this.news);
-    }, (error) => {
-      this.news = this.newsService.generateMockNewsArray(6);
-      console.log(error);
-    });
+    this.news = this.newsService.generateMockNewsArray(6);
+    // this.newsService.getLatestNews(this.selectedCompany?.value).subscribe((news: News[]) => {
+    //   if(news) {
+    //     this.news = news;
+    //   }
+    //   console.log(this.news);
+    // }, (error) => {
+    //   this.news = this.newsService.generateMockNewsArray(6);
+    //   console.log(error);
+    // });
   }
 
   onCompanySelected(selectedCompany: { name: string, value: string }) {
