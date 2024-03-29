@@ -9,18 +9,27 @@ import { StocksService } from 'src/app/_services/stocks.service';
 })
 export class StocksTableComponent implements OnInit {
   
-  stocks: Stock[] = this.stocksService.generateMockStocksArray(5);
+  stocks: Stock[] = [];
+  symbols: string[] = ["AMZN", "AAPL", "NFLX", "GOOG"];
 
   constructor(private stocksService: StocksService) { }
 
   ngOnInit(): void {
+    // this.getStocksData();
   }
 
   getChangePercentClass(stock: Stock) {
     return {
-      'up': stock.changePercent > 0,
-      'down': stock.changePercent < 0
+      'up': +stock.percentChange > 0,
+      'down': +stock.percentChange < 0
     };
   }
 
+  getStocksData() {
+    this.stocksService.getStocks(this.symbols).subscribe((stocks: any) => {
+      this.stocks = stocks;
+    }, (error) => {
+      console.log(error);
+    });
+  }
 }

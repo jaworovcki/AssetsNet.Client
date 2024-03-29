@@ -38,23 +38,23 @@ export class StocksService {
     return this.http.post(this.baseUrl + 'stocks/stocks-list', symbols);
   }
 
-  private generateMockStock(): Stock {
-    return {
-      symbol: 'AAPL',
-      name: 'Apple Inc.',
-      price: +(Math.random() * 100).toFixed(2),
-      changePercent: +(Math.random() * (-15) + 10).toFixed(2),
-      volume: +(Math.random() * 100).toFixed(3),
-      marketCap: +(Math.random() * 1000000).toFixed(2)
-    };
-  }
+  // private generateMockStock(): Stock {
+  //   return {
+  //     symbol: 'AAPL',
+  //     name: 'Apple Inc.',
+  //     price: +(Math.random() * 100).toFixed(2),
+  //     changePercent: +(Math.random() * (-15) + 10).toFixed(2),
+  //     volume: +(Math.random() * 100).toFixed(3),
+  //     marketCap: +(Math.random() * 1000000).toFixed(2)
+  //   };
+  // }
   
-  generateMockStocksArray(count: number): Stock[] {
-    let stocks: Stock[] = [];
-    for (let i = 0; i < count; i++) {
-      stocks.push(this.generateMockStock());
-    }
-    return stocks;
-  }
+  // generateMockStocksArray(count: number): Stock[] {
+  //   let stocks: Stock[] = [];
+  //   for (let i = 0; i < count; i++) {
+  //     stocks.push(this.generateMockStock());
+  //   }
+  //   return stocks;
+  // }
   
 }

@@ -1,8 +1,19 @@
 export interface Stock {
     symbol: string;
     name: string;
-    price: number;
-    changePercent: number;
-    marketCap: number;
-    volume: number;
+    exchange: string;
+    micCode: string;
+    currency: string;
+    timestamp: string;
+    datetime: string;
+    open: string;
+    low: string;
+    high: string;
+    close: string;
+    volume: string;
+    previousClose: string;
+    change: string;
+    percentChange: string;
+    averageVolume: string;
+    isMarketOpen: boolean;
 }

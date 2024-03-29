@@ -19,10 +19,10 @@
 						</button>
 					</td>
 					<td>{{stock.symbol}}</td>
-					<td>{{stock.price}}</td>
-					<td [ngClass]="getChangePercentClass(stock)">{{stock.changePercent}}%</td>
+					<td>{{stock.close}}</td>
+					<td [ngClass]="getChangePercentClass(stock)">{{+stock.percentChange}}%</td>
 					<td>{{stock.volume}}B</td>
-					<td>{{stock.marketCap}}</td>
+					<td>{{stock.averageVolume}}</td>
 				</tr>
 			</tbody>
 		</table>
