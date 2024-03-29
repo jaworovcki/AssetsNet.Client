@@ -6,12 +6,9 @@ import { AccountService } from 'src/app/_services/account.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   constructor(public accountService: AccountService) { }
-
-  ngOnInit(): void {
-  }
 
   logout() {
     this.accountService.logout();
