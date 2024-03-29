@@ -17,20 +17,20 @@ export class StocksService {
 
   constructor(private http: HttpClient) { }
 
-  getExchangeSymbols() : Observable<ExchangeSymbol[]> {
+  getExchangeSymbols(): Observable<ExchangeSymbol[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('api_token', this.eodhdApiToken);
     queryParams = queryParams.append('fmt', 'json');
     return this.http.get<ExchangeSymbol[]>(`${this.eodhdApiUrl}exchange-symbol-list/US`, { params: queryParams });
   }
 
-  saveStockNames(symbols: ExchangeSymbol[]) : string[] | null {
+  saveStockNames(symbols: ExchangeSymbol[]): string[] | null {
     let stockNames = symbols.map((symbol) => symbol.Name);
     localStorage.setItem('stockNames', JSON.stringify(stockNames));
     return stockNames;
   }
 
-  checkIfStockNamesExistsInLocalStorage() : boolean {
+  checkIfStockNamesExistsInLocalStorage(): boolean {
     return localStorage.getItem('stockNames') !== null;
   }
 
@@ -38,23 +38,39 @@ export class StocksService {
     return this.http.post(this.baseUrl + 'stocks/stocks-list', symbols);
   }
 
-  // private generateMockStock(): Stock {
-  //   return {
-  //     symbol: 'AAPL',
-  //     name: 'Apple Inc.',
-  //     price: +(Math.random() * 100).toFixed(2),
-  //     changePercent: +(Math.random() * (-15) + 10).toFixed(2),
-  //     volume: +(Math.random() * 100).toFixed(3),
-  //     marketCap: +(Math.random() * 1000000).toFixed(2)
-  //   };
-  // }
-  
-  // generateMockStocksArray(count: number): Stock[] {
-  //   let stocks: Stock[] = [];
-  //   for (let i = 0; i < count; i++) {
-  //     stocks.push(this.generateMockStock());
-  //   }
-  //   return stocks;
-  // }
-  
+  // TODO: Remove on Production
+
+  private generateMockStock(): Stock {
+    const randomNumber = () => (Math.random() * 100).toFixed(2);
+    const randomBoolean = () => Math.random() > 0.5;
+
+    return {
+      symbol: 'AAPL',
+      name: 'Apple Inc.',
+      exchange: 'NASDAQ',
+      micCode: 'XNAS',
+      currency: 'USD',
+      timestamp: new Date().toISOString(),
+      datetime: new Date().toISOString(),
+      open: randomNumber(),
+      low: randomNumber(),
+      high: randomNumber(),
+      close: randomNumber(),
+      volume: randomNumber(),
+      previousClose: randomNumber(),
+      change: randomNumber(),
+      percentChange: randomNumber(),
+      averageVolume: randomNumber(),
+      isMarketOpen: randomBoolean()
+    };
+  }
+
+  generateMockStocksArray(count: number): Stock[] {
+    let stocks: Stock[] = [];
+    for (let i = 0; i < count; i++) {
+      stocks.push(this.generateMockStock());
+    }
+    return stocks;
+  }
+
 }
