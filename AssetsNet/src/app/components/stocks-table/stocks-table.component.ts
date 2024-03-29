@@ -34,6 +34,10 @@ export class StocksTableComponent implements OnInit {
     });
   }
 
+  toggleStar(stock: Stock): void {
+    stock.starred = !stock.starred; // Toggle the 'starred' property
+  }
+
   private getMockStockData() {
     this.stocks = this.stocksService.generateMockStocksArray(5);
   }

@@ -16,4 +16,5 @@ export interface Stock {
     percentChange: string;
     averageVolume: string;
     isMarketOpen: boolean;
+    starred?: boolean;
 }

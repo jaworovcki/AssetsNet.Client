@@ -14,8 +14,9 @@
 			<tbody>
 				<tr *ngFor="let stock of stocks">
 					<td class="star-col">
-						<button class="star-button">
-							<img src="assets/imgs/Star.png" class="star-png">
+						<button class="star-button" (click)="toggleStar(stock)">
+							<img [src]="stock.starred ? 'assets/imgs/Star.png' : 'assets/imgs/Star_clicked.png'"
+								class="star-png">
 						</button>
 					</td>
 					<td>{{stock.symbol}}</td>

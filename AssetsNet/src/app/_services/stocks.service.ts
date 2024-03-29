@@ -64,7 +64,8 @@ export class StocksService {
       change: randomChange(),
       percentChange: randomChange(),
       averageVolume: randomNumber(800000, 1500000),
-      isMarketOpen: randomBoolean()
+      isMarketOpen: randomBoolean(),
+      starred: randomBoolean()
     };
   }
 
