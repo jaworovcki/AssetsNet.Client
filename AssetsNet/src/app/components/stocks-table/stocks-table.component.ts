@@ -10,13 +10,13 @@ import { StocksService } from 'src/app/_services/stocks.service';
 export class StocksTableComponent implements OnInit {
 
   stocks: Stock[] = [];
-  symbols: string[] = ["AMZN", "AAPL", "NFLX", "GOOG"];
+  symbols: string[] = ["AMZN", "AAPL", "NFLX", "GOOG", "NVDA"];
 
   constructor(private stocksService: StocksService) { }
 
   ngOnInit(): void {
-    this.getMockStockData(); // Fake data
-    // this.getStocksData(); // Real Data
+    // this.getMockStockData(); // Fake data
+    this.getStocksData(); // Real Data
   }
 
   getChangePercentClass(stock: Stock) {
@@ -29,13 +29,15 @@ export class StocksTableComponent implements OnInit {
   getStocksData() {
     this.stocksService.getStocks(this.symbols).subscribe((stocks: Stock[]) => {
       this.stocks = stocks;
+      console.log(stocks);
+      
     }, (error) => {
       console.log(error);
     });
   }
 
   toggleStar(stock: Stock): void {
-    stock.starred = !stock.starred; // Toggle the 'starred' property
+    stock.starred = !stock.starred;
   }
 
   private getMockStockData() {

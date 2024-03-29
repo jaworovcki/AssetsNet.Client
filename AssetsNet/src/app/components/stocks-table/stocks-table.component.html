@@ -21,9 +21,9 @@
 					</td>
 					<td>{{stock.symbol}}</td>
 					<td>{{stock.close}}</td>
-					<td [ngClass]="getChangePercentClass(stock)">{{+stock.percentChange}}%</td>
-					<td>{{stock.volume}}B</td>
-					<td>{{stock.averageVolume}}</td>
+					<td [ngClass]="getChangePercentClass(stock)">{{+stock.percentChange | number:'1.2-2'}}%</td>
+					<td>{{stock.volume | number:'1.2-2'}}B</td>
+					<td>{{stock.averageVolume | number}}</td>
 				</tr>
 			</tbody>
 		</table>
