@@ -18,11 +18,11 @@
           <a href="#" class="nav-link">Profile</a>
         </div>
         <div class="navigation-buttons">
-          <ng-container *ngIf="!(accountService.currentUser$ | async) as user">
+          <ng-container *ngIf="(accountService.currentUser$ | async) === null">
             <button routerLink="/register">Register</button>
             <button routerLink="/login">Login</button>
           </ng-container>
-          <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+          <ng-container *ngIf="(accountService.currentUser$ | async) !== null">
             <button (click)="logout()">Logout</button>
           </ng-container>
         </div>
