@@ -18,7 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    GoogleAuthComponent
+    GoogleAuthComponent,
     LatestNewsComponent,
     NavbarComponent
   ],
