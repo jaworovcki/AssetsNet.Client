@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   baseUrl: 'https://localhost:7002/api/',
+  eodhdApiUrl:"https://eodhd.com/api/",
+  eohdApiToken:"65f999526e8095.60296431",
   clientId: '491184798714-ahvlhl23coq1l5sgk7cg75ta48aqdclr.apps.googleusercontent.com',
 };
 
