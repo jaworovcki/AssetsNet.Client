@@ -35,7 +35,7 @@ export class StocksService {
   }
 
   getStocks(symbols: string[]) {
-    return this.http.post(this.baseUrl + 'stocks/stocks-list', symbols);
+    return this.http.post<Stock[]>(this.baseUrl + 'stocks/stocks-list', symbols);
   }
 
   // TODO: Remove on Production

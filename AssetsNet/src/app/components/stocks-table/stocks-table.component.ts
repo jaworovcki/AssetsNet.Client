@@ -8,14 +8,15 @@ import { StocksService } from 'src/app/_services/stocks.service';
   styleUrls: ['./stocks-table.component.scss']
 })
 export class StocksTableComponent implements OnInit {
-  
+
   stocks: Stock[] = [];
   symbols: string[] = ["AMZN", "AAPL", "NFLX", "GOOG"];
 
   constructor(private stocksService: StocksService) { }
 
   ngOnInit(): void {
-    this.getMockStockData();
+    this.getMockStockData(); // Fake data
+    // this.getStocksData(); // Real Data
   }
 
   getChangePercentClass(stock: Stock) {
@@ -26,7 +27,7 @@ export class StocksTableComponent implements OnInit {
   }
 
   getStocksData() {
-    this.stocksService.getStocks(this.symbols).subscribe((stocks: any) => {
+    this.stocksService.getStocks(this.symbols).subscribe((stocks: Stock[]) => {
       this.stocks = stocks;
     }, (error) => {
       console.log(error);
