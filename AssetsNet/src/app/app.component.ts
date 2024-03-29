@@ -10,13 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'AssetsNet';
-  userJwt: UserJwt | null = null;
 
-  constructor(private accountService: AccountService) {
-    this.accountService.currentUser$.subscribe((user) => {
-      this.userJwt = user;
-    })
-  }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.setCurrentUser();
