@@ -13,6 +13,8 @@ export class StocksService {
   eodhdApiUrl = environment.eodhdApiUrl;
   eodhdApiToken = environment.eohdApiToken;
 
+  baseUrl: string = environment.baseUrl;
+
   constructor(private http: HttpClient) { }
 
   getExchangeSymbols() : Observable<ExchangeSymbol[]> {
@@ -30,6 +32,10 @@ export class StocksService {
 
   checkIfStockNamesExistsInLocalStorage() : boolean {
     return localStorage.getItem('stockNames') !== null;
+  }
+
+  getStocks(symbols: string[]) {
+    return this.http.post(this.baseUrl + 'stocks/stocks-list', symbols);
   }
 
   private generateMockStock(): Stock {
