@@ -39,11 +39,14 @@ export class StocksService {
   }
 
   // TODO: Remove on Production
-
   private generateMockStock(): Stock {
-    const randomNumber = () => (Math.random() * 100).toFixed(2);
+    const randomNumber = (min: number, max: number) => (Math.random() * (max - min) + min).toFixed(2);
     const randomBoolean = () => Math.random() > 0.5;
-
+    const randomChange = () => {
+      const positiveOrNegative = Math.random() > 0.5 ? 1 : -1;
+      return (Math.random() * 15 * positiveOrNegative).toFixed(2);
+    };
+  
     return {
       symbol: 'AAPL',
       name: 'Apple Inc.',
@@ -52,15 +55,15 @@ export class StocksService {
       currency: 'USD',
       timestamp: new Date().toISOString(),
       datetime: new Date().toISOString(),
-      open: randomNumber(),
-      low: randomNumber(),
-      high: randomNumber(),
-      close: randomNumber(),
-      volume: randomNumber(),
-      previousClose: randomNumber(),
-      change: randomNumber(),
-      percentChange: randomNumber(),
-      averageVolume: randomNumber(),
+      open: randomNumber(100, 200),
+      low: randomNumber(90, 100),
+      high: randomNumber(200, 250),
+      close: randomNumber(150, 180),
+      volume: randomNumber(1000000, 2000000),
+      previousClose: randomNumber(150, 180),
+      change: randomChange(),
+      percentChange: randomChange(),
+      averageVolume: randomNumber(800000, 1500000),
       isMarketOpen: randomBoolean()
     };
   }

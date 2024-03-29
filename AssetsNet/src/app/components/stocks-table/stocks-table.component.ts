@@ -15,7 +15,7 @@ export class StocksTableComponent implements OnInit {
   constructor(private stocksService: StocksService) { }
 
   ngOnInit(): void {
-    // this.getStocksData();
+    this.getMockStockData();
   }
 
   getChangePercentClass(stock: Stock) {
@@ -31,5 +31,9 @@ export class StocksTableComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+  }
+
+  private getMockStockData() {
+    this.stocks = this.stocksService.generateMockStocksArray(5);
   }
 }
