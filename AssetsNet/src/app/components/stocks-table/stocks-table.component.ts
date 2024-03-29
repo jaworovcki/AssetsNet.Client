@@ -15,8 +15,8 @@ export class StocksTableComponent implements OnInit {
   constructor(private stocksService: StocksService) { }
 
   ngOnInit(): void {
-    // this.getMockStockData(); // Fake data
-    this.getStocksData(); // Real Data
+    this.getMockStockData(); // Fake data
+    // this.getStocksData(); // Real Data
   }
 
   getChangePercentClass(stock: Stock) {
