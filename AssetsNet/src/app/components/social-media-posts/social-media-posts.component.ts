@@ -16,8 +16,8 @@ export class SocialMediaPostsComponent implements OnInit {
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    // this.getTwitterPostsFromUserTimeline();
-    this.generateTwitterPostMockData();
+    // this.getTwitterPostsFromUserTimeline(); // Real Data
+    this.generateTwitterPostMockData(); // Fake Data
   }
 
   getTwitterPostsFromUserTimeline() {
