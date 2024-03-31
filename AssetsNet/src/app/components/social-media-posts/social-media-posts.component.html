@@ -1,10 +1,10 @@
 <div class="container">
 	<div class="wrapper">
 		<h1 class="title">Posts</h1>
-		<div class="post" *ngFor="let post of getCurrentPosts()">
-			<p class="publisher">{{post.author}}</p>
-			<div class="content">{{post.content}}</div>
-			<div class="link"><a href="{{post.link}}">Link for post</a></div>
+		<div class="post" *ngFor="let post of getCurrentTwitterPosts()">
+			<p class="publisher">{{post.lang}}</p>
+			<div class="content">{{post.text}}</div>
+			<div class="link"><a href="{{'https://twitter.com/i/web/status/' + post.tweet_id}}">Link for post</a></div>
 		</div>
 		<div class="navigation-buttons">
 			<button (click)="previousPage()" [disabled]="!hasPreviousPage()">Previous</button>

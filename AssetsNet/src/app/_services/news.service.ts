@@ -26,7 +26,7 @@ export class NewsService {
 
   getTwitterPostsFromUserTimeline(screenName:string = 'Stocktwits') {
     const url = `${this.baseUrl}news/twitter/userMedia/${screenName}`;
-    return this.http.get<TwitterPost>(url);
+    return this.http.get<TwitterPost[]>(url);
   }
 
   // Fake data generator
