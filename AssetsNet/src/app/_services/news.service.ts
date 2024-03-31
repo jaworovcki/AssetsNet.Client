@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { News } from '../models/news/news';
 import { RedditPost } from '../models/reddit/redditPost';
+import { TwitterPost } from '../models/twitter/twitterTimeline/TwitterPost';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class NewsService {
   getRedditPosts(filter: string, searchDate: number = 2) { // 2 = Week
     const url = `${this.baseUrl}news/reddit/${filter}/${searchDate}`;
     return this.http.get<RedditPost[]>(url);
+  }
+
+  getTwitterPostsFromUserTimeline(screenName?:string) {
+    const url = `${this.baseUrl}news/reddit/twitter/${screenName}`;
+    return this.http.get<TwitterPost>(url);
   }
 
   // Fake data generator
