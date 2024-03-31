@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from 'src/app/models/post/post';
-import { PostsService } from 'src/app/_services/posts.service';
 import { NewsService } from 'src/app/_services/news.service';
-import { TwitterPost } from 'src/app/models/twitter/twitterTimeline/TwitterPost';
+import { TwitterTimelinePost } from 'src/app/models/twitter/twitterTimeline/twitterTimelinePost';
 
 @Component({
   selector: 'app-social-media-posts',
@@ -11,7 +9,7 @@ import { TwitterPost } from 'src/app/models/twitter/twitterTimeline/TwitterPost'
 })
 export class SocialMediaPostsComponent implements OnInit {
 
-  twitterPosts: TwitterPost[] = [];
+  twitterPosts: TwitterTimelinePost[] = [];
   pageSize: number = 4;
   currentPage: number = 1;
 
@@ -23,7 +21,7 @@ export class SocialMediaPostsComponent implements OnInit {
 
   getTwitterPostsFromUserTimeline() {
     this.newsService.getTwitterPostsFromUserTimeline().subscribe(
-      (tweets: TwitterPost[]) => {
+      (tweets: TwitterTimelinePost[]) => {
         console.log(tweets);
         this.twitterPosts = tweets;
       },
@@ -33,7 +31,7 @@ export class SocialMediaPostsComponent implements OnInit {
     );
   }
 
-  getCurrentTwitterPosts(): TwitterPost[] {
+  getCurrentTwitterPosts(): TwitterTimelinePost[] {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     return this.twitterPosts.slice(startIndex, endIndex);

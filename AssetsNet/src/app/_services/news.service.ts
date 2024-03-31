@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { News } from '../models/news/news';
 import { RedditPost } from '../models/reddit/redditPost';
-import { TwitterPost } from '../models/twitter/twitterTimeline/TwitterPost';
+import { TwitterTimelinePost } from '../models/twitter/twitterTimeline/twitterTimelinePost';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class NewsService {
 
   getTwitterPostsFromUserTimeline(screenName:string = 'Stocktwits') {
     const url = `${this.baseUrl}news/twitter/userMedia/${screenName}`;
-    return this.http.get<TwitterPost[]>(url);
+    return this.http.get<TwitterTimelinePost[]>(url);
   }
 
   // Fake data generator

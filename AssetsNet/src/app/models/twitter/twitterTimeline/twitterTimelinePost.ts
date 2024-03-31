@@ -1,6 +1,6 @@
-import { TwitterMedia } from "./twitterMedia"
+import { TwitterTimelineMedia } from "./twitterTimelineMedia"
 
-export interface TwitterPost {
+export interface TwitterTimelinePost {
   tweet_id: string;
   bookmarks: number;
   created_at: string;
@@ -12,5 +12,5 @@ export interface TwitterPost {
   replies: number;
   retweets: number;
   conversation_id: string;
-  media: TwitterMedia;
+  media: TwitterTimelineMedia;
 }
