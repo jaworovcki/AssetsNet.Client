@@ -16,7 +16,8 @@ export class SocialMediaPostsComponent implements OnInit {
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    this.getTwitterPostsFromUserTimeline();
+    // this.getTwitterPostsFromUserTimeline();
+    this.generateTwitterPostMockData();
   }
 
   getTwitterPostsFromUserTimeline() {
@@ -29,6 +30,10 @@ export class SocialMediaPostsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  generateTwitterPostMockData() {
+    this.twitterPosts = this.newsService.generateTwitterTimelinePostsMockData(10);
   }
 
   getCurrentTwitterPosts(): TwitterTimelinePost[] {

@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<h1 class="title">Posts</h1>
 		<div class="post" *ngFor="let post of getCurrentTwitterPosts()">
-			<p class="publisher">{{post.lang}}</p>
+			<p class="publisher">Stocktwits</p>
 			<div class="content">{{post.text}}</div>
 			<div class="link"><a href="{{'https://twitter.com/i/web/status/' + post.tweet_id}}">Link for post</a></div>
 		</div>

@@ -71,4 +71,35 @@ export class NewsService {
 
     return result;
   }
+
+  generateTwitterTimelinePostsMockData(amount: number): TwitterTimelinePost[] {
+    const mockData: TwitterTimelinePost[] = [];
+
+    // Generate mock data for demonstration purposes
+    for (let i = 0; i < amount; i++) {
+      const mockTweet: TwitterTimelinePost = {
+        tweet_id: `tweet_${i}`,
+        bookmarks: Math.floor(Math.random() * 100),
+        created_at: new Date().toISOString(),
+        favorites: Math.floor(Math.random() * 1000),
+        text: `This is a sample tweet number ${i}`,
+        lang: 'en',
+        views: `${Math.floor(Math.random() * 10000)}`,
+        quotes: Math.floor(Math.random() * 100),
+        replies: Math.floor(Math.random() * 100),
+        retweets: Math.floor(Math.random() * 1000),
+        conversation_id: `conversation_${i}`,
+        media: {
+          photo: [{
+            media_url_https: `https://example.com/image_${i}.jpg`,
+            id: `image_${i}`
+          }]
+        }
+      };
+
+      mockData.push(mockTweet);
+    }
+
+    return mockData;
+  }
 }
