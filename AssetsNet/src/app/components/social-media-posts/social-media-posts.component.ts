@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post/post';
 import { PostsService } from 'src/app/_services/posts.service';
+import { NewsService } from 'src/app/_services/news.service';
 
 @Component({
   selector: 'app-social-media-posts',
@@ -13,10 +14,19 @@ export class SocialMediaPostsComponent implements OnInit {
   pageSize: number = 4;
   currentPage: number = 1;
 
-  constructor(private postsService: PostsService) { }
+  constructor(private newsService: NewsService,private postsService: PostsService) { }
 
   ngOnInit(): void {
 		this.getMockPosts();
+    this.getTwitterPostsFromUserTimeline();
+  }
+
+  getTwitterPostsFromUserTimeline() {
+    this.newsService.getTwitterPostsFromUserTimeline().subscribe((tweets) => {
+      console.log(tweets);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   getMockPosts() {

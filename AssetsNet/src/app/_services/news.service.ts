@@ -24,8 +24,8 @@ export class NewsService {
     return this.http.get<RedditPost[]>(url);
   }
 
-  getTwitterPostsFromUserTimeline(screenName?:string) {
-    const url = `${this.baseUrl}news/reddit/twitter/${screenName}`;
+  getTwitterPostsFromUserTimeline(screenName:string = 'Stocktwits') {
+    const url = `${this.baseUrl}news/twitter/userMedia/${screenName}`;
     return this.http.get<TwitterPost>(url);
   }
 
