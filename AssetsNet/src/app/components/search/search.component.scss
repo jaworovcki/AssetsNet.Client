@@ -1,7 +1,6 @@
 * {
   font-family: "Andada Pro", serif;
   font-optical-sizing: auto;
-  font-weight: 400;
   font-style: normal;
 }
 
@@ -10,9 +9,14 @@
   font-weight: 700;
 }
 
+.dropdown {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .description-message {
   margin-top: 15px;
-  font-weight: 500;
   font-size: 20px;
 }
 
@@ -21,6 +25,14 @@ input, select {
   border: 2px solid #3d3d3d;
   border-radius: 50px;
   width: 350px;
+}
+
+.input-field {
+  padding: 5px;
+  padding-right: 10px;
+  border: 2px solid #3d3d3d;
+  border-radius: 10px;
+  width: 80%;
 }
 
 .search-area {
@@ -32,69 +44,149 @@ input, select {
 }
 
 .target-stock-title {
-  font-weight: 700;
-  font-size: 21px;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .target-stock {
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  margin-bottom: 5px;
+  align-self: start;
 }
 
 .target-stock-name {
-  margin-left: 10px;
   font-weight: 500;
   font-size: 20px;
   text-decoration: underline;
 }
-
 .stock-forecast-response {
-  padding: 6px;
+  padding: 10px;
   overflow: none;
-  max-width: 800px;
-  min-width: 700px;
-  min-height: 200px;
-  background-color: rgb(246, 244, 244);
-  border: 1px solid #b8b7b7;
+  min-width: 400px;
+  max-width: 600px;
+  min-height: 100px;
+  border: 2px solid black;
   border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.fa fa-link {
+    color: grey;
 }
 
 .response-title {
   font-weight: 500;
-  font-size: 17px;
+  font-size: 20px;
 }
 
-stock-response {
-  font-weight: 300px;
-  font-size: 15px;
+p.stock-response {
+  font-weight: 700;
+  font-size: 18px;
 }
 
-@media screen and (max-width: 800px){
-  .stock-forecast-response {
-    min-width: 330px;
-    
-  }
-
-  input, select {
-    width: 250px;
-  }
-
-  .target-stock-title {
-    font-size: 18px;
-  }
-
-  .target-stock-name {
-    font-size: 18px;
-  }
-
-  .description-message {
-    font-size: 18px;
-  }
-
-  .welcome-message {
-    font-size: 30px;
-  }  
+.menu {
+  display: flex;
+  justify-content: end;
 }
+
+.btn {
+  overflow:none;
+  border: 1px solid black;
+  background-color: #F6F6F6;
+  text-transform: uppercase;
+  padding: 10px 10px;
+  width: 150px;
+  border-radius: 7px;
+  font-weight:700;
+  color: black;
+}
+
+.btn onclick {
+  color: black;
+}
+
+
+.side-box {
+  position: relative; /* Ensure relative positioning */
+  padding: 10px;
+  overflow: none;
+  min-width: 150px;
+  max-width: 300px; /* Adjust max-width as needed */
+  border-radius: 12px;
+  margin-bottom: 25px;
+  margin-left: 25px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  background-color: #F6F6F6;
+  display: flex;
+  flex-direction: column;
+
+  .fa {
+    font-family: 'FontAwesome';
+  }
+
+  .fa-link {
+    font-size: 40px;
+    position: absolute;
+    bottom: 10px; 
+    right: 0;
+    transform: translate(50%, 50%); 
+    z-index: 1; 
+    cursor: pointer;
+  }
+
+  .fa-check {
+    color: #3dc106;
+    font-size: 60px;
+    position: absolute;
+    top: 10%;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 0;
+  }
+
+  .fa-close {
+    color: #b70000;
+    font-size: 60px;
+    position: absolute;
+    top: 10%;
+    right: 50%; 
+    transform: translateX(50%);
+    z-index: 0;
+  }
+
+
+  .upvotes-ui {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: auto;
+  }
+}
+
+
+  @media screen and (max-width: 800px) {
+    .stock-forecast-response {
+      width: 40;
+    }
+
+    input, select {
+      width: 250px;
+    }
+
+    .target-stock-title {
+      font-size: 18px;
+    }
+
+    .target-stock-name {
+      font-size: 18px;
+    }
+
+    .description-message {
+      font-size: 18px;
+    }
+
+    .welcome-message {
+      font-size: 30px;
+    }
+  }

@@ -6,7 +6,7 @@
   <div class="search-area text-center">
     <form (keydown.enter)="$event.preventDefault(); getStockForecast()">
       <input type="text" placeholder=" Search for any stock forecast you want" matInput [formControl]="stockFilter"
-      [matAutocomplete]="stockAuto">
+             [matAutocomplete]="stockAuto">
       <mat-autocomplete autoActiveFirstOption #stockAuto="matAutocomplete">
         <mat-option *ngFor="let stock of filteredStockNames | async" [value]="stock">
           {{stock}}
@@ -16,28 +16,84 @@
   </div>
 
   <ng-container *ngIf="isResponseObtained">
-    <div class="target-stock">
-      <h2 class="target-stock-title">Target Stock:</h2>
-      <p class="target-stock-name">{{targetStock}}</p>
-    </div>
-    
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center flex-column align-items-center">
-        <div class="row" style="margin-top: 30px;">
-          <div class="col-12">
-            <p class="response-title">Response:</p>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-12 d-flex">
-            <div class="stock-forecast-response">
-              <p class="stock-response">{{aiResponse}}</p>
+    <div class="dropdown">
+
+      <div class="row">
+        <div class=" d-flex justify-content-center flex-column">
+          <div class="row" style="margin-top: 30px;">
+            <div class="col-12">
             </div>
+          </div>
+
+          <div class="target-stock">
+            <h2 class="target-stock-title">Target Stock:</h2>
+            <h3 class="target-stock-name">{{targetStock}}</h3>
+          </div>
+
+
+
+          <div class="row">
+            <div class=" d-flex">
+              <div class="stock-forecast-response">
+                <p class="stock-response">
+                  ARTICLE TLDR: Amazon is investing a whopping $150 billion over 15 years to build data centers.
+                  anticipating a surge in demand for AI and digital services.
+                  This move aims to cement Amazon's lead in cloud services and enhance customer satisfaction.
+                  Additionally, Amazon is allocating over $1 billion this year to Nvidia's new Blackwell AI data center,
+                  further underlining its commitment to staying ahead in the tech race.{{aiResponse}}
+                </p>
+              </div>
+              <div class="side-box">
+                <div class="fa fa-check"></div>
+                <p class="upvotes-ui">Upvotes: 1712  </p>
+                <div class="fa fa-link"routerLink="/home" ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="d-flex">
+              <div class="stock-forecast-response">
+                <p class="stock-response">
+                  NEW YORK (AP) — UPS will become the primary air cargo provider for the United States Postal Service
+                  The Atlanta shipping company said Monday that it had received an air cargo contract from the U.S. Postal Service that significantly expands an existing partnership between the two.
+                  UPS will move the majority of air cargo in the U.S. for the postal service following a transition period, according to UPS.
+                  Financial terms of the deal were not disclosed.
+                  (question: time to buy/sell UPS/fedex... or is it too late now since the news already broke? ){{aiResponse}}
+                </p>
+              </div>
+              <div class="side-box">
+                <div class="fa fa-close"></div>
+                <p class="upvotes-ui">Upvotes: -563  </p>
+                <div class="fa fa-link" routerLink="/home"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="d-flex">
+              <div class="stock-forecast-response">
+                <p class="stock-response"> Pfizer CEO says omicron vaccine will be ready in March!  ave maria  racia plena dominus tecum benedictatum et mulieribus at benedictus. <!--{{aiResponse}}-->>
+              </div>
+              <div class="side-box">
+                <div class="fa fa-check"></div>
+                <p class="upvotes-ui">Upvotes:  126 </p>
+                <div class="fa fa-link" routerLink="/home"></div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="menu">
+            <button type="submit" class="btn btn-dark">Refresh</button>
+
           </div>
         </div>
       </div>
+
+
     </div>
+
   </ng-container>
-  
+  <p></p>
 </div>
