@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { News } from '../models/news/news';
 import { RedditPost } from '../models/reddit/redditPost';
+import { NewsApiArticle } from '../models/newsApi/newsApiArticle';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class NewsService {
   getRedditPosts(filter: string, searchDate: number = 2) { // 2 = Week
     const url = `${this.baseUrl}news/reddit/${filter}/${searchDate}`;
     return this.http.get<RedditPost[]>(url);
+  }
+
+  getNewsApiNews(query: string) {
+    const url = `${this.baseUrl}news/newsApi/${query}`;
+    return this.http.get<NewsApiArticle[]>(url);
   }
 
   // Fake data generator
