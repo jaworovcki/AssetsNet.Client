@@ -58,30 +58,27 @@ export class SearchComponent implements OnInit {
       const stockName = this.stockFilter.value!.split(' ')[0];
       this.targetStock = stockName;
   
-      // Use RxJS forkJoin to handle both API calls simultaneously and wait for both to finish
-      // If one fails, the other can still proceed
       const redditPosts$ = this.newsService.getRedditPosts(stockName).pipe(
-        map(posts => posts.map(n => n.title)), // Map only the title for Reddit posts
+        map(posts => posts.map(n => n.title)), 
         catchError(error => {
           console.error('Reddit fetch error:', error);
-          return of([]); // In case of error, return an empty array to keep the flow going
+          return of([]); 
         })
       );
   
       const twitterPosts$ = this.newsService.getTwitterPosts(stockName).pipe(
-        map(posts => posts.map(n => n.text)), // Map only the text for Twitter posts
+        map(posts => posts.map(n => n.text)), 
         catchError(error => {
           console.error('Twitter fetch error:', error);
-          return of([]); // In case of error, return an empty array to keep the flow going
+          return of([]); 
         })
       );
-  
+      
+      //wait for both requests to complete
       forkJoin([redditPosts$, twitterPosts$]).subscribe({
         next: ([redditPosts, twitterPosts]) => {
-          // Combine posts from Reddit and Twitter
           const combinedPosts = [...redditPosts, ...twitterPosts];
           console.log('Combined posts:', combinedPosts);
-          // Check if combinedPosts is not empty
           if (combinedPosts.length > 0) {
             const gptRequest = this.chatGptService.constructGptRequest(combinedPosts);
             this.chatGptQuery.query = gptRequest;
