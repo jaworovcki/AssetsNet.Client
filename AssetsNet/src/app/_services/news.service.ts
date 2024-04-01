@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { News } from '../models/news/news';
 import { RedditPost } from '../models/reddit/redditPost';
 import { TwitterTimelinePost } from '../models/twitter/twitterTimeline/twitterTimelinePost';
+import { TwitterPost } from '../models/twitter/twitterPost';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,11 @@ export class NewsService {
   getRedditPosts(filter: string, searchDate: number = 2) { // 2 = Week
     const url = `${this.baseUrl}news/reddit/${filter}/${searchDate}`;
     return this.http.get<RedditPost[]>(url);
+  }
+
+  getTwitterPosts(filter: string) {
+    const url = `${this.baseUrl}news/twitter/${filter}`;
+    return this.http.get<TwitterPost[]>(url);
   }
 
   getTwitterPostsFromUserTimeline(screenName:string = 'Stocktwits') {
