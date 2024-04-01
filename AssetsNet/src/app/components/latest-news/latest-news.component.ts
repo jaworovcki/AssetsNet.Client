@@ -32,8 +32,8 @@ export class LatestNewsComponent implements OnInit {
     // this.newsService.getNewsApiNews("Apple").subscribe((resp) => {
     //   console.log(resp);
     // })
-    this.loadNewsApiNews()
-    // this.loadYahooNews();
+    // this.loadNewsApiNews()
+    this.loadYahooNews();
   }
 
   loadYahooNews() {
@@ -68,6 +68,7 @@ export class LatestNewsComponent implements OnInit {
     return this.newsApiNews.slice(startIndex, endIndex);
   }
 
+
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -88,5 +89,23 @@ export class LatestNewsComponent implements OnInit {
 
   hasPreviousPage(): boolean {
     return this.currentPage > 1;
+  }
+
+  nextPageFake() {
+    const totalPages = Math.ceil(this.news.length / this.pageSize);
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  hasNextPageFake(): boolean {
+    const totalPages = Math.ceil(this.news.length / this.pageSize);
+    return this.currentPage < totalPages;
+  }
+
+  getCurrentPageNewsFake(): News[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.news.slice(startIndex, endIndex);
   }
 }
