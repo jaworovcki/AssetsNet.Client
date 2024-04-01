@@ -1,5 +1,4 @@
 export interface NewsApiArticle {
-    source: NewsApiSource;
     author: string;
     title: string;
     description: string;

@@ -13,15 +13,16 @@
             </div>
         </div>
 
-        <div class="one-liner" *ngFor="let novation of getCurrentPageNews()">
+        <div class="one-liner" *ngFor="let novation of newsApiNews">
+            <h1>{{novation.author}}</h1>
             <div class="extras">
-              <p class="publisher">{{novation.publisher}}</p>
-              <p class="time">{{novation?.providerPublishTime | date:'medium'}}</p>
+              <p class="publisher">{{novation?.author}}</p>
+              <p class="time">{{novation?.publishedAt | date:'medium'}}</p>
             </div>
             <div class="novation">
-                <img *ngIf="novation.thumbnail.resolutions[0]?.url" class="thumbnail"
-                    src="{{novation.thumbnail.resolutions[0].url}}" alt="thumbnail">
-                <p class="news-title">{{novation.title}}</p>
+                <img *ngIf="novation.urlToImage" class="thumbnail"
+                    src="{{novation.urlToImage}}" alt="thumbnail">
+                <p class="news-title">{{novation?.title}}</p>
             </div>
         </div>
         <div class="navigation-buttons">
