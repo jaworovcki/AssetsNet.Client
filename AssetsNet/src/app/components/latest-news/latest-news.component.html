@@ -13,17 +13,18 @@
             </div>
         </div>
 
-        <div class="one-liner" *ngFor="let novation of newsApiNews">
-            <h1>{{novation.author}}</h1>
-            <div class="extras">
-              <p class="publisher">{{novation?.author}}</p>
-              <p class="time">{{novation?.publishedAt | date:'medium'}}</p>
-            </div>
-            <div class="novation">
-                <img *ngIf="novation.urlToImage" class="thumbnail"
-                    src="{{novation.urlToImage}}" alt="thumbnail">
-                <p class="news-title">{{novation?.title}}</p>
-            </div>
+        <div class="one-liner" *ngFor="let novation of getCurrentPageNews()">
+            <ng-container *ngIf="novation.title !== '[Removed]'">
+                <div class="extras">
+                    <p class="publisher">{{novation.author}}</p>
+                    <p class="time">{{novation?.publishedAt | date:'medium'}}</p>
+                  </div>
+                  <div class="novation">
+                      <img *ngIf="novation.urlToImage" class="thumbnail"
+                          src="{{novation.urlToImage}}" alt="thumbnail">
+                      <p class="news-title">{{novation.title}}</p>
+                  </div>
+            </ng-container>
         </div>
         <div class="navigation-buttons">
             <button (click)="previousPage()" [disabled]="!hasPreviousPage()">Previous</button>

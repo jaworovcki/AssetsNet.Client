@@ -51,7 +51,7 @@ export class LatestNewsComponent implements OnInit {
 
   loadNewsApiNews() {
     this.newsService.getNewsApiNews(this.selectedCompany?.value).subscribe((news) => {
-      console.log(news);
+      this.newsApiNews = news;
     }, (error) => {
       console.log(error);
     })
