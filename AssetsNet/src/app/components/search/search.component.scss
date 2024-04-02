@@ -67,10 +67,39 @@ input, select {
   font-size: 17px;
 }
 
-stock-response {
+.stock-response {
   font-weight: 300px;
   font-size: 15px;
 }
+
+.stock-box {
+  border: 1px solid #b8b7b7;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  max-width: 250px;
+  min-height: 70px;
+  cursor: pointer;
+}
+
+.fonds-box {
+  border: 1px solid #b8b7b7;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  max-width: 250px;
+  min-height: 40px;
+  cursor: pointer;
+}
+
+.csharp {
+  color: rgb(63, 105, 245);
+  font-size: 20px;
+  font-weight: 500;
+}
+
 
 @media screen and (max-width: 800px){
   .stock-forecast-response {

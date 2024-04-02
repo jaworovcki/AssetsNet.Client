@@ -15,6 +15,38 @@
     </form>
   </div>
 
+  <ng-container *ngIf="!isResponseObtained" >
+    <div class="row mt-5">
+      <div (click)="getFastForecast('Meta')" class="col-3 d-flex justify-content-center align-items-center stock-box">
+        <span class="stock-name">Meta</span>
+      </div>
+      <div (click)="getFastForecast('Amazon')" class="col-3 d-flex justify-content-center align-items-center stock-box">
+        <span class="stock-name">Amazon</span>
+      </div>
+      <div (click)="getFastForecast('Apple')" class="col-3 d-flex justify-content-center align-items-center stock-box">
+        <span class="stock-name">Apple</span>
+      </div>
+      <div (click)="getFastForecast('Google')" class="col-3 d-flex justify-content-center align-items-center stock-box">
+        <span class="stock-name">Google</span>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div (click)="getFastForecast('Vanguard')" class="col-3 d-flex justify-content-center align-items-center fonds-box">
+        <span class="stock-name"><span class="csharp">#</span>Vanguard</span>
+      </div>
+      <div (click)="getFastForecast('Blackrock')" class="col-3 d-flex justify-content-center align-items-center fonds-box">
+        <span class="stock-name"><span class="csharp">#</span>Blackrock</span>
+      </div>
+      <div (click)="getFastForecast('Schawab')" class="col-3 d-flex justify-content-center align-items-center fonds-box">
+        <span class="stock-name"><span class="csharp">#</span>Schwab</span>
+      </div>
+      <div (click)="getFastForecast('iShares')" class="col-3 d-flex justify-content-center align-items-center fonds-box">
+        <span class="stock-name"><span class="csharp">#</span>iShares</span>
+      </div>
+    </div>
+  </ng-container>
+
   <ng-container *ngIf="isResponseObtained">
     <div class="target-stock">
       <h2 class="target-stock-title">Target Stock:</h2>
