@@ -123,4 +123,9 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  getFastForecast(stockName: string) {
+    this.stockFilter.setValue(stockName);
+    this.getStockForecast()
+  }
+
 }
