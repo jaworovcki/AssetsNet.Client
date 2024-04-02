@@ -38,17 +38,21 @@ export class SearchComponent implements OnInit {
   }
 
   getStockNames() {
-    this.stocksService.getExchangeSymbols().subscribe({
-      next: (symbols) => {
-        this.stockNames = this.stocksService.saveStockNames(symbols);
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
+    if (this.stocksService.checkIfStockNamesExistsInLocalStorage()) {
+      this.stockNames = JSON.parse(localStorage.getItem('stockNames')!);
+    } else {
+      this.stocksService.getExchangeSymbols().subscribe({
+        next: (symbols) => {
+          this.stockNames = this.stocksService.saveStockNames(symbols);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    }
   }
 
-  searchStocksByName(stockName: string) : string[] {
+  searchStocksByName(stockName: string): string[] {
     const filteredStockNames = this.stockNames?.filter((name) => name.toLowerCase().includes(stockName.toLowerCase()));
     return filteredStockNames || [];
   }
