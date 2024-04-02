@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { News } from '../models/news/news';
 import { RedditPost } from '../models/reddit/redditPost';
+import { NewsApiArticle } from '../models/newsApi/newsApiArticle';
 import { TwitterTimelinePost } from '../models/twitter/twitterTimeline/twitterTimelinePost';
 import { TwitterPost } from '../models/twitter/twitterPost';
 
@@ -24,6 +25,10 @@ export class NewsService {
     const url = `${this.baseUrl}news/reddit/${filter}/${searchDate}`;
     return this.http.get<RedditPost[]>(url);
   }
+
+  getNewsApiNews(query: string) {
+    const url = `${this.baseUrl}news/newsApi/${query}`;
+    return this.http.get<NewsApiArticle[]>(url);
 
   getTwitterPosts(filter: string) {
     const url = `${this.baseUrl}news/twitter/${filter}`;
