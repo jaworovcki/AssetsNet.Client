@@ -1,4 +1,9 @@
-<app-navbar></app-navbar>
-<div class="container" style="min-height: 500px; margin-top: 100px;">
-  <router-outlet></router-outlet>
-</div>
+<div class="overlay show" *ngIf="spinnerService.spinnerCounter$ | async">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+ </div>
+  </div>
+  <app-navbar></app-navbar>
+  <div class="container" style="min-height: 500px; margin-top: 100px;">
+    <router-outlet></router-outlet>
+  </div>

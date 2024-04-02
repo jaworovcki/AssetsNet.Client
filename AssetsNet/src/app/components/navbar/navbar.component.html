@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="nav-links">
           <a routerLink="/home" class="nav-link">Whatchlist</a>
-          <a routerLink="/search" class="nav-link">Search</a>
+          <a routerLink="/search" class="nav-link" *ngIf="(accountService.currentUser$ | async) !== null">Search</a>
           <a href="#" class="nav-link">Profile</a>
         </div>
         <div class="navigation-buttons">
@@ -23,7 +23,7 @@
             <button routerLink="/login">Login</button>
           </ng-container>
           <ng-container *ngIf="(accountService.currentUser$ | async) !== null">
-            <button (click)="logout()">Logout</button>
+            <button (click)="logout()" routerLink="/login">Logout</button>
           </ng-container>
         </div>
       </div>

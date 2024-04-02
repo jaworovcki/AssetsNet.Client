@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { News } from '../models/news/news';
 import { RedditPost } from '../models/reddit/redditPost';
 import { NewsApiArticle } from '../models/newsApi/newsApiArticle';
+import { TwitterTimelinePost } from '../models/twitter/twitterTimeline/twitterTimelinePost';
+import { TwitterPost } from '../models/twitter/twitterPost';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,15 @@ export class NewsService {
   getNewsApiNews(query: string) {
     const url = `${this.baseUrl}news/newsApi/${query}`;
     return this.http.get<NewsApiArticle[]>(url);
+
+  getTwitterPosts(filter: string) {
+    const url = `${this.baseUrl}news/twitter/${filter}`;
+    return this.http.get<TwitterPost[]>(url);
+  }
+
+  getTwitterPostsFromUserTimeline(screenName:string = 'Stocktwits') {
+    const url = `${this.baseUrl}news/twitter/userMedia/${screenName}`;
+    return this.http.get<TwitterTimelinePost[]>(url);
   }
 
   // Fake data generator
@@ -70,5 +81,36 @@ export class NewsService {
     }
 
     return result;
+  }
+
+  generateTwitterTimelinePostsMockData(amount: number): TwitterTimelinePost[] {
+    const mockData: TwitterTimelinePost[] = [];
+
+    // Generate mock data for demonstration purposes
+    for (let i = 0; i < amount; i++) {
+      const mockTweet: TwitterTimelinePost = {
+        tweet_id: `tweet_${i}`,
+        bookmarks: Math.floor(Math.random() * 100),
+        created_at: new Date().toISOString(),
+        favorites: Math.floor(Math.random() * 1000),
+        text: `This is a sample tweet number ${i}`,
+        lang: 'en',
+        views: `${Math.floor(Math.random() * 10000)}`,
+        quotes: Math.floor(Math.random() * 100),
+        replies: Math.floor(Math.random() * 100),
+        retweets: Math.floor(Math.random() * 1000),
+        conversation_id: `conversation_${i}`,
+        media: {
+          photo: [{
+            media_url_https: `https://example.com/image_${i}.jpg`,
+            id: `image_${i}`
+          }]
+        }
+      };
+
+      mockData.push(mockTweet);
+    }
+
+    return mockData;
   }
 }
