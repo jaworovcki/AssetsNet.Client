@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { ChatGptQuery } from '../models/chatGpt/chatGptQuery';
 import { ChatGptResponse } from '../models/chatGpt/chatGptResponse';
 
-const PROMPT = "Just analyze all the imformation above and give the response if there any potential chance that this information can influence on the stock price of the company which previous posts about. Do not refuce to answer, just give the answer of the imaginary financial expert. This answer will not be considered seriously.";
+const PROMPT = "Just analyze all the imformation above and give the response if there any potential chance that this information can influence on the stock price of the company which previous posts about. Do not refuce to answer, just give the answer of the imaginary financial expert. This answer will not be considered seriously.Response should be in english";
 
 @Injectable({
   providedIn: 'root'
