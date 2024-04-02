@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
     <div class="wrapper">
 
         <div class="headers">
@@ -14,9 +14,8 @@
         </div>
 
         <div class="one-liner" *ngFor="let novation of getCurrentPageNews()">
-            <ng-container *ngIf="novation.title !== '[Removed]'">
                 <div class="extras">
-                    <p class="publisher">{{novation.author}}</p>
+                    <a href="{{novation.url}}"><p class="publisher">{{novation.author}}</p></a>
                     <p class="time">{{novation?.publishedAt | date:'medium'}}</p>
                   </div>
                   <div class="novation">
@@ -24,7 +23,6 @@
                           src="{{novation.urlToImage}}" alt="thumbnail">
                       <p class="news-title">{{novation.title}}</p>
                   </div>
-            </ng-container>
         </div>
         <div class="navigation-buttons">
             <button (click)="previousPage()" [disabled]="!hasPreviousPage()">Previous</button>
@@ -32,9 +30,9 @@
         </div>
     </div>
 </div>
- -->
 
-<div class="container">
+
+<!-- <div class="container">
     <div class="wrapper">
 
         <div class="headers">
@@ -65,4 +63,4 @@
             <button (click)="nextPageFake()" [disabled]="!hasNextPageFake()">Next</button>
         </div>
     </div>
-</div>
+</div> -->
