@@ -29,6 +29,7 @@ export class NewsService {
   getNewsApiNews(query: string) {
     const url = `${this.baseUrl}news/newsApi/${query}`;
     return this.http.get<NewsApiArticle[]>(url);
+  }
 
   getTwitterPosts(filter: string) {
     const url = `${this.baseUrl}news/twitter/${filter}`;
