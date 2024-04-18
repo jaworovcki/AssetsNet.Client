@@ -4,7 +4,7 @@
             <div class="col-sm-9 col-xs-12 chat" style="overflow: hidden; outline: none;" tabindex="5001">
                 <div class="col-inside-lg decor-default">
                     <div class="chat-body">
-                        <ng-container *ngFor="let msg of messages">
+                        <ng-container *ngFor="let msg of (messagesService.messageSource$ | async)">
                             <div class="answer left" *ngIf="msg.senderId !== userJwt?.id">
                                 <!-- <div class="avatar" *ngIf="msg.senderId !== userJwt?.id">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">

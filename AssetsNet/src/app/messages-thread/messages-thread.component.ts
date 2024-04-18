@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
 import { UserJwt } from '../models/user/userJwt';
 import { AccountService } from '../_services/account.service';
 import { SendMessage } from '../models/sendMessage';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-messages-thread',
   templateUrl: './messages-thread.component.html',
   styleUrls: ['./messages-thread.component.scss']
 })
-export class MessagesThreadComponent implements OnInit {
+export class MessagesThreadComponent implements OnInit, OnDestroy {
 
   userJwt: UserJwt | null = null;;
-  constructor(private messagesService: MessagesService, private accountService: AccountService) {
-    this.accountService.currentUser$.subscribe((user) => {
+  constructor(public messagesService: MessagesService, private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe((user) => {
       this.userJwt = user
     });
   }
@@ -25,7 +26,12 @@ export class MessagesThreadComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.loadMessagesForUser(this.resId);
+    this.messagesService.createHubConnection(this.userJwt!, this.resId);
+    // this.loadMessagesForUser(this.resId);
+  }
+
+  ngOnDestroy(): void {
+    this.messagesService.stopHubConnection();
   }
 
   loadMessagesForUser(recipientId: string) {
