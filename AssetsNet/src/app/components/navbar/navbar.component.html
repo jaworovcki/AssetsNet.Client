@@ -15,7 +15,8 @@
         <div class="nav-links">
           <a routerLink="/home" class="nav-link">Whatchlist</a>
           <a routerLink="/search" class="nav-link" *ngIf="(accountService.currentUser$ | async) !== null">Search</a>
-          <a href="#" class="nav-link">Profile</a>
+          <a  class="nav-link">Profile</a>
+          <a routerLink="/thread" class="nav-link">Thread</a>
         </div>
         <div class="navigation-buttons">
           <ng-container *ngIf="(accountService.currentUser$ | async) === null">

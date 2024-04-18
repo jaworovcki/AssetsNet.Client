@@ -17,6 +17,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { StocksTableComponent } from './components/stocks-table/stocks-table.component';
 import { SocialMediaPostsComponent } from './components/social-media-posts/social-media-posts.component';
 import { HttpInterceptorService } from './_interceptors/loader.interceptor';
+import { MessagesThreadComponent } from './messages-thread/messages-thread.component';
 
 
 
@@ -31,7 +32,8 @@ import { HttpInterceptorService } from './_interceptors/loader.interceptor';
     NavbarComponent,
     SearchComponent,
     StocksTableComponent,
-    SocialMediaPostsComponent
+    SocialMediaPostsComponent,
+    MessagesThreadComponent
   ],
   imports: [
     BrowserModule,
