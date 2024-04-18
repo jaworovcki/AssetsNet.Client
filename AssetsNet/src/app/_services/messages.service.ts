@@ -55,7 +55,14 @@ export class MessagesService {
     return this.httpClient.get(this.baseUrl + 'messages/' + recipientId);
   }
 
-  sendMessage(model: SendMessage) {
-    return this.httpClient.post(this.baseUrl + 'messages/send-message', model);
+  // sendMessage(model: SendMessage) {
+  //   return this.httpClient.post(this.baseUrl + 'messages/send-message', model);
+  // }
+
+  async sendMessage(sendMessage:SendMessage) { // async guarantees that we return a Promise from this method
+    // return this.httpClient.post<Message>(this.baseUrl + 'message', {recipientUsername: username, content: content});
+    this.hubConnection?.invoke("SendMessage", sendMessage).catch((error => {
+      console.log(error);
+    }));
   }
 }

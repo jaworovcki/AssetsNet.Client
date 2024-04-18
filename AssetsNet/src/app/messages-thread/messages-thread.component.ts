@@ -41,13 +41,16 @@ export class MessagesThreadComponent implements OnInit, OnDestroy {
     });
   }
 
+  messageToSend: SendMessage =  {
+    recipientId: this.resId,
+    content: ''
+  }
+
+
   sendMessage() {
-    let msg: SendMessage = {
-      recipientId: this.resId,
-      content: 'sdfdsfdsfdsfsd'
-    };
-    this.messagesService.sendMessage(msg).subscribe((res) => {
-      console.log(res);
+    this.messagesService.sendMessage(this.messageToSend).then(() => {
+      console.log();
+      this.messageToSend.content = '';
     });
   }
 }

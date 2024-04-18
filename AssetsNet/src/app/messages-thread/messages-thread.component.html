@@ -29,7 +29,7 @@
                             </div>
                         </ng-container>
                         <div class="answer-add">
-                            <input placeholder="Write a message">
+                            <input placeholder="Write a message" [(ngModel)]="messageToSend.content">
                             <button class="btn btn-danger" (click)="sendMessage()">Send</button>
                         </div>
                     </div>
