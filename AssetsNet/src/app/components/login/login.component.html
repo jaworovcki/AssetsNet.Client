@@ -6,44 +6,50 @@
           <div class="panel-heading">
             <h3 class="pt-3 font-weight-bold">Login</h3>
           </div>
-
-
           <div class="panel-body p-3">
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
               <div class="form-group pt-3">
-                <div class="input-field">
+                <div class="input-field" [class.is-invalid]="submitted && loginForm.get('username')?.errors">
                   <span class="fa fa-user p-2"></span>
-                  <input type="text" placeholder="Email" />
+                  <input formControlName="username" type="text" placeholder="Username" />
                 </div>
+                <span class="text-danger" *ngIf="submitted && loginForm.get('username')?.hasError('required')">
+                  Username is required
+                </span>
               </div>
 
               <div class="form-group pt-4">
-                <div class="input-field">
+                <div class="input-field" [class.is-invalid]="submitted && loginForm.get('password')?.errors">
                   <span class="fa fa-lock p-2"></span>
-                  <input [type]="type" placeholder="Password">
-                  <span (click)="PassToggle()" class="fa {{eyeIcon}}"></span>
+                  <input formControlName="password" type="password" placeholder="Password">
                 </div>
+                <span class="text-danger" *ngIf="submitted && loginForm.get('password')?.hasError('required')">
+                  Password is required
+                </span>
               </div>
 
               <div class="form-inline ">
-                <a id="forgot" class="font-weight-bold">Forgot your password?</a>
+                <a id="forgot" class="font-weight-bold" routerLink="/restore-password">Forgot your password?</a>
               </div>
 
-
+              <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
               <button type="submit" class="btn btn-primary btn-block mt-4 w-100 pt-2">Log In</button>
-              <div class="text-center pt-2 text-muted">Dont have an account?" <a id="forgot" href="/signup">Sign Up</a></div>
+              <div class="text-center pt-2 text-muted">
+                Don't have an account? <a id="forgot" routerLink="/register">
+                  Sign
+                  Up
+                </a>
+              </div>
             </form>
           </div>
 
           <div class="mx-3 py-2 bordert">
-            <div class="text-center">
-              <a><img src="https://www.blognone.com/sites/default/files/styles/large/public/topics-images/Gmail-logo_0.png?itok=21uZMHMN" width="80" height="80" /></a>
+            <div class="text-center mt-2">
+              <app-google-auth></app-google-auth>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
   </div>
-  </div>
+</div>

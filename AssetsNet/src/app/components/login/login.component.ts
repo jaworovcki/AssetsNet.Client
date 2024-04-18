@@ -1,24 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
-  type: string = "password";
-  isText: boolean = false;
-  eyeIcon: string = "fa-eye-slash"
-  constructor() { }
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup = new FormGroup({});
+  submitted = false;
+  errorMessage: string = '';
 
-  PassToggle() {
-    this.isText = !this.isText;
-    this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
-    this.isText ? this.type = "text" : this.type = "password";
+  constructor(private formBuilder: FormBuilder,
+    private accountService: AccountService,
+    private router: Router) { }
+
+  ngOnInit(): void {
+    this.initializeForm();
   }
 
+  initializeForm() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+  }
 
-
+  login() {
+    this.submitted = true;
+    if (this.loginForm.valid) {
+      this.accountService.login(this.loginForm.value).subscribe({
+        next: () => {
+          this.router.navigateByUrl('/home');
+        },
+        error: (error) => {
+          this.errorMessage = 'Incorrect login credentials.';
+        },
+      })
+    }
+  }
 }
+
