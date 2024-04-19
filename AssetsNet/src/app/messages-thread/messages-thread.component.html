@@ -1,40 +1,42 @@
-<div class="container">
-    <div class="content container-fluid bootstrap snippets bootdey">
-        <div class="row row-broken chat-container">
-            <div class="col-sm-9 col-xs-12 chat" style="overflow: hidden; outline: none;" tabindex="5001">
-                <div class="col-inside-lg decor-default">
-                    <div class="chat-body">
-                        <ng-container *ngFor="let msg of (messagesService.messageSource$ | async)">
-                            <div class="answer left mt-2" *ngIf="msg.senderId !== userJwt?.id">
-                                <!-- <div class="avatar" *ngIf="msg.senderId !== userJwt?.id">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
-                                    <div class="status offline"></div>
-                                </div> -->
-                                <div class="name">{{msg.recipientUsername}}</div>
-                                <div class="text">
-                                    {{msg.content}}
-                                </div>
-                                <div class="time">{{msg.dateRead | date}}</div>
-                            </div>
-                            <div class="answer right mt-2" *ngIf="msg.senderId === userJwt?.id">
-                                <!-- <div class="avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                                    <div class="status offline"></div>
-                                </div> -->
-                                <div class="name">{{msg.senderUsername}}</div>
-                                <div class="text">
-                                    {{msg.content}}
-                                </div>
-                                <div class="time">{{msg.dateRead | date}}</div>
-                            </div>
-                        </ng-container>
-                        <div class="answer-add">
-                            <input placeholder="Write a message" [(ngModel)]="messageToSend.content">
-                            <button class="btn btn-danger" (click)="sendMessage()">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--
+Inspired by https://dribbble.com/supahfunk
+-->
+<section class="avenue-messenger">
+    <div class="menu">
+        <div class="items"><span>
+                <a href="#" title="Minimize">&mdash;</a><br>
+                <!--     
+       <a href="">enter email</a><br>
+       <a href="">email transcript</a><br>-->
+                <a href="#" title="End Chat">&#10005;</a>
+
+            </span></div>
+        <div class="button">...</div>
+    </div>
+    <div class="agent-face">
+        <div class="half">
+            <img class="agent circle" src="http://askavenue.com/img/17.jpg" alt="Jesse Tino">
         </div>
     </div>
-</div>
+    <div class="chat">
+        <div class="chat-title">
+            <h1>Jesse Tino</h1>
+            <h2>RE/MAX</h2>
+        </div>
+
+        <div class="messages">
+            <div class="messages-content">
+                <ng-container *ngFor="let message of (messagesService.messageSource$ | async)">
+                    <div class="message new" [ngClass]="{'message-personal': message.senderId == userJwt?.id}">
+                        {{message.content}}<div class="timestamp">{{message.messageSend | date}}</div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="message-box mt-3">
+            <textarea type="text" class="message-input" placeholder="Type message..."
+                [(ngModel)]="messageToSend.content"></textarea>
+            <button type="submit" class="message-submit" (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+</section>

@@ -37,7 +37,6 @@ export class MessagesThreadComponent implements OnInit, OnDestroy {
   loadMessagesForUser(recipientId: string) {
     this.messagesService.getMessagesForUser(recipientId).subscribe((res: any) => {
       this.messages = res;
-      console.log(res);
     });
   }
 
@@ -49,7 +48,7 @@ export class MessagesThreadComponent implements OnInit, OnDestroy {
 
   sendMessage() {
     this.messagesService.sendMessage(this.messageToSend).then(() => {
-      console.log();
+      console.log(this.messageToSend);
       this.messageToSend.content = '';
     });
   }
