@@ -5,7 +5,7 @@
                 <div class="col-inside-lg decor-default">
                     <div class="chat-body">
                         <ng-container *ngFor="let msg of (messagesService.messageSource$ | async)">
-                            <div class="answer left" *ngIf="msg.senderId !== userJwt?.id">
+                            <div class="answer left mt-2" *ngIf="msg.senderId !== userJwt?.id">
                                 <!-- <div class="avatar" *ngIf="msg.senderId !== userJwt?.id">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User name">
                                     <div class="status offline"></div>
@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="time">{{msg.dateRead | date}}</div>
                             </div>
-                            <div class="answer right" *ngIf="msg.senderId === userJwt?.id">
+                            <div class="answer right mt-2" *ngIf="msg.senderId === userJwt?.id">
                                 <!-- <div class="avatar">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
                                     <div class="status offline"></div>
