@@ -32,7 +32,7 @@
         <div class="message-box mt-1">
             <textarea type="text" class="message-input" placeholder="Type message..."
                 [(ngModel)]="messageToSend.content"></textarea>
-            <button type="submit" class="message-submit" (click)="sendMessage()">Send</button>
+            <button [disabled]="!messageToSend.content" type="submit" class="message-submit" (click)="sendMessage()">Send</button>
         </div>
     </div>
 </section>

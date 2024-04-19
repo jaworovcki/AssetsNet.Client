@@ -20,6 +20,7 @@ export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit
     recipientId: this.resId,
     content: ''
   };
+
   userJwt: UserJwt | null = null;
 
   constructor(public messagesService: MessagesService, private accountService: AccountService) {
@@ -40,6 +41,14 @@ export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit
     this.messagesService.stopHubConnection();
   }
 
+  sendMessage() {
+    this.messagesService.sendMessage(this.messageToSend).then(() => {
+      console.log(this.messageToSend);
+      this.messageToSend.content = '';
+      this.smoothScrollToBottom();
+    });
+  }
+
   private smoothScrollToBottom(): void {
     setTimeout(() => {
       if (this.messagesContainer) {
@@ -49,13 +58,5 @@ export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit
         })
       }
     }, 400);
-  }
-
-  sendMessage() {
-    this.messagesService.sendMessage(this.messageToSend).then(() => {
-      console.log(this.messageToSend);
-      this.messageToSend.content = '';
-      this.smoothScrollToBottom();
-    });
   }
 }
