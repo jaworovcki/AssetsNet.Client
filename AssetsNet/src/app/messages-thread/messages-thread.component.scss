@@ -1,7 +1,3 @@
-/*--------------------
-Mixins
---------------------*/
-
 @mixin center {
     position: relative;
     /*  top: 50%;
@@ -195,16 +191,7 @@ body {
             right: 16px;
             font-size: 12px;
         }
-
-        &::before {
-            /*  content: '';
-        position: absolute;
-        bottom: -6px;
-        border-top: 6px solid rgba(0, 0, 0, 0.1);
-        left: 0;
-        border-right: 7px solid transparent;*/
-        }
-
+        
         .avatar {
             position: absolute;
             z-index: 1;
@@ -237,24 +224,6 @@ body {
             -webkit-border-radius: 20px 20px 0 20px;
             -moz-border-radius: 20px 20px 0 20px;
             border-radius: 20px 20px 0 20px;
-
-            &::before {
-
-                /*
-            content:"";
-        border-color:#4A90E2 transparent;
-          width:0;
-          border-style:solid;*/
-                /*
-          left: auto;
-          right: 0;
-          border-right: none;
-         border-left: 8px solid transparent;
-          border-top: 9px solid #fff;
-          
-          bottom: -8px;*/
-            }
-
         }
 
         &:last-child {

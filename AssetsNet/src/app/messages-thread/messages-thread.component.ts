@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
 import { UserJwt } from '../models/user/userJwt';
@@ -11,45 +11,51 @@ import { take } from 'rxjs';
   templateUrl: './messages-thread.component.html',
   styleUrls: ['./messages-thread.component.scss']
 })
-export class MessagesThreadComponent implements OnInit, OnDestroy {
+export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  userJwt: UserJwt | null = null;;
+  @ViewChild('messagesContainer') private messagesContainer: ElementRef | null = null;
+  resId: string = 'cd25656b-d095-428c-8b53-c495625dc9dd';
+
+  messageToSend: SendMessage = {
+    recipientId: this.resId,
+    content: ''
+  };
+  userJwt: UserJwt | null = null;
+
   constructor(public messagesService: MessagesService, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe((user) => {
       this.userJwt = user
     });
   }
 
-  resId: string = 'cd25656b-d095-428c-8b53-c495625dc9dd'
-
-  messages: Message[] = [];
-
-
   ngOnInit(): void {
     this.messagesService.createHubConnection(this.userJwt!, this.resId);
-    // this.loadMessagesForUser(this.resId);
+  }
+
+  ngAfterViewInit(): void {
+    this.smoothScrollToBottom();
   }
 
   ngOnDestroy(): void {
     this.messagesService.stopHubConnection();
   }
 
-  loadMessagesForUser(recipientId: string) {
-    this.messagesService.getMessagesForUser(recipientId).subscribe((res: any) => {
-      this.messages = res;
-    });
+  private smoothScrollToBottom(): void {
+    setTimeout(() => {
+      if (this.messagesContainer) {
+        this.messagesContainer.nativeElement.scrollTo({
+          top: this.messagesContainer.nativeElement.scrollHeight,
+          behavior: 'smooth'
+        })
+      }
+    }, 400);
   }
-
-  messageToSend: SendMessage =  {
-    recipientId: this.resId,
-    content: ''
-  }
-
 
   sendMessage() {
     this.messagesService.sendMessage(this.messageToSend).then(() => {
       console.log(this.messageToSend);
       this.messageToSend.content = '';
+      this.smoothScrollToBottom();
     });
   }
 }
