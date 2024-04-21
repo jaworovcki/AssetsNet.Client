@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,5 +13,4 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
