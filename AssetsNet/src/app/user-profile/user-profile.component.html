@@ -3,7 +3,8 @@
         <div class="d-flex align-items-center" *ngIf="user">
             <div class="image">
                 <img *ngIf="user.photoUrl" src="{{user.photoUrl}}" class="rounded" width="155">
-                    <img  *ngIf="!user.photoUrl" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+                <img *ngIf="!user.photoUrl"
+                    src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
                     class="rounded" width="155">
             </div>
             <div class="ml-3 w-100">
@@ -28,8 +29,7 @@
 
                     </div>
                 </div>
-                <div class="button mt-2 d-flex flex-row align-items-center">
-
+                <div class="button mt-2 d-flex flex-row align-items-center" *ngIf="userJwt?.id !== user.id">
                     <button class="btn btn-sm btn-outline-primary w-100">Chat</button>
                     <button class="btn btn-sm btn-primary w-100 ml-2">Follow</button>
                 </div>
