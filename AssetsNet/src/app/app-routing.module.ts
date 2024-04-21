@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/account/register/register.compon
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { PasswordComponent } from './components/account/restore-password/restore-password.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'search', component: SearchComponent },
   { path: 'restore-password', component: PasswordComponent },
+  { path: 'users/:id', component: UserProfileComponent}
 ];
 
 @NgModule({
