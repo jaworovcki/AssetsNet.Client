@@ -14,7 +14,6 @@ export class UserProfileComponent implements OnInit {
   
   user: User | null = null;
   userJwt: UserJwt | null = null;
-  description: string = '';
 
   constructor(private usersService: UsersService, private accountService: AccountService, 
     private activatedRoute: ActivatedRoute) { 
