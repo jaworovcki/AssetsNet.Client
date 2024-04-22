@@ -17,9 +17,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { StocksTableComponent } from './components/stocks-table/stocks-table.component';
 import { SocialMediaPostsComponent } from './components/social-media-posts/social-media-posts.component';
 import { HttpInterceptorService } from './_interceptors/loader.interceptor';
+import { MessagesThreadComponent } from './messages-thread/messages-thread.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
-
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     SearchComponent,
     StocksTableComponent,
     SocialMediaPostsComponent,
+    MessagesThreadComponent,
     UserProfileComponent
   ],
   imports: [
@@ -48,7 +49,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
+      useClass: JwtInterceptor,
+      // useClass: HttpInterceptorService,
       multi: true // This is required to allow multiple interceptors
     }
   ],
