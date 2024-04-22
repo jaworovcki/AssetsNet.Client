@@ -14,8 +14,8 @@
         </div>
         <div  class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div *ngIf="user?.id !== userJwt?.id" class="d-flex justify-content-between">
-            <a href="#" class="btn btn-sm btn-info mr-4">Follow</a>
-            <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+            <a class="btn btn-sm btn-info mr-4" style="color: white;">Follow</a>
+            <a (click)="initiateChat()" class="btn btn-sm btn-default float-right" style="color: white;">Message</a>
           </div>
         </div>
         <div class="card-body pt-0 pt-md-4">
@@ -106,4 +106,7 @@
       </div>
     </div>
   </div>
+  <ng-container *ngIf="user">
+    <app-messages-thread [isVisible]="isChatVisible" [recipient]="user"></app-messages-thread>
+  </ng-container>
 </div>
