@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/account/register/register.compon
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { PasswordComponent } from './components/account/restore-password/restore-password.component';
+import { MessagesThreadComponent } from './messages-thread/messages-thread.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'search', component: SearchComponent },
   { path: 'restore-password', component: PasswordComponent },
+  { path: 'thread', component: MessagesThreadComponent },
   { path: 'users/:id', component: UserProfileComponent}
 ];
 

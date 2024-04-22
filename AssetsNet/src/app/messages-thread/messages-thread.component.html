@@ -1,0 +1,38 @@
+<section class="avenue-messenger">
+    <div class="menu">
+        <div class="items"><span>
+                <a href="#" title="Minimize">&mdash;</a><br>
+                <a href="#" title="End Chat">&#10005;</a>
+
+            </span></div>
+        <div class="button">...</div>
+    </div>
+    <div class="agent-face">
+        <div class="half">
+            <img class="agent circle" src="http://askavenue.com/img/17.jpg" alt="Jesse Tino">
+        </div>
+    </div>
+    <div class="chat">
+        <div class="chat-title">
+            <h1>RecipientName</h1>
+            <h2>Pied Piper Chat</h2>
+        </div>
+
+        <div #messagesContainer class="messages">
+            <div class="messages-content">
+                <ng-container *ngFor="let message of (messagesService.messageSource$ | async)">
+                    <div class="message new mb-2" [ngClass]="{'message-personal me-1': message.senderId == userJwt?.id}">
+                        <figure class="avatar" *ngIf="message.recipientPhotoUrl && message.senderId !== userJwt?.id">
+                            <img src="{{message.recipientPhotoUrl}}"></figure>
+                        {{message.content}}
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="message-box mt-1">
+            <textarea type="text" class="message-input" placeholder="Type message..."
+                [(ngModel)]="messageToSend.content"></textarea>
+            <button [disabled]="!messageToSend.content" type="submit" class="message-submit" (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+</section>
