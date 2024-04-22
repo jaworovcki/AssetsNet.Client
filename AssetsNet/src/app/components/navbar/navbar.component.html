@@ -12,11 +12,11 @@
         </a>
       </div>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="nav-links">
+        <div class="nav-links" *ngIf="(accountService.currentUser$ | async) !== null">
           <a routerLink="/home" class="nav-link">Whatchlist</a>
-          <a routerLink="/search" class="nav-link" *ngIf="(accountService.currentUser$ | async) !== null">Search</a>
-          <a  class="nav-link">Profile</a>
           <a routerLink="/thread" class="nav-link">Thread</a>
+          <a routerLink="/search" class="nav-link">Search</a>
+          <a routerLink="/users/{{(accountService.currentUser$ | async)?.id}}" class="nav-link">Profile</a>
         </div>
         <div class="navigation-buttons">
           <ng-container *ngIf="(accountService.currentUser$ | async) === null">

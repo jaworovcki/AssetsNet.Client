@@ -19,8 +19,7 @@ import { SocialMediaPostsComponent } from './components/social-media-posts/socia
 import { HttpInterceptorService } from './_interceptors/loader.interceptor';
 import { MessagesThreadComponent } from './messages-thread/messages-thread.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
-
-
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,8 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     SearchComponent,
     StocksTableComponent,
     SocialMediaPostsComponent,
-    MessagesThreadComponent
+    MessagesThreadComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
