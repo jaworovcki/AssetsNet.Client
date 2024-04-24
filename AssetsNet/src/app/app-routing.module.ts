@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'search', component: SearchComponent },
+  { path: 'analysis', component: SearchComponent },
   { path: 'restore-password', component: PasswordComponent },
   { path: 'thread', component: MessagesThreadComponent },
   { path: 'users/:id', component: UserProfileComponent}
