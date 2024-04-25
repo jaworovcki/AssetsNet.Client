@@ -48,6 +48,8 @@ th {
 	color: red;
 }
 
-th {
-	text-align: center;
-  }
+@media (max-width: 768px){
+	th {
+		text-align: center;
+ 	}
+}
