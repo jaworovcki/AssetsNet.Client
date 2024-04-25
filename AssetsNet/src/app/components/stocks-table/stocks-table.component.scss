@@ -5,6 +5,15 @@
 	flex-direction: column;
 }
 
+.table-container {
+	overflow-x: auto;
+  }
+  
+  .table {
+	width: 100%;
+  }
+  
+
 .wrapper {
 	border-radius: 10px;
 	padding: 10px;
@@ -38,3 +47,7 @@ th {
 .down {
 	color: red;
 }
+
+th {
+	text-align: center;
+  }
