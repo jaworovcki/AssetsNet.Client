@@ -177,6 +177,7 @@ p {
   }
 }
 @media screen and (max-width: 768px) {
+ 
     .wrapper .headers {
         flex-direction: column;
         align-items: center;
@@ -184,8 +185,8 @@ p {
 
     .wrapper .headers .dropdown {
         margin-top: 10px;
-        margin-left: 0;
     }
+    
 
     .wrapper .one-liner {
         margin: 10px;
