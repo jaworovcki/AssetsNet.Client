@@ -32,12 +32,12 @@ export class MessagesService {
     });
 
     this.hubConnection.on("RecieveMessageThread", (messageThread) => {
-      console.log(messageThread);
       this.messageThreadSource.next(messageThread);
     });
 
     this.hubConnection.on("NewMessage", (message) => {
       this.messageSource$.pipe(take(1)).subscribe((messages) => { // take(1) gets an array form this.messageSource$
+        console.log(messages);
         this.messageThreadSource.next([...messages, message])
       })
     });

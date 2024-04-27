@@ -15,7 +15,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'search', component: SearchComponent },
   { path: 'restore-password', component: PasswordComponent },
-  { path: 'thread', component: MessagesThreadComponent },
   { path: 'users/:id', component: UserProfileComponent}
 ];
 

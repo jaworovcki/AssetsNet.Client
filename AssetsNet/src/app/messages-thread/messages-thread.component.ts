@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
 import { UserJwt } from '../models/user/userJwt';
 import { AccountService } from '../_services/account.service';
 import { SendMessage } from '../models/sendMessage';
 import { take } from 'rxjs';
+import { User } from '../models/user/user';
 
 @Component({
   selector: 'app-messages-thread',
@@ -14,10 +15,10 @@ import { take } from 'rxjs';
 export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('messagesContainer') private messagesContainer: ElementRef | null = null;
-  resId: string = 'cd25656b-d095-428c-8b53-c495625dc9dd';
-
-  messageToSend: SendMessage = {
-    recipientId: this.resId,
+  @Input() recipient: User | null = null;
+  @Input() isVisible: boolean = false;
+  messageToSend : SendMessage = {
+    recipientId: "",
     content: ''
   };
 
@@ -30,7 +31,9 @@ export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   ngOnInit(): void {
-    this.messagesService.createHubConnection(this.userJwt!, this.resId);
+    console.log(this.recipient!.id);
+    this.messageToSend.recipientId = this.recipient!.id;
+    this.messagesService.createHubConnection(this.userJwt!, this.recipient!.id);
   }
 
   ngAfterViewInit(): void {
@@ -42,8 +45,9 @@ export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   sendMessage() {
+    console.log(this.messageToSend);
     this.messagesService.sendMessage(this.messageToSend).then(() => {
-      console.log(this.messageToSend);
+    console.log(this.messageToSend);
       this.messageToSend.content = '';
       this.smoothScrollToBottom();
     });
@@ -58,5 +62,9 @@ export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit
         })
       }
     }, 400);
+  }
+
+  toggleVisibility() {
+    this.isVisible = !this.isVisible;
   }
 }

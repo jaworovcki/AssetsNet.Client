@@ -1,39 +1,112 @@
-<div class="container mt-5 d-flex justify-content-center">
-    <div class="card p-3">
-        <div class="d-flex align-items-center" *ngIf="user">
-            <div class="image">
-                <img *ngIf="user.photoUrl" src="{{user.photoUrl}}" class="rounded" width="155">
-                <img *ngIf="!user.photoUrl"
-                    src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
-                    class="rounded" width="155">
+<div class="container-fluid" style="margin-top: 150px;">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+              <a href="#">
+                <img *ngIf="user?.photoUrl" src="{{user?.photoUrl}}" alt="">
+                <img *ngIf="!user?.photoUrl" src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" class="rounded-circle">
+              </a>
             </div>
-            <div class="ml-3 w-100">
-                <h4 class="mb-0 mt-0">{{user.userName}}</h4>
-                <span>{{user.email}}</span>
-                <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                    <div class="d-flex flex-column">
-                        <span class="articles">Followers</span>
-                        <span class="number1">{{user.numberOfFollowers}}</span>
-
-                    </div>
-                    <div class="d-flex flex-column">
-
-                        <span class="followers">Folowing</span>
-                        <span class="number2">{{user.numberOfFollowings}}</span>
-
-                    </div>
-                    <div class="d-flex flex-column">
-
-                        <span class="rating">Request</span>
-                        <span class="number3">46</span>
-
-                    </div>
-                </div>
-                <div class="button mt-2 d-flex flex-row align-items-center" *ngIf="userJwt?.id !== user.id">
-                    <button class="btn btn-sm btn-outline-primary w-100">Chat</button>
-                    <button class="btn btn-sm btn-primary w-100 ml-2">Follow</button>
-                </div>
-            </div>
+          </div>
         </div>
+        <div  class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div *ngIf="user?.id !== userJwt?.id" class="d-flex justify-content-between">
+            <a class="btn btn-sm btn-info mr-4" style="color: white;">Follow</a>
+            <a (click)="initiateChat()" class="btn btn-sm btn-default float-right" style="color: white;">Message</a>
+          </div>
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                <div>
+                  <span class="heading">{{user?.numberOfFollowers}}</span>
+                  <span class="description">Followers</span>
+                </div>
+                <div>
+                  <span class="heading">{{user?.numberOfFollowings}}</span>
+                  <span class="description">Followings</span>
+                </div>
+                <div>
+                  <span class="heading">89</span>
+                  <span class="description">Requests</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3>
+              {{user?.userName}}
+            </h3>
+            <p>Some descriptions here just for example and show the user its existense here</p>
+            <a href="#">Show more</a>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">My account</h3>
+            </div>
+            <div class="col-4 text-right">
+              <a routerLink="/home" class="btn btn-sm btn-primary">Update</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-username">Username</label>
+                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="{{user?.userName}}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email address</label>
+                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com" value="{{user?.email}}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-first-name">First name</label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-last-name">Last name</label>
+                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4">
+            <!-- Description -->
+            <h6 class="heading-small text-muted mb-4">About me</h6>
+            <div class="pl-lg-4">
+              <div class="form-group focused">
+                <label>About Me</label>
+                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">Some descriptions here just for example</textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="user">
+    <app-messages-thread [isVisible]="isChatVisible" [recipient]="user"></app-messages-thread>
+  </ng-container>
 </div>

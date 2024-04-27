@@ -11,6 +11,10 @@ import { AccountService } from '../_services/account.service';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  
+  user: User | null = null;
+  userJwt: UserJwt | null = null;
+  isChatVisible: boolean = false;
 
   constructor(private usersService: UsersService, private accountService: AccountService, 
     private activatedRoute: ActivatedRoute) { 
@@ -18,9 +22,6 @@ export class UserProfileComponent implements OnInit {
         this.userJwt = userJwt;
       });
     }
-
-  user: User | null = null;
-  userJwt: UserJwt | null = null;
 
   ngOnInit(): void {
     this.getUser();
@@ -38,5 +39,9 @@ export class UserProfileComponent implements OnInit {
         console.log(error);
       })
     }
+  }
+
+  initiateChat() {
+    this.isChatVisible = !this.isChatVisible;
   }
 }
