@@ -20,6 +20,7 @@ import { HttpInterceptorService } from './_interceptors/loader.interceptor';
 import { MessagesThreadComponent } from './messages-thread/messages-thread.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,14 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     HttpClientModule,
     NoopAnimationsModule,
     MatAutocompleteModule,
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      positionClass: "toast-bottom-right",
+      preventDuplicates: false,
+      countDuplicates: true,
+      progressBar: true,
+      maxOpened: 3,
+    })
   ],
   providers: [
     {
