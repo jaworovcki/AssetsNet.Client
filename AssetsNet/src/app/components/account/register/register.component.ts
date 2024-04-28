@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private accountService: AccountService,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -24,7 +26,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')]],
-      password : ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
       confirmPassword: ['', [Validators.required, this.matchPasswordValues('password')]]
     });
   }
@@ -44,6 +46,13 @@ export class RegisterComponent implements OnInit {
         },
         error: (error) => {
           console.log(error);
+          if(error) {
+            if(error.status === 400) {
+              this.toastr.error("User already exists");
+            }
+          } else {
+            this.toastr.error("An error occured during register");
+          }
         },
       })
     }
