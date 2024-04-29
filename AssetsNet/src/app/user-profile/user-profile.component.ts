@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getUserFollowers();
   }
 
   getUser() {
@@ -38,6 +39,16 @@ export class UserProfileComponent implements OnInit {
       }, (error) => {
         console.log(error);
       })
+    }
+  }
+
+  getUserFollowers() {
+    if(this.userJwt) {
+      this.usersService.getUserFollowers(this.userJwt.id).subscribe((followers) => {
+        console.log(followers);
+      }, (error) => {
+        console.log(error);
+      });
     }
   }
 
