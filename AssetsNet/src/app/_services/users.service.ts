@@ -19,4 +19,8 @@ export class UsersService {
   public getUserFollowers(userId: string) {
     return this.http.get(this.baseUrl + 'users/followers/' + userId);
   }
+
+  public getUserFollowings(userId: string) {
+    return this.http.get(this.baseUrl + 'users/followings/' + userId);
+  }
 }
