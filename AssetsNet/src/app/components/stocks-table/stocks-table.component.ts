@@ -11,12 +11,16 @@ export class StocksTableComponent implements OnInit {
 
   stocks: Stock[] = [];
   symbols: string[] = ["AMZN", "AAPL", "NFLX", "GOOG", "NVDA"];
+  screenWidth: number = window.innerWidth;
 
   constructor(private stocksService: StocksService) { }
 
   ngOnInit(): void {
     this.getMockStockData(); // Fake data
     // this.getStocksData(); // Real Data
+    window.addEventListener('resize', () => {
+      this.screenWidth = window.innerWidth;
+    });
   }
 
   getChangePercentClass(stock: Stock) {

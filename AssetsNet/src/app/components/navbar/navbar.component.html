@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="nav-links" *ngIf="(accountService.currentUser$ | async) !== null">
           <a routerLink="/home" class="nav-link">Whatchlist</a>
-          <a routerLink="/search" class="nav-link">Search</a>
+          <a routerLink="/analysis" class="nav-link">Analysis</a>
           <a routerLink="/users/{{(accountService.currentUser$ | async)?.id}}" class="nav-link">Profile</a>
         </div>
         <div class="navigation-buttons">

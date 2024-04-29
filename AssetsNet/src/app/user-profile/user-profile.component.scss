@@ -2031,3 +2031,15 @@ p {
 #navbar .navbar {
   margin-bottom: 20px;
 }
+
+.profile-photo {
+  border-radius: 50px;
+}
+
+.conversation-unit {
+  cursor: pointer;
+}
+
+.conversation-unit:hover {
+  background-color: #f1f3f5;
+}

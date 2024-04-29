@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  screenWidth: number = window.innerWidth;
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    window.addEventListener('resize', () => {
+      this.screenWidth = window.innerWidth;
+    });
   }
 
 }

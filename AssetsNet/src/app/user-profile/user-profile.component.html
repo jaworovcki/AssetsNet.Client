@@ -1,13 +1,13 @@
 <div class="container-fluid" style="margin-top: 150px;">
-  <div class="row">
+  <div class="row" *ngIf="user">
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
       <div class="card card-profile shadow">
         <div class="row justify-content-center">
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="#">
-                <img *ngIf="user?.photoUrl" src="{{user?.photoUrl}}" alt="">
-                <img *ngIf="!user?.photoUrl" src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" class="rounded-circle">
+                <img width="300" height="200" style="border-radius: 50%;object-fit: cover;" class="profile-photo" *ngIf="user?.photoUrl" src="{{user?.photoUrl}}" alt="">
+                <img class="profile-photo" *ngIf="!user?.photoUrl" src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" class="rounded-circle">
               </a>
             </div>
           </div>
@@ -22,14 +22,12 @@
           <div class="row">
             <div class="col">
               <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                <div>
+                <div (click)="openFollowersModal()">
                   <span class="heading">{{user?.numberOfFollowers}}</span>
                   <span class="description">Followers</span>
                 </div>
-                <div>
+                <div (click)="openFollowingsModal()">
                   <span class="heading">{{user?.numberOfFollowings}}</span>
-                  <span class="description">Followings</span>
-                </div>
                 <div>
                   <span class="heading">89</span>
                   <span class="description">Requests</span>
@@ -39,12 +37,48 @@
           </div>
           <div class="text-center">
             <h3>
-              {{user?.userName}}
+              {{user.userName}}
             </h3>
             <p>Some descriptions here just for example and show the user its existense here</p>
             <a href="#">Show more</a>
           </div>
         </div>
+      </div>
+
+      <div class="conversations mt-4" *ngIf="user.id === userJwt!.id">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="h3 mb-0">Conversations</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush list my--3">
+              <li (click)="startChatting(message)" class="list-group-item px-0 conversation-unit"  *ngFor="let message of conversations" >
+                <div class="row align-items-center d-flex" style="flex-direction: row;">
+                  <div class="col-3">
+                    <a href="#" class="avatar rounded-circle">
+                      <img style="width: 48px; height: 48px!important;" alt="Image placeholder"
+                        [src]="(message.senderId !== user!.id ? message.senderPhotoUrl : message.recipientPhotoUrl) || 'https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'">
+                    </a>
+                  </div>
+                  <div class="col-9">
+                      <div class="row">
+                          <div class="col-8">
+                            <h4 class="mb-0">
+                              <a style="color: rgb(94, 114, 228);">{{ message.senderId !== user!.id ? message.senderName : message.recipientName }}</a>
+                            </h4>
+                            <small *ngIf="message.senderId === user.id">You: </small>
+                            <small>{{ message.content }}</small>
+                          </div>
+                          <div class="col-4">
+                            <small>{{ message.dateSent | date: 'HH:mm' }}</small>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </li>
+              </ul>
+          </div>
+      </div>
       </div>
     </div>
     <div class="col-xl-8 order-xl-1">
@@ -106,7 +140,7 @@
       </div>
     </div>
   </div>
-  <ng-container *ngIf="user">
-    <app-messages-thread [isVisible]="isChatVisible" [recipient]="user"></app-messages-thread>
+  <ng-container *ngIf="recipient && recipient.id !== userJwt?.id">
+    <app-messages-thread [isVisible]="isChatVisible" [recipient]="recipient" (closeChat)="isChatVisible = false"></app-messages-thread>
   </ng-container>
 </div>
