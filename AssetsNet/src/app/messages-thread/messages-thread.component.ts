@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
 import { UserJwt } from '../models/user/userJwt';
@@ -12,11 +12,12 @@ import { User } from '../models/user/user';
   templateUrl: './messages-thread.component.html',
   styleUrls: ['./messages-thread.component.scss']
 })
-export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit {
-
+export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewChecked {
+    
   @ViewChild('messagesContainer') private messagesContainer: ElementRef | null = null;
   @Input() recipient: User | null = null;
   @Input() isVisible: boolean = false;
+  @Output() closeChat: EventEmitter<void> = new EventEmitter<void>();
   messageToSend : SendMessage = {
     recipientId: "",
     content: ''
@@ -30,15 +31,16 @@ export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit
     });
   }
 
+  ngAfterViewChecked(): void {
+    this.smoothScrollToBottom();
+  }
+
   ngOnInit(): void {
     console.log(this.recipient!.id);
     this.messageToSend.recipientId = this.recipient!.id;
     this.messagesService.createHubConnection(this.userJwt!, this.recipient!.id);
   }
 
-  ngAfterViewInit(): void {
-    this.smoothScrollToBottom();
-  }
 
   ngOnDestroy(): void {
     this.messagesService.stopHubConnection();
@@ -66,5 +68,8 @@ export class MessagesThreadComponent implements OnInit, OnDestroy, AfterViewInit
 
   toggleVisibility() {
     this.isVisible = !this.isVisible;
+    if (!this.isVisible) {
+        this.closeChat.emit(); 
+    }
   }
 }
