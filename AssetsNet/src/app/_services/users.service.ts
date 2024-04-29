@@ -15,4 +15,12 @@ export class UsersService {
   public getUserById(userId: string) {
     return this.http.get<User>(this.baseUrl + 'users/' + userId);
   }
+
+  public getUserFollowers(userId: string) {
+    return this.http.get<User[]>(this.baseUrl + 'users/followers/' + userId);
+  }
+
+  public getUserFollowings(userId: string) {
+    return this.http.get<User[]>(this.baseUrl + 'users/followings/' + userId);
+  }
 }

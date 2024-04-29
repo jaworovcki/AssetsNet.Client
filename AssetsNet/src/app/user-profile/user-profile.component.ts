@@ -4,6 +4,9 @@ import { UsersService } from '../_services/users.service';
 import { User } from '../models/user/user';
 import { UserJwt } from '../models/user/userJwt';
 import { AccountService } from '../_services/account.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FollowersModalComponent } from '../_modals/followers/followers-modal/followers-modal.component';
+import { FollowingsModalComponent } from '../_modals/followings/followings-modal/followings-modal.component';
 import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
 
@@ -20,25 +23,45 @@ export class UserProfileComponent implements OnInit {
   conversations: Message[] = [];
   recipient: User | null = null;
 
-  constructor(private usersService: UsersService, private accountService: AccountService,
-    private activatedRoute: ActivatedRoute,
-    private messagesService: MessagesService) {
-    this.accountService.currentUser$.subscribe((userJwt) => {
-      this.userJwt = userJwt;
-    });
-  }
+  userIdFromRoute: string = '';
+
+  constructor(public dialogRef: MatDialog, private usersService: UsersService, private accountService: AccountService, 
+    private activatedRoute: ActivatedRoute,private messagesService: MessagesService) { 
+      this.accountService.currentUser$.subscribe((userJwt) => {
+        this.userJwt = userJwt;
+      });
+    }
 
   ngOnInit(): void {
     this.getUser();
     this.getConversations();
   }
 
-  getUser() {
-    const userId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(userId);
+  openFollowersModal() {
+    this.dialogRef.open(FollowersModalComponent, {
+      height: '550px',
+      width: '400px',
+      data: {
+        userId: this.userJwt?.id
+      },
+    })
+  }
 
-    if (userId) {
-      this.usersService.getUserById(userId).subscribe((user) => {
+  openFollowingsModal() {
+    this.dialogRef.open(FollowingsModalComponent, {
+      height: '550px',
+      width: '400px',
+      data: {
+        userId: this.userIdFromRoute
+      },
+    })
+  }
+
+  getUser() {
+    this.userIdFromRoute = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
+
+    if (this.userIdFromRoute) {
+      this.usersService.getUserById(this.userIdFromRoute).subscribe((user) => {
         this.user = user;
         this.recipient = user;
         console.log(user);

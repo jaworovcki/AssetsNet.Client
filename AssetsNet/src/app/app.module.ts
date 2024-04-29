@@ -6,7 +6,7 @@ import { LoginComponent } from './components/account/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/account/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { LatestNewsComponent } from './components/latest-news/latest-news.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -21,6 +21,9 @@ import { MessagesThreadComponent } from './messages-thread/messages-thread.compo
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FollowersModalComponent } from './_modals/followers/followers-modal/followers-modal.component';
+import { FollowingsModalComponent } from './_modals/followings/followings-modal/followings-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { ToastrModule } from 'ngx-toastr';
     StocksTableComponent,
     SocialMediaPostsComponent,
     MessagesThreadComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    FollowersModalComponent,
+    FollowingsModalComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,7 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar: true,
       maxOpened: 3,
     }),
+    MatDialogModule,
   ],
   providers: [
     {
