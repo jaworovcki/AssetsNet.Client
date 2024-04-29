@@ -6,7 +6,7 @@ import { LoginComponent } from './components/account/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './components/account/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { LatestNewsComponent } from './components/latest-news/latest-news.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -21,6 +21,7 @@ import { MessagesThreadComponent } from './messages-thread/messages-thread.compo
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar: true,
       maxOpened: 3,
     }),
+    MatDialogModule,
   ],
   providers: [
     {
