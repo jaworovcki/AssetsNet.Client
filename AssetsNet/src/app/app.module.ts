@@ -22,6 +22,7 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FollowersModalComponent } from './_modals/followers/followers-modal/followers-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     StocksTableComponent,
     SocialMediaPostsComponent,
     MessagesThreadComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    FollowersModalComponent
   ],
   imports: [
     BrowserModule,
