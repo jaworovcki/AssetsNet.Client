@@ -24,7 +24,7 @@
               <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                 <div>
                   <span class="heading">{{user?.numberOfFollowers}}</span>
-                  <span class="description">Followers</span>
+                  <span class="description" (click)="openFollowersModal()">Followers</span>
                 </div>
                 <div>
                   <span class="heading">{{user?.numberOfFollowings}}</span>

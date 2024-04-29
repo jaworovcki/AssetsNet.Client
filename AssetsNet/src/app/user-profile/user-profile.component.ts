@@ -4,6 +4,8 @@ import { UsersService } from '../_services/users.service';
 import { User } from '../models/user/user';
 import { UserJwt } from '../models/user/userJwt';
 import { AccountService } from '../_services/account.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FollowersModalComponent } from '../_modals/followers/followers-modal/followers-modal.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   userJwt: UserJwt | null = null;
   isChatVisible: boolean = false;
 
-  constructor(private usersService: UsersService, private accountService: AccountService, 
+  constructor(public dialogRef: MatDialog, private usersService: UsersService, private accountService: AccountService, 
     private activatedRoute: ActivatedRoute) { 
       this.accountService.currentUser$.subscribe((userJwt) => {
         this.userJwt = userJwt;
@@ -25,6 +27,13 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+  }
+
+  openFollowersModal() {
+    this.dialogRef.open(FollowersModalComponent, {
+      height: '550px',
+      width: '400px',
+    })
   }
 
   getUser() {
