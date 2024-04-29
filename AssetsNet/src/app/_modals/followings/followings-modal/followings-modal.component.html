@@ -1,1 +1,27 @@
-<p>followings-modal works!</p>
+<div class="wrapper">
+    <div class="search">
+        <i class="fa fa-user icon"></i>
+        <input class="input-field" type="text" placeholder="Enter username" ico>
+    </div>
+    <div class="users-list mt-4">
+        <div class="no-followers" *ngIf="followings.length === 0">
+            <h3>No followings</h3>
+        </div>
+        <div class="user mt-3" *ngFor="let following of followings">
+            <div class="user-wrapper">
+                <div class="creds-wrapper">
+                    <img class="profile-photo" *ngIf="!following.photoUrl" width="40" height="40"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                        alt="profile-picture">
+                    <img class="profile-photo" *ngIf="following.photoUrl" width="40" height="40"
+                        src="{{following.photoUrl}}"
+                        alt="profile-picture">
+                    <span class="username ms-1">{{following.userName}}</span>
+                </div>
+                <div class="action-buttons">
+                    <button>Unfollow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
