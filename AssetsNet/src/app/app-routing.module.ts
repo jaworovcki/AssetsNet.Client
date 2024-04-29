@@ -7,15 +7,23 @@ import { SearchComponent } from './components/search/search.component';
 import { PasswordComponent } from './components/account/restore-password/restore-password.component';
 import { MessagesThreadComponent } from './messages-thread/messages-thread.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AuthGuard } from './_/guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'search', component: SearchComponent },
+  { path: 'analysis', component: SearchComponent },
   { path: 'restore-password', component: PasswordComponent },
-  { path: 'users/:id', component: UserProfileComponent}
+  {
+    path: '',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'search', component: SearchComponent },
+      { path: 'users/:id', component: UserProfileComponent }
+    ]
+  },
 ];
 
 @NgModule({

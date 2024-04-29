@@ -1,12 +1,13 @@
 <div class="container">
   <div class="welcome-area text-center">
-    <h1 class="welcome-message">Welcome to AssetsNet Search</h1>
-    <p class="description-message">Explore the new instrument for stocks prices forecasting which based on the social media posts</p>
+    <h1 class="welcome-message">Welcome to AssetsNet Analysis</h1>
+    <p class="description-message">Explore the new instrument for stocks prices forecasting which based on the social
+      media posts</p>
   </div>
   <div class="search-area text-center">
     <form (keydown.enter)="$event.preventDefault(); getStockForecast()">
       <input type="text" placeholder=" Search for any stock forecast you want" matInput [formControl]="stockFilter"
-      [matAutocomplete]="stockAuto">
+        [matAutocomplete]="stockAuto">
       <mat-autocomplete autoActiveFirstOption #stockAuto="matAutocomplete">
         <mat-option *ngFor="let stock of filteredStockNames | async" [value]="stock">
           {{stock}}
@@ -15,34 +16,53 @@
     </form>
   </div>
 
-  <ng-container *ngIf="!isResponseObtained" >
-    <div class="row mt-5">
-      <div (click)="getFastForecast('Meta')" class="col-3 d-flex justify-content-center align-items-center stock-box">
-        <span class="stock-name">Meta</span>
+  <ng-container *ngIf="!isResponseObtained">
+    <div class="blocks-wrapper">
+      <div class="row mt-5">
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div (click)="getFastForecast('Meta')" class="d-flex justify-content-center align-items-center stock-box">
+            <span class="stock-name"><img width="50" height="50" src="./assets/imgs/brands/meta.png" alt="meta logo"></span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div (click)="getFastForecast('Amazon')" class="d-flex justify-content-center align-items-center stock-box">
+            <span class="stock-name"><img width="50" height="50" src="./assets/imgs/brands/social.png" alt="amazon logo"></span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div (click)="getFastForecast('Apple')" class="d-flex justify-content-center align-items-center stock-box">
+            <span class="stock-name"><img width="50" height="50" src="./assets/imgs/brands/apple-logo.png" alt="apple logo"></span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div (click)="getFastForecast('Google')" class="d-flex justify-content-center align-items-center stock-box">
+            <span class="stock-name"><img width="50" height="50" src="./assets/imgs/brands/google.png" alt="google logo"></span>
+          </div>
+        </div>
       </div>
-      <div (click)="getFastForecast('Amazon')" class="col-3 d-flex justify-content-center align-items-center stock-box">
-        <span class="stock-name">Amazon</span>
-      </div>
-      <div (click)="getFastForecast('Apple')" class="col-3 d-flex justify-content-center align-items-center stock-box">
-        <span class="stock-name">Apple</span>
-      </div>
-      <div (click)="getFastForecast('Google')" class="col-3 d-flex justify-content-center align-items-center stock-box">
-        <span class="stock-name">Google</span>
-      </div>
-    </div>
 
-    <div class="row mt-2">
-      <div (click)="getFastForecast('Vanguard')" class="col-3 d-flex justify-content-center align-items-center fonds-box">
-        <span class="stock-name"><span class="csharp">#</span>Vanguard</span>
-      </div>
-      <div (click)="getFastForecast('Blackrock')" class="col-3 d-flex justify-content-center align-items-center fonds-box">
-        <span class="stock-name"><span class="csharp">#</span>Blackrock</span>
-      </div>
-      <div (click)="getFastForecast('Schawab')" class="col-3 d-flex justify-content-center align-items-center fonds-box">
-        <span class="stock-name"><span class="csharp">#</span>Schwab</span>
-      </div>
-      <div (click)="getFastForecast('iShares')" class="col-3 d-flex justify-content-center align-items-center fonds-box">
-        <span class="stock-name"><span class="csharp">#</span>iShares</span>
+      <div class="row mt-2">
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div (click)="getFastForecast('Vanguard')" class="d-flex justify-content-center align-items-center fonds-box">
+            <span class="stock-name"><span class="csharp">#</span>Vanguard</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div (click)="getFastForecast('Blackrock')"
+            class="d-flex justify-content-center align-items-center fonds-box">
+            <span class="stock-name"><span class="csharp">#</span>Blackrock</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div (click)="getFastForecast('Schawab')" class="d-flex justify-content-center align-items-center fonds-box">
+            <span class="stock-name"><span class="csharp">#</span>Schwab</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+          <div (click)="getFastForecast('iShares')" class="d-flex justify-content-center align-items-center fonds-box">
+            <span class="stock-name"><span class="csharp">#</span>iShares</span>
+          </div>
+        </div>
       </div>
     </div>
   </ng-container>
@@ -52,7 +72,7 @@
       <h2 class="target-stock-title">Target Stock:</h2>
       <p class="target-stock-name">{{targetStock}}</p>
     </div>
-    
+
     <div class="row">
       <div class="col-12 d-flex justify-content-center flex-column align-items-center">
         <div class="row" style="margin-top: 30px;">
@@ -60,7 +80,7 @@
             <p class="response-title">Response:</p>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-12 d-flex">
             <div class="stock-forecast-response">
@@ -71,5 +91,5 @@
       </div>
     </div>
   </ng-container>
-  
+
 </div>
