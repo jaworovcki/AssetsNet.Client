@@ -32,12 +32,12 @@ export class MessagesService {
     });
 
     this.hubConnection.on("RecieveMessageThread", (messageThread) => {
-      console.log(messageThread);
       this.messageThreadSource.next(messageThread);
     });
 
     this.hubConnection.on("NewMessage", (message) => {
       this.messageSource$.pipe(take(1)).subscribe((messages) => { // take(1) gets an array form this.messageSource$
+        console.log(messages);
         this.messageThreadSource.next([...messages, message])
       })
     });
@@ -50,11 +50,15 @@ export class MessagesService {
       })
     }
   }
-  
-  async sendMessage(sendMessage:SendMessage) { // async guarantees that we return a Promise from this method
+
+  async sendMessage(sendMessage: SendMessage) { // async guarantees that we return a Promise from this method
     // return this.httpClient.post<Message>(this.baseUrl + 'message', {recipientUsername: username, content: content});
     this.hubConnection?.invoke("SendMessage", sendMessage).catch((error => {
       console.log(error);
     }));
+  }
+
+  getConversations() {
+    return this.httpClient.get<Message[]>(this.baseUrl + 'users/conversations');
   }
 }

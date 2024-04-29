@@ -1,21 +1,21 @@
-<section class="avenue-messenger">
+<section class="avenue-messenger" *ngIf="isVisible">
     <div class="menu">
         <div class="items"><span>
                 <a href="#" title="Minimize">&mdash;</a><br>
                 <a href="#" title="End Chat">&#10005;</a>
-
             </span></div>
-        <div class="button">...</div>
+        <div (click)="toggleVisibility()" class="button">X</div>
     </div>
     <div class="agent-face">
         <div class="half">
-            <img class="agent circle" src="http://askavenue.com/img/17.jpg" alt="Jesse Tino">
+            <img *ngIf="recipient?.photoUrl" class="agent circle" src="{{recipient?.photoUrl}}" alt="Jesse Tino">
+            <img *ngIf="!recipient?.photoUrl" class="agent circle" src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" alt="Jesse Tino">
         </div>
     </div>
     <div class="chat">
         <div class="chat-title">
-            <h1>RecipientName</h1>
-            <h2>Pied Piper Chat</h2>
+            <h1>{{recipient?.userName}}</h1>
+            <h2>Private Chat</h2>
         </div>
 
         <div #messagesContainer class="messages">
