@@ -19,6 +19,8 @@ export class UserProfileComponent implements OnInit {
   userJwt: UserJwt | null = null;
   isChatVisible: boolean = false;
 
+  userIdFromRoute: string = '';
+
   constructor(public dialogRef: MatDialog, private usersService: UsersService, private accountService: AccountService, 
     private activatedRoute: ActivatedRoute) { 
       this.accountService.currentUser$.subscribe((userJwt) => {
@@ -45,17 +47,16 @@ export class UserProfileComponent implements OnInit {
       height: '550px',
       width: '400px',
       data: {
-        userId: this.userJwt?.id
+        userId: this.userIdFromRoute
       },
     })
   }
 
   getUser() {
-    const userId = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(userId);
+    this.userIdFromRoute = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
 
-    if (userId) {
-      this.usersService.getUserById(userId).subscribe((user) => {
+    if (this.userIdFromRoute) {
+      this.usersService.getUserById(this.userIdFromRoute).subscribe((user) => {
         this.user = user;
         console.log(user);
       }, (error) => {
