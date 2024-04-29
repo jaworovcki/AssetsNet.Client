@@ -56,7 +56,7 @@
               <div class="form-group pt-4">
                 <div class="input-field" [class.is-invalid]="submitted && registerForm.get('confirmPassword')?.errors">
                   <span class="fa fa-lock p-2"></span>
-                  <input formControlName="confirmPassword" type="password" placeholder="Repeat your password"/>
+                  <input formControlName="confirmPassword" type="password" placeholder="Confirm your password"/>
                 </div>
                 <span class="text-danger" *ngIf="submitted && registerForm.controls['confirmPassword'].errors?.['notMatching']">
                   Passwords do not match
