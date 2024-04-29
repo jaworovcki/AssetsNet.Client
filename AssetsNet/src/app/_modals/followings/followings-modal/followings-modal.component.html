@@ -15,7 +15,7 @@
                     <img class="profile-photo" *ngIf="following.photoUrl" width="40" height="40"
                         src="{{following.photoUrl}}"
                         alt="profile-picture">
-                    <span class="username ms-1">{{following.userName}}</span>
+                    <span class="username ms-1" routerLink="/users/{{following.id}}">{{following.userName}}</span>
                 </div>
                 <div class="action-buttons">
                     <button>Unfollow</button>
