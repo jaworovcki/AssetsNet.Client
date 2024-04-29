@@ -6,6 +6,7 @@ import { UserJwt } from '../models/user/userJwt';
 import { AccountService } from '../_services/account.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FollowersModalComponent } from '../_modals/followers/followers-modal/followers-modal.component';
+import { FollowingsModalComponent } from '../_modals/followings/followings-modal/followings-modal.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -31,6 +32,16 @@ export class UserProfileComponent implements OnInit {
 
   openFollowersModal() {
     this.dialogRef.open(FollowersModalComponent, {
+      height: '550px',
+      width: '400px',
+      data: {
+        userId: this.userJwt?.id
+      },
+    })
+  }
+
+  openFollowingsModal() {
+    this.dialogRef.open(FollowingsModalComponent, {
       height: '550px',
       width: '400px',
       data: {
