@@ -6,13 +6,16 @@
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="#">
-                <img width="300" height="200" style="border-radius: 50%;object-fit: cover;" class="profile-photo" *ngIf="user?.photoUrl" src="{{user?.photoUrl}}" alt="">
-                <img class="profile-photo" *ngIf="!user?.photoUrl" src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" class="rounded-circle">
+                <img width="300" height="200" style="border-radius: 50%;object-fit: cover;" class="profile-photo"
+                  *ngIf="user?.photoUrl" src="{{user?.photoUrl}}" alt="">
+                <img class="profile-photo" *ngIf="!user?.photoUrl"
+                  src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                  class="rounded-circle">
               </a>
             </div>
           </div>
         </div>
-        <div  class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div *ngIf="user?.id !== userJwt?.id" class="d-flex justify-content-between">
             <a class="btn btn-sm btn-info mr-4" style="color: white;">Follow</a>
             <a (click)="initiateChat()" class="btn btn-sm btn-default float-right" style="color: white;">Message</a>
@@ -28,9 +31,11 @@
                 </div>
                 <div (click)="openFollowingsModal()">
                   <span class="heading">{{user?.numberOfFollowings}}</span>
-                <div>
-                  <span class="heading">89</span>
-                  <span class="description">Requests</span>
+                  <span class="description">Followings</span>
+                  <div>
+                    <span class="heading">89</span>
+                    <span class="description">Requests</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -52,7 +57,8 @@
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush list my--3">
-              <li (click)="startChatting(message)" class="list-group-item px-0 conversation-unit"  *ngFor="let message of conversations" >
+              <li (click)="startChatting(message)" class="list-group-item px-0 conversation-unit"
+                *ngFor="let message of conversations">
                 <div class="row align-items-center d-flex" style="flex-direction: row;">
                   <div class="col-3">
                     <a href="#" class="avatar rounded-circle">
@@ -61,24 +67,25 @@
                     </a>
                   </div>
                   <div class="col-9">
-                      <div class="row">
-                          <div class="col-8">
-                            <h4 class="mb-0">
-                              <a style="color: rgb(94, 114, 228);">{{ message.senderId !== user!.id ? message.senderName : message.recipientName }}</a>
-                            </h4>
-                            <small *ngIf="message.senderId === user.id">You: </small>
-                            <small>{{ message.content }}</small>
-                          </div>
-                          <div class="col-4">
-                            <small>{{ message.dateSent | date: 'HH:mm' }}</small>
-                          </div>
+                    <div class="row">
+                      <div class="col-8">
+                        <h4 class="mb-0">
+                          <a style="color: rgb(94, 114, 228);">{{ message.senderId !== user!.id ? message.senderName :
+                            message.recipientName }}</a>
+                        </h4>
+                        <small *ngIf="message.senderId === user.id">You: </small>
+                        <small>{{ message.content }}</small>
                       </div>
+                      <div class="col-4">
+                        <small>{{ message.dateSent | date: 'HH:mm' }}</small>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
-              </ul>
+            </ul>
           </div>
-      </div>
+        </div>
       </div>
     </div>
     <div class="col-xl-8 order-xl-1">
@@ -101,13 +108,15 @@
                 <div class="col-lg-6">
                   <div class="form-group focused">
                     <label class="form-control-label" for="input-username">Username</label>
-                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="{{user?.userName}}">
+                    <input type="text" id="input-username" class="form-control form-control-alternative"
+                      placeholder="Username" value="{{user?.userName}}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email address</label>
-                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com" value="{{user?.email}}">
+                    <input type="email" id="input-email" class="form-control form-control-alternative"
+                      placeholder="jesse@example.com" value="{{user?.email}}">
                   </div>
                 </div>
               </div>
@@ -115,13 +124,15 @@
                 <div class="col-lg-6">
                   <div class="form-group focused">
                     <label class="form-control-label" for="input-first-name">First name</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative"
+                      placeholder="First name" value="Lucky">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group focused">
                     <label class="form-control-label" for="input-last-name">Last name</label>
-                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
+                    <input type="text" id="input-last-name" class="form-control form-control-alternative"
+                      placeholder="Last name" value="Jesse">
                   </div>
                 </div>
               </div>
@@ -132,7 +143,8 @@
             <div class="pl-lg-4">
               <div class="form-group focused">
                 <label>About Me</label>
-                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">Some descriptions here just for example</textarea>
+                <textarea rows="4" class="form-control form-control-alternative"
+                  placeholder="A few words about you ...">Some descriptions here just for example</textarea>
               </div>
             </div>
           </form>
@@ -141,6 +153,7 @@
     </div>
   </div>
   <ng-container *ngIf="recipient && recipient.id !== userJwt?.id">
-    <app-messages-thread [isVisible]="isChatVisible" [recipient]="recipient" (closeChat)="isChatVisible = false"></app-messages-thread>
+    <app-messages-thread [isVisible]="isChatVisible" [recipient]="recipient"
+      (closeChat)="isChatVisible = false"></app-messages-thread>
   </ng-container>
 </div>
