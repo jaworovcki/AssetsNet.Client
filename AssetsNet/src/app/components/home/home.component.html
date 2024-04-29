@@ -1,11 +1,23 @@
+
 <div class="container">
-	<div class="row">
-		<div class="col-4">
-			<app-social-media-posts></app-social-media-posts>
+	<div *ngIf="screenWidth >= 992">
+		<div class="row">
+			<div class="col-4">
+				<app-social-media-posts></app-social-media-posts>
+			</div>
+			<div class="col-8">
+				<app-latest-news></app-latest-news>
+				<app-stocks-table></app-stocks-table>
+			</div>
 		</div>
-		<div class="col-8">
-			<app-latest-news></app-latest-news>
-			<app-stocks-table></app-stocks-table>
+	</div>
+	<div *ngIf="screenWidth < 992">
+		<div class="row">
+			<div class="col">
+				<app-latest-news></app-latest-news>
+				<app-social-media-posts></app-social-media-posts>
+				<app-stocks-table></app-stocks-table>
+			</div>
 		</div>
 	</div>
 </div>

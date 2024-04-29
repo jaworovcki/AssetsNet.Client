@@ -35,6 +35,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  word-break: break-word;
 }
 
 .novation p {
@@ -45,7 +46,7 @@
     overflow-wrap: break-word;
     padding: 1em 0;
     margin: 0;
-    max-width: 550px;
+    max-width: 90%;
 }
 
 .thumbnail {
@@ -133,6 +134,50 @@ p {
 
 /* Media Queries */
 @media screen and (max-width: 768px) {
+  .wrapper {
+      padding: 5px;
+  }
+
+  .title {
+      font-size: 24px;
+      margin: 10px; 
+  }
+
+  .dropdown {
+      margin: 10px auto;
+  }
+
+  .dropbtn {
+      padding: 8px 16px;
+      font-size: 14px;
+  }
+
+  .dropdown-content a {
+      padding: 10px 14px;
+  }
+
+  .one-liner {
+      margin: 5px;
+  }
+
+  .news-title {
+      max-width: 90%;
+      font-size: 12px;
+  }
+
+  .publisher,
+  .time {
+      font-size: 12px;
+      margin: 5px;
+  }
+
+  .navigation-buttons button {
+      padding: 8px 8px; 
+      margin: 0 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+ 
     .wrapper .headers {
         flex-direction: column;
         align-items: center;
@@ -140,8 +185,8 @@ p {
 
     .wrapper .headers .dropdown {
         margin-top: 10px;
-        margin-left: 0;
     }
+    
 
     .wrapper .one-liner {
         margin: 10px;
@@ -181,6 +226,7 @@ p {
 
   .news-title {
     //max-width: 200px;
+    max-width: 90%;
     font-size: 12px;
   }
 
@@ -197,46 +243,3 @@ p {
   }
 }
 
-@media screen and (max-width: 768px) {
-  .wrapper {
-      padding: 5px;
-  }
-
-  .title {
-      font-size: 24px;
-      margin: 10px; 
-  }
-
-  .dropdown {
-      margin: 10px auto;
-  }
-
-  .dropbtn {
-      padding: 8px 16px;
-      font-size: 14px;
-  }
-
-  .dropdown-content a {
-      padding: 10px 14px;
-  }
-
-  .one-liner {
-      margin: 5px;
-  }
-
-  .news-title {
-      max-width: 200px;
-      font-size: 12px;
-  }
-
-  .publisher,
-  .time {
-      font-size: 12px;
-      margin: 5px;
-  }
-
-  .navigation-buttons button {
-      padding: 8px 8px; 
-      margin: 0 10px;
-  }
-}
