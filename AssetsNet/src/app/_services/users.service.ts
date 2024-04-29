@@ -17,10 +17,10 @@ export class UsersService {
   }
 
   public getUserFollowers(userId: string) {
-    return this.http.get(this.baseUrl + 'users/followers/' + userId);
+    return this.http.get<User[]>(this.baseUrl + 'users/followers/' + userId);
   }
 
   public getUserFollowings(userId: string) {
-    return this.http.get(this.baseUrl + 'users/followings/' + userId);
+    return this.http.get<User[]>(this.baseUrl + 'users/followings/' + userId);
   }
 }

@@ -6,8 +6,8 @@
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="#">
-                <img *ngIf="user?.photoUrl" src="{{user?.photoUrl}}" alt="">
-                <img *ngIf="!user?.photoUrl" src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" class="rounded-circle">
+                <img width="300" height="200" style="border-radius: 50%;object-fit: cover;" class="profile-photo" *ngIf="user?.photoUrl" src="{{user?.photoUrl}}" alt="">
+                <img class="profile-photo" *ngIf="!user?.photoUrl" src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" class="rounded-circle">
               </a>
             </div>
           </div>

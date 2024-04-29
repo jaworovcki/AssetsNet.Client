@@ -33,6 +33,9 @@ export class UserProfileComponent implements OnInit {
     this.dialogRef.open(FollowersModalComponent, {
       height: '550px',
       width: '400px',
+      data: {
+        userId: this.userJwt?.id
+      },
     })
   }
 
@@ -47,26 +50,6 @@ export class UserProfileComponent implements OnInit {
       }, (error) => {
         console.log(error);
       })
-    }
-  }
-
-  getUserFollowers() {
-    if(this.userJwt) {
-      this.usersService.getUserFollowers(this.userJwt.id).subscribe((followers) => {
-        console.log(followers);
-      }, (error) => {
-        console.log(error);
-      });
-    }
-  }
-
-  getUserFollowing() {
-    if(this.userJwt) {
-      this.usersService.getUserFollowings(this.userJwt.id).subscribe((followings) => {
-        console.log(followings);
-      }, (error) => {
-        console.log(error);
-      });
     }
   }
 
