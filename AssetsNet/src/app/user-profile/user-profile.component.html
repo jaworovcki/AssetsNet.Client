@@ -142,7 +142,7 @@
       </div>
     </div>
   </div>
-  <ng-container *ngIf="recipient">
-    <app-messages-thread [isVisible]="isChatVisible" [recipient]="recipient"></app-messages-thread>
+  <ng-container *ngIf="recipient && recipient.id !== userJwt?.id">
+    <app-messages-thread [isVisible]="isChatVisible" [recipient]="recipient" (closeChat)="isChatVisible = false"></app-messages-thread>
   </ng-container>
 </div>
