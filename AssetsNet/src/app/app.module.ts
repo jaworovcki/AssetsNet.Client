@@ -23,6 +23,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FollowersModalComponent } from './_modals/followers/followers-modal/followers-modal.component';
+import { FollowingsModalComponent } from './_modals/followings/followings-modal/followings-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FollowersModalComponent } from './_modals/followers/followers-modal/fol
     SocialMediaPostsComponent,
     MessagesThreadComponent,
     UserProfileComponent,
-    FollowersModalComponent
+    FollowersModalComponent,
+    FollowingsModalComponent
   ],
   imports: [
     BrowserModule,
