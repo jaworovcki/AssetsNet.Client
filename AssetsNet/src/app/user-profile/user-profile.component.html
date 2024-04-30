@@ -17,7 +17,7 @@
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div *ngIf="user?.id === userJwt?.id" class="d-flex justify-content-between">
-            <a class="btn btn-sm btn-default float-right" style="background-color: green; border: none;color: white;"><i class="fa-solid fa-user-plus"></i></a>
+            <a (click)="openUsersSearchModal()" class="btn btn-sm btn-default float-right" style="background-color: green; border: none;color: white;"><i class="fa-solid fa-user-plus"></i></a>
           </div>
           <div *ngIf="user?.id !== userJwt?.id" class="d-flex justify-content-between">
             <a class="btn btn-sm btn-info mr-4" style="color: white;">Follow</a>
