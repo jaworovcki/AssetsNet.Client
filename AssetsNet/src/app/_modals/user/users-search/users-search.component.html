@@ -1,25 +1,28 @@
 <div class="wrapper">
     <div class="search">
-        <input [(ngModel)]="searchUserNameTerm" class="input-field" type="text" placeholder="Enter username" ico>
+        <input (ngModelChange)="searchUsers()" [(ngModel)]="searchUserNameTerm" class="input-field" type="text"
+            placeholder="Enter username" ico>
     </div>
     <div class="users-list mt-4">
         <div class="no-followers" *ngIf="!searchUserNameTerm">
             <span style="font-weight: 800;font-size: larger;">Type username in to start searching</span>
         </div>
-        <!-- <div class="user mt-3" *ngFor="let following of followings">
-            <div class="user-wrapper mt-3">
-                <div class="creds-wrapper">
-                    <img class="profile-photo" *ngIf="!following.photoUrl" width="40" height="40"
-                        src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
-                        alt="profile-picture">
-                    <img class="profile-photo" *ngIf="following.photoUrl" width="40" height="40"
-                        src="{{following.photoUrl}}" alt="profile-picture">
-                    <span class="username ms-1" routerLink="/users/{{following.id}}">{{following.userName}}</span>
-                </div>
-                <div class="action-buttons">
-                    <button>Unfollow</button>
+        <ng-container *ngIf="searchUserNameTerm">
+            <div class="user mt-3" *ngFor="let foundUser of foundUsers">
+                <div class="user-wrapper mt-3">
+                    <div class="creds-wrapper">
+                        <img class="profile-photo" *ngIf="!foundUser.profilePhotoUrl" width="40" height="40"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                            alt="profile-picture">
+                        <img class="profile-photo" *ngIf="foundUser.profilePhotoUrl" width="40" height="40"
+                            src="{{foundUser.profilePhotoUrl}}" alt="profile-picture">
+                        <span class="username ms-1" routerLink="/users/{{foundUser.id}}">{{foundUser.userName}}</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button>Unfollow</button>
+                    </div>
                 </div>
             </div>
-        </div> -->
+        </ng-container>
     </div>
 </div>

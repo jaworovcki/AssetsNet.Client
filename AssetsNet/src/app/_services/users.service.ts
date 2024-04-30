@@ -25,8 +25,6 @@ export class UsersService {
   }
 
   public searchUserByUserName(userName: string) {
-    let queryParams = new HttpParams();
-    queryParams.append('username', userName);
-    return this.http.get<[]>(this.baseUrl + 'users/user-search' {params: queryParams});
+    return this.http.get<[]>(this.baseUrl + 'users/user-search/' + userName);
   } 
 }
