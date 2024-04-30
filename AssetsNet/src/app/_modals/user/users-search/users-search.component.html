@@ -5,7 +5,7 @@
     </div>
     <div class="users-list mt-4">
         <div class="no-followers" *ngIf="!searchUserNameTerm">
-            <span style="font-weight: 800;font-size: larger;">Type username in to start searching</span>
+            <span style="font-weight: 800;font-size: larger;">Type in username to start searching</span>
         </div>
         <ng-container *ngIf="searchUserNameTerm">
             <div class="user mt-3" *ngFor="let foundUser of foundUsers">
