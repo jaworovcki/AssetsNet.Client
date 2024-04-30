@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="search">
-        <input (ngModelChange)="searchUsers()" [(ngModel)]="searchUserNameTerm" class="input-field" type="text"
-            placeholder="Enter username" ico>
+        <input [(ngModel)]="searchUserNameTerm" class="input-field" type="text" placeholder="Enter username"
+            (ngModelChange)="searchUsers()">
     </div>
     <div class="users-list mt-4">
         <div class="no-followers" *ngIf="!searchUserNameTerm">
