@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { UsersService } from 'src/app/_services/users.service';
+import { FoundUser } from 'src/app/models/user/foundUser';
 
 @Component({
   selector: 'app-users-search',
@@ -12,7 +13,7 @@ export class UsersSearchComponent {
   searchUserNameTerm: string = '';
   debounceTime: number = 500;
 
-  foundUsers: any[] = [];
+  foundUsers: FoundUser[] = [];
 
   constructor(private usersService: UsersService) { }
 
@@ -21,7 +22,7 @@ export class UsersSearchComponent {
       this.usersService.searchUserByUserName(this.searchUserNameTerm).pipe(
         debounceTime(this.debounceTime),
         distinctUntilChanged() // to prevent duplicate
-      ).subscribe((foundUsers: []) => {
+      ).subscribe((foundUsers: FoundUser[]) => {
         this.foundUsers = foundUsers;
       }, (error) => {
         console.log(error);

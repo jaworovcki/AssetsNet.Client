@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user/user';
+import { FoundUser } from '../models/user/foundUser';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,6 @@ export class UsersService {
   }
 
   public searchUserByUserName(userName: string) {
-    return this.http.get<[]>(this.baseUrl + 'users/user-search/' + userName);
+    return this.http.get<FoundUser[]>(this.baseUrl + 'users/user-search/' + userName);
   } 
 }
