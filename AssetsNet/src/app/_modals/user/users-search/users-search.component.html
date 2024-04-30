@@ -16,10 +16,10 @@
                             alt="profile-picture">
                         <img class="profile-photo" *ngIf="foundUser.profilePhotoUrl" width="40" height="40"
                             src="{{foundUser.profilePhotoUrl}}" alt="profile-picture">
-                        <span class="username ms-1" routerLink="/users/{{foundUser.id}}">{{foundUser.userName}}</span>
+                        <span class="username ms-1">{{foundUser.userName}}</span>
                     </div>
                     <div class="action-buttons">
-                        <button>Unfollow</button>
+                        <a href="users/{{foundUser.id}}"><button>Profile</button></a>
                     </div>
                 </div>
             </div>
