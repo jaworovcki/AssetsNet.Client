@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user/user';
@@ -23,4 +23,10 @@ export class UsersService {
   public getUserFollowings(userId: string) {
     return this.http.get<User[]>(this.baseUrl + 'users/followings/' + userId);
   }
+
+  public searchUserByUserName(userName: string) {
+    let queryParams = new HttpParams();
+    queryParams.append('username', userName);
+    return this.http.get<[]>(this.baseUrl + 'users/user-search' {params: queryParams});
+  } 
 }
