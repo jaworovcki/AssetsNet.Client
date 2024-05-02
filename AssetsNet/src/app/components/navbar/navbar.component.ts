@@ -8,6 +8,7 @@ import { AccountService } from 'src/app/_services/account.service';
 })
 export class NavbarComponent {
 
+  sidebarActive = false;
   constructor(public accountService: AccountService) { }
 
   logout() {

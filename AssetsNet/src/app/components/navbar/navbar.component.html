@@ -1,10 +1,20 @@
+<div id = "container" [ngClass]="{sidebarActive:sidebarActive}">
+  <div class = "sidebar">
+    <div id = "menu">
+      <a href = "#">Whatchlist</a>
+      <a href = "#">Analysis</a>
+      <a href = "#">Profile</a>
+    </div>
+  </div>
+
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <div class="nav-area">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarActive = !sidebarActive">
           <span class="navbar-toggler-icon"></span>
+          
         </button>
         <a class="nav-brand" routerLink="/" style="cursor: pointer;">
           <img src="assets/imgs/logo.png" alt="logo" class="logo">
@@ -30,3 +40,4 @@
     </div>
   </nav>
 </header>
+</div>
