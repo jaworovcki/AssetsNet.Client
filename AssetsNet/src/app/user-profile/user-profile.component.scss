@@ -2043,3 +2043,7 @@ p {
 .conversation-unit:hover {
   background-color: #f1f3f5;
 }
+
+.non-resizeable-textarea {
+  resize: none;
+}
