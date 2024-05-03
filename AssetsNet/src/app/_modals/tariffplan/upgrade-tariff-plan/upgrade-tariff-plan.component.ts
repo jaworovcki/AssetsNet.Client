@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-upgrade-tariff-plan',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpgradeTariffPlanComponent implements OnInit {
 
-  constructor() { }
+  tariffPlans = environment.tariffPlans;
+
+  constructor(private dialogRef: MatDialog,) { }
 
   ngOnInit(): void {
+  }
+
+  closeWindow() {
+    this.dialogRef.closeAll();
   }
 
 }
