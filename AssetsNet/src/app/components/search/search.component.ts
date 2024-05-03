@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, catchError, debounceTime, forkJoin, map, of, startWith } from 'rxjs';
+import { UpgradeTariffPlanComponent } from 'src/app/_modals/tariffplan/upgrade-tariff-plan/upgrade-tariff-plan.component';
 import { ChatGptService } from 'src/app/_services/chat-gpt.service';
 import { NewsService } from 'src/app/_services/news.service';
 import { StocksService } from 'src/app/_services/stocks.service';
@@ -25,7 +27,8 @@ export class SearchComponent implements OnInit {
 
   constructor(private stocksService: StocksService,
     private newsService: NewsService,
-    private chatGptService: ChatGptService) { }
+    private chatGptService: ChatGptService,
+    public dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.getStockNames();
@@ -95,6 +98,9 @@ export class SearchComponent implements OnInit {
               },
               error: (error) => {
                 console.error('ChatGPT fetch error:', error);
+                if (error.error === "Gpt requests limit exceeded") {
+                  this.openUpgradeTariffPlanWindow();
+                }
               }
             });
           } else {
@@ -111,7 +117,11 @@ export class SearchComponent implements OnInit {
       });
     }
   }
-  
+
+  openUpgradeTariffPlanWindow() {
+    this.dialogRef.open(UpgradeTariffPlanComponent, {
+    });
+  }
 
   simulateTyping(text: string, index: number = 0) {
     if (index < text.length) {
