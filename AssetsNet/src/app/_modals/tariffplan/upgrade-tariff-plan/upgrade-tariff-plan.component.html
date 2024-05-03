@@ -1,6 +1,9 @@
 <button class="close" (click)="closeWindow()">✖</button>
 <div class="container scroll-container">
   <div class="row">
+    <div class="xs-12">
+      <h2 class="text-center mb-4">Oops, you have reached you limit in requests...</h2>
+    </div>
   </div>
   <div class="row">
     <div class="xs-12 md-6 lg-3" *ngFor="let plan of tariffPlans">
@@ -21,7 +24,7 @@
             {{plan.info}}
           </div> 
         </div>
-        <button *ngIf="memory.memoryStorageLevel < plan.id" class="buy-now" (click)="upgradeMemoryTariffPlan(plan.id, plan.price)">
+        <button class="buy-button text-center">
           <span>Купити зараз</span>
         </button>
       </div>
