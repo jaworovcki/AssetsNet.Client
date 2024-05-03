@@ -1,0 +1,30 @@
+<button class="close" (click)="closeWindow()">✖</button>
+<div class="container scroll-container">
+  <div class="row">
+  </div>
+  <div class="row">
+    <div class="xs-12 md-6 lg-3" *ngFor="let plan of tariffPlans">
+      <div class="pricing-table">
+        <div class="package-title">
+          <span>{{plan.name}}</span>
+        </div>
+        <div class="package-layout">
+          <div class="package-currency">&#8372;</div>
+          <div class="package-value">
+            <div class="value">{{plan.price}}</div>
+            <div class="period">грн</div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="terms">
+          <div class="term">
+            {{plan.info}}
+          </div> 
+        </div>
+        <button *ngIf="memory.memoryStorageLevel < plan.id" class="buy-now" (click)="upgradeMemoryTariffPlan(plan.id, plan.price)">
+          <span>Купити зараз</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
