@@ -5,9 +5,9 @@
         <img src="assets/imgs/logo.png" alt="logo" class="logo" >
         <span>AssetsNet</span>
       </a>
-      <a href = "#">Whatchlist</a>
-      <a href = "#">Analysis</a>
-      <a href = "#">Profile</a>
+      <a href = "#" (click)="toggleSidebar()">Whatchlist</a>
+      <a routerLink="/analysis" (click)="toggleSidebar()">Analysis</a>
+      <a routerLink="/users/{{(accountService.currentUser$ | async)?.id}}" (click)="toggleSidebar()">Profile</a>
       <button type="button" class="btn-close" aria-label="Close" (click)="toggleSidebar()"></button>
     </div>
   </div>
