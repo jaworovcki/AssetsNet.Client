@@ -1,0 +1,227 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
+$font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$black: rgba(0, 0, 0, .87);
+$blue: #2196F3;
+$dark-gray: #263238;
+$gray: #eee;
+$muted: rgba(0, 0, 0, .54);
+
+$body-bg: $gray;
+$text-color: $black;
+$text-currency: $muted;
+$title-bg-color: $dark-gray;
+
+$box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
+
+// Basic layout stuff
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: $body-bg;
+  font-family: $font-family;
+  font-size: 1rem;
+  color: $text-color;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.close {
+  width: 30px;
+  font-size: 20px;
+  color: #c0c5cb;
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.buy-button {
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  width: 30%;
+}
+
+.close:active {
+  border: none;
+}
+
+.scroll-container {
+  max-height: 500px;
+  /* Adjust this value to your needs */
+  overflow-y: auto;
+}
+
+// Pricing tables
+.pricing-table {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: $box-shadow;
+  height: 460px;
+
+
+  &.offer {
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+  }
+
+  .package-title {
+    display: flex;
+    justify-content: center;
+    padding: 16px 24px;
+    background-color: #000000;
+    font-size: 1.125rem;
+    color: #fff;
+    text-transform: uppercase;
+
+    .sale {
+      padding: 0 .5rem;
+      border-radius: 3px;
+      background-color: #fff;
+      font-size: .8125rem;
+      font-weight: 500;
+      color: $dark-gray;
+      line-height: 1.7;
+    }
+  }
+
+  .package-layout {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 2rem 1rem;
+
+    .package-currency {
+      padding-right: 4px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: $text-currency;
+    }
+
+    .package-value {
+      display: flex;
+      align-items: flex-end;
+
+      .value {
+        font-size: 4.5rem;
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .period {
+        padding: 0 0 5px 4px;
+        font-size: 1.125rem;
+        font-weight: 300;
+        color: $muted;
+      }
+    }
+  }
+
+  .terms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: .9125rem;
+
+    .term {
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .buy-now {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto 2rem;
+    padding: 2px 18px;
+    min-width: 128px;
+    width: 150px;
+    /* Fixed width for buttons */
+    min-height: 40px;
+    /* Fixed minimum height for buttons */
+    line-height: 40px;
+    /* Set line height equal to height */
+    border: none;
+    border-radius: 3px;
+    background-color: $blue;
+    font-family: $font-family;
+    font-size: .875rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 39px;
+    text-transform: uppercase;
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .4);
+    }
+  }
+
+  .buy-now-disabled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto 2rem;
+    padding: 2px 18px;
+    min-width: 128px;
+    border: none;
+    border-radius: 3px;
+    background-color: #c0c5cb;
+    font-family: $font-family;
+    font-size: .875rem;
+    font-weight: 500;
+    color: #fff;
+    cursor: not-allowed;
+    line-height: 39px;
+    text-transform: uppercase;
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+    outline: none;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+  }
+
+  .divider {
+    display: block;
+    border-top: 1px solid rgba(0, 0, 0, .12);
+    margin: 16px 32px;
+  }
+}
