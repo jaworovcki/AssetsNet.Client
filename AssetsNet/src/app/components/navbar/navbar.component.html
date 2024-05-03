@@ -1,24 +1,27 @@
 <div id = "container" [ngClass]="{sidebarActive:sidebarActive}">
   <div class = "sidebar">
     <div id = "menu">
+      <a class="nav-brand" routerLink="/" style="cursor: pointer;">
+        <img src="assets/imgs/logo.png" alt="logo" class="logo" >
+        <span>AssetsNet</span>
+      </a>
       <a href = "#">Whatchlist</a>
       <a href = "#">Analysis</a>
       <a href = "#">Profile</a>
+      <button type="button" class="btn-close" aria-label="Close" (click)="toggleSidebar()"></button>
     </div>
   </div>
-
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <div class="nav-area">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarActive = !sidebarActive">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleSidebar()">
           <span class="navbar-toggler-icon"></span>
-          
-        </button>
+      </button>
+      <div class="nav-area">
         <a class="nav-brand" routerLink="/" style="cursor: pointer;">
-          <img src="assets/imgs/logo.png" alt="logo" class="logo">
-          AssetsNet
+          <img src="assets/imgs/logo.png" alt="logo" class="logo"  [style.opacity]="sidebarActive ? 0 : 1">
+          <span [style.opacity]="sidebarActive ? 0 : 1">AssetsNet</span>
         </a>
       </div>
       <div class="collapse navbar-collapse" id="navbarNav">
