@@ -1,7 +1,7 @@
 <div id = "container" [ngClass]="{sidebarActive:sidebarActive}">
   <div class = "sidebar">
     <div id = "menu">
-      <a class="nav-brand" routerLink="/" style="cursor: pointer;">
+      <a class="nav-brand" routerLink="/" style="cursor: pointer;" (click)="toggleSidebar()">
         <img src="assets/imgs/logo.png" alt="logo" class="logo" >
         <span>AssetsNet</span>
       </a>
