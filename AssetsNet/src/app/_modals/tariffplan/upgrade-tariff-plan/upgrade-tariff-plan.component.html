@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div *ngIf="plan.id > 0" class="button-container">
-                  <button click="upgradeTariffPlan(plan.id)" class="buy-button">
+                  <button class="buy-button" (click)="upgradeTariffPlan(plan.id)">
                     Купити зараз
                   </button>
                 </div>
