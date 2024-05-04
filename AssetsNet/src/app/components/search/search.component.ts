@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, catchError, debounceTime, forkJoin, map, of, startWith } from 'rxjs';
 import { UpgradeTariffPlanComponent } from 'src/app/_modals/tariffplan/upgrade-tariff-plan/upgrade-tariff-plan.component';
 import { ChatGptService } from 'src/app/_services/chat-gpt.service';
 import { NewsService } from 'src/app/_services/news.service';
+import { PaymentService } from 'src/app/_services/payment.service';
 import { StocksService } from 'src/app/_services/stocks.service';
+import { UpgradeTariffService } from 'src/app/_services/upgrade-tariff.service';
 import { ChatGptQuery } from 'src/app/models/chatGpt/chatGptQuery';
+import { PaymentState } from 'src/app/models/tariffPlan/paymentState';
+import { UpgradeTariffRequest } from 'src/app/models/tariffPlan/upgradeTariffRequest';
 
 @Component({
   selector: 'app-search',
@@ -24,11 +29,18 @@ export class SearchComponent implements OnInit {
   targetStock: string = '';
   aiResponse: string = '';
   isResponseObtained: boolean = false;
+  upgradeTariffPlanRequest: UpgradeTariffRequest = {
+    tariffPlan: 0,
+    paymentState: 0
+  }
 
   constructor(private stocksService: StocksService,
     private newsService: NewsService,
     private chatGptService: ChatGptService,
-    public dialogRef: MatDialog) { }
+    public dialogRef: MatDialog,
+    private upgradeTariffService: UpgradeTariffService,
+    private paymentService: PaymentService,
+    private toastService: ToastrService) { }
 
   ngOnInit(): void {
     this.getStockNames();
@@ -38,6 +50,10 @@ export class SearchComponent implements OnInit {
       debounceTime(300),
       map(value => this.searchStocksByName(value!).slice(0, 10))
     );
+
+    if (this.upgradeTariffService.getOrderForUpgradeFromLocalStorage !== null) {
+      this.upgradeTariffPlan();
+    }
   }
 
   getStockNames() {
@@ -137,6 +153,31 @@ export class SearchComponent implements OnInit {
   getFastForecast(stockName: string) {
     this.stockFilter.setValue(stockName);
     this.getStockForecast()
+  }
+
+  upgradeTariffPlan() {
+    let order = this.upgradeTariffService.getOrderForUpgradeFromLocalStorage();
+    this.paymentService.getSessionState(order.orderId).subscribe({
+      next: (state : PaymentState) => {
+        if (state.paymentState === 3) {
+          this.upgradeTariffPlanRequest.tariffPlan = order.tariffPlan;
+          this.upgradeTariffPlanRequest.paymentState = state.paymentState;
+          this.upgradeTariffService.upgradeTariffPlan(this.upgradeTariffPlanRequest).subscribe({
+            next: (response) => {
+              console.log(response);
+              this.upgradeTariffService.removeOrderForUpgradeFromLocalStorage();
+              this.toastService.success('Tariff plan successfully upgraded!');
+            },
+            error: (error) => {
+              console.log(error);
+            }
+          });
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
 }
