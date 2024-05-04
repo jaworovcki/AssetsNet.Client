@@ -1,32 +1,34 @@
 <div class="container scroll-container">
-  <div class="row">
-    <div class="xs-12">
-      <h2 class="text-center mb-4">Oops, you have reached you limit in requests...</h2>
+    <div class="row">
+        <div class="xs-12">
+            <h2 class="text-center mb-4">Oops, you have reached your limit in requests...</h2>
+        </div>
     </div>
-  </div>
-  <div class="row plans-list">
-    <div class="col-12 col-md-6 col-lg-4 pricing-plan" *ngFor="let plan of tariffPlans">
-      <div class="pricing-table">
-        <div class="package-title">
-          <span>{{plan.name}}</span>
+    <div class="row plans-list">
+        <div class="col-12 col-md-6 col-lg-4 pricing-plan" *ngFor="let plan of tariffPlans">
+            <div class="pricing-table">
+                <div class="package-title">
+                    <span>{{plan.name}}</span>
+                </div>
+                <div class="package-layout">
+                    <div class="package-currency">&#8372;</div>
+                    <div class="package-value">
+                        <div class="value">{{plan.price}}</div>
+                        <div class="period">UAH</div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="terms">
+                    <div class="term">
+                        {{plan.info}}
+                    </div>
+                </div>
+                <div *ngIf="plan.id > 0" class="button-container">
+                  <button click="upgradeTariffPlan(plan.id)" class="buy-button">
+                    Купити зараз
+                  </button>
+                </div>
+            </div>
         </div>
-        <div class="package-layout">
-          <div class="package-currency">&#8372;</div>
-          <div class="package-value">
-            <div class="value">{{plan.price}}</div>
-            <div class="period">грн</div>
-          </div>
-        </div>
-        <div class="divider"></div>
-        <div class="terms">
-          <div class="term">
-            {{plan.info}}
-          </div> 
-        </div>
-        <button class="buy-button text-center">
-          <span>Купити зараз</span>
-        </button>
-      </div>
     </div>
-  </div>
 </div>
