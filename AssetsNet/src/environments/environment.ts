@@ -12,9 +12,9 @@ export const environment = {
   eohdApiToken:"660af0f7449555.28199836",
   clientId: '491184798714-ahvlhl23coq1l5sgk7cg75ta48aqdclr.apps.googleusercontent.com',
   tariffPlans: [
-    new TariffPlan(0, "Стандарт", 0, "Отримайте безкоштовний доступ до нашого застосунку з 100Мб для збереження ваших улюблених фото та відео."),
-    new TariffPlan(1, "Преміум", 100, "Максимізуйте свої можливості! З планом Преміум отримайте 200Мб лише за 100 гривень. Більше місця - більше вражень!"),
-    new TariffPlan(2, "Голд", 300, "Оберіть Голд і отримайте абсолютний простір - 500Мб для зберігання вашого контенту. Зберігайте усі свої цінні спогади!"),
+    new TariffPlan(0, "Default", 0, "Get 3 free requests to try our service. Upgrade your plan to get more information about the stock market."),
+    new TariffPlan(1, "Basic", 144.30, "Enhance your possibilities with basic features. Get 100 requests to be sure you have enough for your needs."),
+    new TariffPlan(2, "Premium", 384.90, "Choose premium plan to get 1000 requests for better experience with researching the stock market."),
   ] as TariffPlan[],
 };
 
