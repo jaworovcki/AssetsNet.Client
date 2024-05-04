@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PaymentService } from 'src/app/_services/payment.service';
+import { LiqpayResponse } from 'src/app/models/tariffPlan/liqpayResponse';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,13 +13,27 @@ export class UpgradeTariffPlanComponent implements OnInit {
 
   tariffPlans = environment.tariffPlans;
 
-  constructor(private dialogRef: MatDialog,) { }
+  constructor(private dialogRef: MatDialog,
+    private paymentService: PaymentService,
+  ) { }
 
   ngOnInit(): void {
   }
 
   closeWindow() {
     this.dialogRef.closeAll();
+  }
+
+  upgradeTariffPlan(tariffPlanId: number) {
+    this.paymentService.getLiqpayRedirectUrl(tariffPlanId).subscribe({
+      next: (response : LiqpayResponse) => {
+        window.location.href = response.paymentUrl;
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+    
   }
 
 }
