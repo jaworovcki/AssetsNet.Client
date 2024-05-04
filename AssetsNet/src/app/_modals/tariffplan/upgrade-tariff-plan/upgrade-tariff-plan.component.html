@@ -1,12 +1,11 @@
-<button class="close" (click)="closeWindow()">✖</button>
 <div class="container scroll-container">
   <div class="row">
     <div class="xs-12">
       <h2 class="text-center mb-4">Oops, you have reached you limit in requests...</h2>
     </div>
   </div>
-  <div class="row">
-    <div class="xs-12 md-6 lg-3" *ngFor="let plan of tariffPlans">
+  <div class="row plans-list">
+    <div class="col-12 col-md-6 col-lg-4 pricing-plan" *ngFor="let plan of tariffPlans">
       <div class="pricing-table">
         <div class="package-title">
           <span>{{plan.name}}</span>

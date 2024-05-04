@@ -69,6 +69,9 @@ export class SearchComponent implements OnInit {
         map(posts => posts.map(n => n.title)), 
         catchError(error => {
           console.error('Reddit fetch error:', error);
+          if (error.error === "Gpt requests limit exceeded") {
+            this.openUpgradeTariffPlanWindow();
+          }
           return of([]); 
         })
       );
@@ -98,15 +101,13 @@ export class SearchComponent implements OnInit {
               },
               error: (error) => {
                 console.error('ChatGPT fetch error:', error);
-                if (error.error === "Gpt requests limit exceeded") {
-                  this.openUpgradeTariffPlanWindow();
-                }
               }
             });
           } else {
             console.log('No relevant posts found on Reddit or Twitter.');
             this.isResponseObtained = true;
             this.aiResponse = 'Sorry, no relevant information about this stock on social media.';
+            
           }
         },
         error: (error) => {
