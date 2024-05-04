@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <div class="search">
+        <input [(ngModel)]="searchUserNameTerm" class="input-field" type="text" placeholder="Enter username"
+            (ngModelChange)="searchUsers()">
+    </div>
+    <div class="users-list mt-4">
+        <div class="no-followers" *ngIf="!searchUserNameTerm">
+            <span style="font-weight: 800;font-size: larger;">Type in username to start searching</span>
+        </div>
+        <ng-container *ngIf="searchUserNameTerm">
+            <div class="user mt-3" *ngFor="let foundUser of foundUsers">
+                <div class="user-wrapper mt-3">
+                    <div class="creds-wrapper">
+                        <img class="profile-photo" *ngIf="!foundUser.profilePhotoUrl" width="40" height="40"
+                            src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                            alt="profile-picture">
+                        <img class="profile-photo" *ngIf="foundUser.profilePhotoUrl" width="40" height="40"
+                            src="{{foundUser.profilePhotoUrl}}" alt="profile-picture">
+                        <span class="username ms-1">{{foundUser.userName}}</span>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="users/{{foundUser.id}}"><button>Profile</button></a>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
