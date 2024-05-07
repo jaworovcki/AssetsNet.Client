@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FollowersModalComponent } from './_modals/followers/followers-modal/followers-modal.component';
 import { FollowingsModalComponent } from './_modals/followings/followings-modal/followings-modal.component';
+import { UpgradeTariffPlanComponent } from './_modals/tariffplan/upgrade-tariff-plan/upgrade-tariff-plan.component';
 import { UsersSearchComponent } from './_modals/user/users-search/users-search.component';
 
 @NgModule({
@@ -42,6 +43,7 @@ import { UsersSearchComponent } from './_modals/user/users-search/users-search.c
     UserProfileComponent,
     FollowersModalComponent,
     FollowingsModalComponent,
+    UpgradeTariffPlanComponent
     UsersSearchComponent
   ],
   imports: [
