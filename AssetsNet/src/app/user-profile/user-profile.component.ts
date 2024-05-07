@@ -9,6 +9,7 @@ import { FollowersModalComponent } from '../_modals/followers/followers-modal/fo
 import { FollowingsModalComponent } from '../_modals/followings/followings-modal/followings-modal.component';
 import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
+import { UsersSearchComponent } from '../_modals/user/users-search/users-search.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -44,7 +45,7 @@ export class UserProfileComponent implements OnInit {
       data: {
         userId: this.userJwt?.id
       },
-    })
+    });
   }
 
   openFollowingsModal() {
@@ -54,7 +55,14 @@ export class UserProfileComponent implements OnInit {
       data: {
         userId: this.userIdFromRoute
       },
-    })
+    });
+  }
+
+  openUsersSearchModal() {
+    this.dialogRef.open(UsersSearchComponent, {
+      height: '550px',
+      width: '400px',
+    });
   }
 
   getUser() {
