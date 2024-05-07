@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow-x: hidden; /* hides horizontal scroll */
 }
 
 .user-wrapper {
@@ -13,17 +14,17 @@
     width: 320px;
 }
 
-.input-field {
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    border-radius: 30px;
-    padding: 5px 5px;
-    border: 1px solid #C1C1C1;
+.search {
+  width: 100%;
 }
 
-.search {
-    width: 330px;
+.input-field {
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border-radius: 30px;
+  border: 1px solid #C1C1C1;
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
 }
 
 .action-buttons button {
@@ -38,10 +39,6 @@
 
 .naction-buttons button:hover {
     background-color: #E0E0E0;
-}
-
-.search-input::before {
-    content: "\f023";
 }
 
 .profile-photo {
