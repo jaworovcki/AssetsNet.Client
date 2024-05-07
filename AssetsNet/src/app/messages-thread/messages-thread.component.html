@@ -23,14 +23,14 @@
                 <ng-container *ngFor="let message of (messagesService.messageSource$ | async)">
                     <ng-container *ngIf="message.senderId === userJwt?.id">
                         <div class="message new mb-2 message-personal me-1">
-                            <figure class="avatar" *ngIf="message.recipientPhotoUrl && message.senderId === userJwt?.id">
+                            <figure class="avatar" *ngIf="message.recipientPhotoUrl && message.senderId !== userJwt?.id">
                                 <img src="{{message.recipientPhotoUrl}}"></figure>
                             {{message.content}}
                         </div>
                     </ng-container>
                     <ng-container *ngIf="message.senderId !== userJwt?.id">
                         <div class="message new mb-2" >
-                            <figure class="avatar" *ngIf="message.recipientPhotoUrl && message.senderId !== userJwt?.id">
+                            <figure class="avatar" *ngIf="message.recipientPhotoUrl && message.senderId === userJwt?.id">
                                 <img src="{{message.recipientPhotoUrl}}"></figure>
                             {{message.content}}
                         </div>

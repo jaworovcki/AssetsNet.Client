@@ -43,7 +43,7 @@ import { UsersSearchComponent } from './_modals/user/users-search/users-search.c
     UserProfileComponent,
     FollowersModalComponent,
     FollowingsModalComponent,
-    UpgradeTariffPlanComponent
+    UpgradeTariffPlanComponent,
     UsersSearchComponent
   ],
   imports: [
