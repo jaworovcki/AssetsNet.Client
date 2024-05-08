@@ -3,11 +3,15 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user/user';
 import { FoundUser } from '../models/user/foundUser';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+
+  private followedUsernamesSource = new BehaviorSubject<string[]>([]);
+  public followedUsernames$ = this.followedUsernamesSource.asObservable();
 
   private baseUrl: string = environment.baseUrl;
 
@@ -31,5 +35,13 @@ export class UsersService {
 
   public followUserById(userId: string) {
     return this.http.post(this.baseUrl + 'users/follow-user/' + userId, {});
+  }
+
+  public getFollowedUsernames() {
+    this.http.get<string[]>(this.baseUrl + 'users/get-followings-names').subscribe((users:string[]) => {
+      this.followedUsernamesSource.next(users);
+    }, (error) => {
+      console.log(error);
+    });
   }
 }

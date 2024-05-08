@@ -3,6 +3,7 @@ import { UserJwt } from './models/user/userJwt';
 import { AccountService } from './_services/account.service';
 import { Router } from '@angular/router';
 import { LoadingSpinnerService } from './_services/loading-spinner.service';
+import { UsersService } from './_services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,14 @@ import { LoadingSpinnerService } from './_services/loading-spinner.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private accountService: AccountService, public spinnerService: LoadingSpinnerService) { }
-
+  constructor(private accountService: AccountService,
+    public usersService: UsersService,
+    public spinnerService: LoadingSpinnerService) { }
 
   ngOnInit(): void {
     this.setCurrentUser();
+
+    this.usersService.getFollowedUsernames();
   }
 
   setCurrentUser() {
