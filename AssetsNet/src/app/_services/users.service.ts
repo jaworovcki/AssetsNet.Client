@@ -39,8 +39,8 @@ export class UsersService {
       this.followedUsernamesSource.pipe(take(1)).subscribe((users) => {
         if(!users.includes(userName)) {
           users.push(userName);
+          this.followedUsernamesSource.next(users);
         }
-        this.followedUsernamesSource.next(users);
       })
     }));
   }
