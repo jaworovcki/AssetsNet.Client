@@ -48,6 +48,7 @@ export class UserProfileComponent implements OnInit {
       console.log(response);
       this.toastr.info('Підписка оформлена');
     }, (error) => {
+      this.toastr.error('Сталася помилка');
       console.log(error);
     });
   }
