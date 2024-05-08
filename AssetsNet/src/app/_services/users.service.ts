@@ -28,4 +28,8 @@ export class UsersService {
   public searchUserByUserName(userName: string) {
     return this.http.get<FoundUser[]>(this.baseUrl + 'users/user-search/' + userName);
   } 
+
+  public followUserById(userId: string) {
+    return this.http.post(this.baseUrl + 'users/follow-user/' + userId, {});
+  }
 }

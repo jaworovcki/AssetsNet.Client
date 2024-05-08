@@ -10,6 +10,7 @@ import { FollowingsModalComponent } from '../_modals/followings/followings-modal
 import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
 import { UsersSearchComponent } from '../_modals/user/users-search/users-search.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile',
@@ -26,16 +27,30 @@ export class UserProfileComponent implements OnInit {
 
   userIdFromRoute: string = '';
 
-  constructor(public dialogRef: MatDialog, private usersService: UsersService, private accountService: AccountService, 
-    private activatedRoute: ActivatedRoute,private messagesService: MessagesService) { 
-      this.accountService.currentUser$.subscribe((userJwt) => {
-        this.userJwt = userJwt;
-      });
-    }
+  constructor(public dialogRef: MatDialog, private usersService: UsersService, private accountService: AccountService,
+    private activatedRoute: ActivatedRoute, private messagesService: MessagesService, private toastr: ToastrService) {
+    this.accountService.currentUser$.subscribe((userJwt) => {
+      this.userJwt = userJwt;
+    });
+  }
 
   ngOnInit(): void {
     this.getUser();
     this.getConversations();
+  }
+
+  followUser() {
+    if(!this.userIdFromRoute) {
+      this.toastr.error('Сталася помилка.Перезавантажте сторінку');
+      return;
+    }
+    this.usersService.followUserById(this.userIdFromRoute).subscribe((response) => {
+      console.log(response);
+      this.toastr.info('Підписка оформлена');
+    }, (error) => {
+      this.toastr.error('Сталася помилка');
+      console.log(error);
+    });
   }
 
   openFollowersModal() {
@@ -97,7 +112,7 @@ export class UserProfileComponent implements OnInit {
     this.isChatVisible = !this.isChatVisible;
   }
 
-  startChatting(message : Message) {
+  startChatting(message: Message) {
     const recipientId = message.senderId !== this.user!.id ? message.senderId : message.recipientId;
     this.usersService.getUserById(recipientId).subscribe((user) => {
       this.recipient = user;
