@@ -27,7 +27,7 @@ export class UserProfileComponent implements OnInit {
 
   userIdFromRoute: string = '';
 
-  constructor(public dialogRef: MatDialog, private usersService: UsersService, private accountService: AccountService,
+  constructor(public dialogRef: MatDialog, public usersService: UsersService, private accountService: AccountService,
     private activatedRoute: ActivatedRoute, private messagesService: MessagesService, private toastr: ToastrService) {
     this.accountService.currentUser$.subscribe((userJwt) => {
       this.userJwt = userJwt;
