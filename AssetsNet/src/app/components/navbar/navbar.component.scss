@@ -69,34 +69,111 @@ header {
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .nav-links {
     display: none;
   }
 
-  .container {
+  .container{
     display: flex;
-    justify-content: center!important;
     align-items: center!important;
+    position: relative;
+  }
+
+  #container {
+    display: flex;
+    width: 100%;
+    top: 0;
+    opacity:1;
+
+    .sidebar{
+      width: 200px;
+      height: 100%;
+      position:fixed;
+      top: 0px;
+      background-color: whitesmoke;
+      transform: translateX(-255px);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+
+      #menu{
+        display: flex;
+        flex-direction: column;
+        
+        .btn-close{
+          left: 200px;
+          width: 55px;
+          height: 40px;
+          position: absolute;
+          background-color: whitesmoke;
+          opacity: 1;
+          z-index: 200;
+          border-bottom-left-radius: 0;
+          border-top-left-radius: 0;
+          box-shadow: none;
+
+          &:hover{
+            background-color: #eee;
+          }
+        }
+
+        a{
+          text-decoration: none;
+          color: #333;
+          border-bottom: 1px solid #CCC;
+          padding-left: 15px;
+          padding: 15px 20px;
+          &:hover:not(.nav-brand){
+            background-color: #eee;
+          }
+        }
+      }
+    }
+    &.sidebarActive{
+      .sidebar{
+        transform: translateX(0);
+      }
+    }
   }
 
   .logo {
     height: 50px;
     width: 50px;
+    transition: opacity 0.15s ease-in-out;
   }
-
-  .nav-brand {
+ 
+  .nav-brand{
     font-size: 20px;
   }
+
+  .nav-brand span {
+    opacity: 1;
+    transition: opacity 0.15s ease-in-out;
+  }
+  
+  .sidebar-active .nav-brand span {
+    opacity: 0;
+  }
+
 
   .navbar-toggler {
     display: flex;
     justify-content: flex-start;
+    transition: transform 0.3s ease-in-out;
+    position: absolute;
+    z-index:200;
   }
 
+  
+
   .nav-area {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-grow: 1;
   }
+
 
   .navigation-buttons {
     justify-content: flex-end;
