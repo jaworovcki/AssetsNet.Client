@@ -127,3 +127,16 @@ input, select {
     font-size: 30px;
   }  
 }
+
+@media (max-width: 576px) {
+  .col-sm-6.mb-3 {
+      display: flex;
+      justify-content: center;
+  }
+  .stock-box{
+    width:50%;
+  }
+  .fonds-box{
+    width: 50%;
+  }
+}
