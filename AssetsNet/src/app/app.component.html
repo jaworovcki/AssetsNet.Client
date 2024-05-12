@@ -1,9 +1,9 @@
-<div class="overlay show" *ngIf="spinnerService.spinnerCounter$ | async">
-  <div class="spinner-border" role="status">
+<app-navbar></app-navbar>
+<div class="overlay show" [ngStyle]="{ 'z-index': sidebarActive ? 101 : 9999 }" *ngIf="(sidebarActive || (spinnerService.spinnerCounter$ | async) !== 0)">
+  <div class="spinner-border" *ngIf="(spinnerService.spinnerCounter$ | async) !== null && (spinnerService.spinnerCounter$ | async) !== undefined ? (spinnerService.spinnerCounter$ | async)! > 0 : false" role="status">
     <span class="visually-hidden">Loading...</span>
  </div>
-  </div>
-  <app-navbar></app-navbar>
+</div>
   <div class="container" style="min-height: 500px; margin-top: 100px;">
     <router-outlet></router-outlet>
   </div>

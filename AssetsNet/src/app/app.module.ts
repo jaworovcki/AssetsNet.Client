@@ -71,6 +71,11 @@ import { UsersSearchComponent } from './_modals/user/users-search/users-search.c
       useClass: JwtInterceptor,
       // useClass: HttpInterceptorService,
       multi: true // This is required to allow multiple interceptors
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true // This is required to allow multiple interceptors
     }
   ],
   bootstrap: [AppComponent]
