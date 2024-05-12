@@ -8,6 +8,7 @@ import { PasswordComponent } from './components/account/restore-password/restore
 import { MessagesThreadComponent } from './messages-thread/messages-thread.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './_/guards/auth/auth.guard';
+import { StockTickerComponent } from './stock-ticker/stock-ticker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
