@@ -27,7 +27,7 @@ export class UserProfileComponent implements OnInit {
 
   userIdFromRoute: string = '';
 
-  constructor(public dialogRef: MatDialog, private usersService: UsersService, private accountService: AccountService,
+  constructor(public dialogRef: MatDialog, public usersService: UsersService, private accountService: AccountService,
     private activatedRoute: ActivatedRoute, private messagesService: MessagesService, private toastr: ToastrService) {
     this.accountService.currentUser$.subscribe((userJwt) => {
       this.userJwt = userJwt;
@@ -41,14 +41,20 @@ export class UserProfileComponent implements OnInit {
 
   followUser() {
     if(!this.userIdFromRoute) {
-      this.toastr.error('Сталася помилка.Перезавантажте сторінку');
+      this.toastr.error('An error occured.Reload page');
       return;
     }
-    this.usersService.followUserById(this.userIdFromRoute).subscribe((response) => {
+
+    if(!this.user) {
+      this.toastr.error('An error occured.Reload page');
+      return;
+    }
+
+    this.usersService.followUserById(this.userIdFromRoute, this.user?.userName).subscribe((response) => {
       console.log(response);
-      this.toastr.info('Підписка оформлена');
+      this.toastr.info('Successfully subscribed');
     }, (error) => {
-      this.toastr.error('Сталася помилка');
+      this.toastr.error(error.error);
       console.log(error);
     });
   }
