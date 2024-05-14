@@ -13,6 +13,7 @@ import { SidebarService } from './_services/sidebar.service';
 })
 export class AppComponent implements OnInit {
   sidebarActive = false;
+
   constructor(private accountService: AccountService,
     public usersService: UsersService,
     public spinnerService: LoadingSpinnerService,
@@ -23,9 +24,8 @@ export class AppComponent implements OnInit {
     this.sidebarService.sidebarActive$.subscribe(active => {
       this.sidebarActive = active;
     });
-    this.usersService.getFollowedUsernames();
   }
-  
+
   setCurrentUser() {
     const user: UserJwt = JSON.parse(localStorage.getItem('user')!);
     if (user) {

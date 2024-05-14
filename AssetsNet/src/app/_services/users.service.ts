@@ -48,6 +48,7 @@ export class UsersService {
   public getFollowedUsernames() {
     this.http.get<string[]>(this.baseUrl + 'users/get-followings-names').subscribe((users: string[]) => {
       this.followedUsernamesSource.next(users);
+      console.log(users);
     }, (error) => {
       this.toastr.error(error.error);
       console.log(error);

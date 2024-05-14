@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { UserJwt } from '../models/user/userJwt';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AccountService {
   private userRolesSource = new BehaviorSubject<string[]>([]);
   userRoles$ = this.userRolesSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private usersService: UsersService) { }
 
   register(model: any) {
     return this.http.post<UserJwt>(this.baseUrl + 'account/register', model).pipe(
@@ -48,7 +49,7 @@ export class AccountService {
   setCurrentUser(user: UserJwt) {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
-
+    this.usersService.getFollowedUsernames();
     this.setUserRoles(user);
   }
 

@@ -157,6 +157,9 @@ export class SearchComponent implements OnInit {
 
   upgradeTariffPlan() {
     let order = this.upgradeTariffService.getOrderForUpgradeFromLocalStorage();
+    if(!order) {
+      return;
+    }
     this.paymentService.getSessionState(order.orderId).subscribe({
       next: (state : PaymentState) => {
         if (state.paymentState === 3) {
