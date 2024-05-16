@@ -18,6 +18,13 @@ export class FollowingsModalComponent implements OnInit {
     this.loadFollowings();
   }
 
+  truncate(text: string, limit: number): string {
+    if (text.length <= limit) {
+      return text;
+    }
+    return text.substring(0, limit) + '...';
+  }
+
   loadFollowings() {
     if (this.data.userId) {
       this.usersService.getUserFollowings(this.data.userId).subscribe((followings) => {

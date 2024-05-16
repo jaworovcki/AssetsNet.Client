@@ -15,7 +15,7 @@
                     <img class="profile-photo" *ngIf="following.photoUrl" width="40" height="40"
                         src="{{following.photoUrl}}"
                         alt="profile-picture">
-                    <a style="text-decoration: none;" href="users/{{following.id}}"><span class="username ms-1">{{following.userName}}</span></a>
+                    <a style="text-decoration: none;" href="users/{{following.id}}"><span class="username ms-1">{{ truncate(following.userName, 15) }}</span></a>
                 </div>
                 <div class="action-buttons">
                     <button>Unfollow</button>
