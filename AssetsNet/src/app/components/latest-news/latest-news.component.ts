@@ -31,7 +31,7 @@ export class LatestNewsComponent implements OnInit {
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    // this.loadYahooNews(); // TODO: Remove from prod
+    this.loadYahooNews(); // TODO: Remove commented method call on prod
   }
 
   loadYahooNews() {

@@ -19,7 +19,7 @@ export class StocksTableComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getMockStockData(); // Fake data
-    // this.getStocksData(); // Real Data // TODO: Remove on comment prod
+    this.getStocksData(); // Real Data // TODO: Remove commented method call on prod
     window.addEventListener('resize', () => {
       this.screenWidth = window.innerWidth;
     });
