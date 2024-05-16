@@ -14,10 +14,10 @@
                         alt="profile-picture">
                     <img class="profile-photo" *ngIf="follower.photoUrl" width="40" height="40"
                         src="{{follower.photoUrl}}" alt="profile-picture">
-                    <span class="username ms-1">{{follower.userName}}</span>
-                </div>
-                <div class="action-buttons">
-                    <a href="/users/{{follower.id}}"><button>Profile</button></a>
+                        <a style="text-decoration: none;" href="users/{{follower.id}}"><span class="username ms-1">{{follower.userName}}</span></a>
+                        </div>               
+                <div class="action-buttons" (click)="followUser()">
+                    <button>Follow</button>
                 </div>
             </div>
         </div>
