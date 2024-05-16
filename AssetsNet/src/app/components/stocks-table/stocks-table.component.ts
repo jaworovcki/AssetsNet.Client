@@ -9,6 +9,8 @@ import { StocksService } from 'src/app/_services/stocks.service';
 })
 export class StocksTableComponent implements OnInit {
 
+  isOutOfRequests: boolean = false;
+
   stocks: Stock[] = [];
   symbols: string[] = ["AMZN", "AAPL", "NFLX", "GOOG", "NVDA"];
   screenWidth: number = window.innerWidth;
@@ -16,8 +18,8 @@ export class StocksTableComponent implements OnInit {
   constructor(private stocksService: StocksService) { }
 
   ngOnInit(): void {
-    this.getMockStockData(); // Fake data
-    // this.getStocksData(); // Real Data
+    // this.getMockStockData(); // Fake data
+    // this.getStocksData(); // Real Data // TODO: Remove on comment prod
     window.addEventListener('resize', () => {
       this.screenWidth = window.innerWidth;
     });
@@ -37,6 +39,8 @@ export class StocksTableComponent implements OnInit {
       
     }, (error) => {
       console.log(error);
+      this.isOutOfRequests = true;
+      this.getMockStockData(); // Fake data
     });
   }
 
