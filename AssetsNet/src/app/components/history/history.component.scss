@@ -1,0 +1,59 @@
+* {
+  font-family: "Andada Pro", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wrapper {
+  border-radius: 10px 10px 0px 0px;
+  background-color: #F6F6F6;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  align-content: center;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 50px;
+}
+
+.history-panel {
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 800px;
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.stock-history {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  height: 40px;
+  width: 90%;
+  background-color: white;
+  align-content: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 15px;
+}
+
+.stock-name {
+  font-weight: 700;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.time {
+  font-weight: 500;
+}

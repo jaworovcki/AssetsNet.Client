@@ -12,6 +12,7 @@ import { UpgradeTariffService } from 'src/app/_services/upgrade-tariff.service';
 import { ChatGptQuery } from 'src/app/models/chatGpt/chatGptQuery';
 import { PaymentState } from 'src/app/models/tariffPlan/paymentState';
 import { UpgradeTariffRequest } from 'src/app/models/tariffPlan/upgradeTariffRequest';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -40,19 +41,29 @@ export class SearchComponent implements OnInit {
     public dialogRef: MatDialog,
     private upgradeTariffService: UpgradeTariffService,
     private paymentService: PaymentService,
-    private toastService: ToastrService) { }
+    private toastService: ToastrService,
+    private route: ActivatedRoute,
+  ) { }
+    
 
   ngOnInit(): void {
-    this.getStockNames();
+    const passedStockName = this.route.snapshot.queryParamMap.get('stockName');
+    if (passedStockName) {
+      console.log(passedStockName);
+      this.getFastForecast(passedStockName);
+    }
+    else {
+      this.getStockNames();
 
-    this.filteredStockNames = this.stockFilter.valueChanges.pipe(
-      startWith(''),
-      debounceTime(300),
-      map(value => this.searchStocksByName(value!).slice(0, 10))
-    );
+      this.filteredStockNames = this.stockFilter.valueChanges.pipe(
+        startWith(''),
+        debounceTime(300),
+        map(value => this.searchStocksByName(value!).slice(0, 10))
+      );
 
-    if (this.upgradeTariffService.getOrderForUpgradeFromLocalStorage !== null) {
-      this.upgradeTariffPlan();
+      if (this.upgradeTariffService.getOrderForUpgradeFromLocalStorage !== null) {
+        this.upgradeTariffPlan();
+      }
     }
   }
 

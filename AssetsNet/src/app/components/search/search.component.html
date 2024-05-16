@@ -1,13 +1,15 @@
 <div class="container">
   <div class="welcome-area text-center">
     <h1 class="welcome-message">Welcome to AssetsNet Analysis</h1>
-    <p class="description-message">Explore the new instrument for stocks prices forecasting which based on the social
-      media posts</p>
+    <p class="description-message">
+      Explore the new instrument for stocks prices forecasting which based on the social
+      media posts
+    </p>
   </div>
   <div class="search-area text-center">
     <form (keydown.enter)="$event.preventDefault(); getStockForecast()">
       <input type="text" placeholder=" Search for any stock forecast you want" matInput [formControl]="stockFilter"
-        [matAutocomplete]="stockAuto">
+             [matAutocomplete]="stockAuto">
       <mat-autocomplete autoActiveFirstOption #stockAuto="matAutocomplete">
         <mat-option *ngFor="let stock of filteredStockNames | async" [value]="stock">
           {{stock}}
@@ -49,7 +51,7 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
           <div (click)="getFastForecast('Blackrock')"
-            class="d-flex justify-content-center align-items-center fonds-box">
+               class="d-flex justify-content-center align-items-center fonds-box">
             <span class="stock-name"><span class="csharp">#</span>Blackrock</span>
           </div>
         </div>
@@ -68,16 +70,11 @@
   </ng-container>
 
   <ng-container *ngIf="isResponseObtained">
-    <div class="target-stock">
-      <h2 class="target-stock-title">Target Stock:</h2>
-      <p class="target-stock-name">{{targetStock}}</p>
-    </div>
-
     <div class="row">
       <div class="col-12 d-flex justify-content-center flex-column align-items-center">
         <div class="row" style="margin-top: 30px;">
           <div class="col-12">
-            <p class="response-title">Response:</p>
+            <p class="response-title">Ai Analysis on:  <span class="target-stock-name">{{targetStock}}</span> </p>
           </div>
         </div>
 
@@ -85,6 +82,7 @@
           <div class="col-12 d-flex">
             <div class="stock-forecast-response">
               <p class="stock-response">{{aiResponse}}</p>
+              <span class="gpt"><img width="120" height="70" src="./assets/imgs/gpt.png" alt="gpt logo"></span>
             </div>
           </div>
         </div>

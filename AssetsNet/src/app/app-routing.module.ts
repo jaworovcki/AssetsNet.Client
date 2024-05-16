@@ -8,6 +8,7 @@ import { PasswordComponent } from './components/account/restore-password/restore
 import { MessagesThreadComponent } from './messages-thread/messages-thread.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './_/guards/auth/auth.guard';
+import { HistoryComponent } from './components/history/history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,11 +16,12 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'analysis', component: SearchComponent },
   { path: 'restore-password', component: PasswordComponent },
+  { path: 'history', component: HistoryComponent },
+
   {
     path: '',
     canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: HomeComponent },
       { path: 'analysis', component: SearchComponent },
       { path: 'users/:id', component: UserProfileComponent }
     ]

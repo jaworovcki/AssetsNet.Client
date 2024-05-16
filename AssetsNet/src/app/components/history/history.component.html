@@ -1,0 +1,16 @@
+<div class="container">
+
+  <div class="wrapper">
+    <p class="title">Requests History</p>
+  </div>
+
+  <div class="history-panel">
+    <div class="stock-history" *ngFor="let stock of stocks">
+      <span class="stock-name" routerLink="/analysis" (click)="PassStockName(stock.name) ">{{stock.name}}
+      </span> <span class="time"> {{stock.requestedAt}}
+      </span>
+    </div>
+
+  </div>
+</div>
+
