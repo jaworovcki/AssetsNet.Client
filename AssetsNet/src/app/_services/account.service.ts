@@ -60,4 +60,9 @@ export class AccountService {
   setUserRoles(userJwt: UserJwt) {
     this.userRolesSource.next(userJwt.roles);
   }
+
+  resetPassword(email: string): Observable<any> {
+    const header = new HttpHeaders().set('Content-type', 'application/json');
+    return this.http.post(this.baseUrl + "account/send-password-restore-email", JSON.stringify(email), { headers: header});
+  }
 }
