@@ -17,10 +17,14 @@
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div *ngIf="user?.id === userJwt?.id" class="d-flex justify-content-between">
-            <a (click)="openUsersSearchModal()" class="btn btn-sm btn-default float-right" style="background-color: green; border: none;color: white;"><i class="fa-solid fa-user-plus"></i></a>
+            <a (click)="openUsersSearchModal()" class="btn btn-sm btn-default float-right"
+              style="background-color: green; border: none;color: white;"><i class="fa-solid fa-user-plus"></i></a>
           </div>
           <div *ngIf="user?.id !== userJwt?.id" class="d-flex justify-content-between">
-            <a class="btn btn-sm btn-info mr-4" style="color: white;" (click)="followUser()">Follow</a>
+            <a class="btn btn-sm btn-info mr-4" style="color: white;" (click)="followUser()"
+              *ngIf="!(usersService.followedUsernames$ | async)?.includes(user.userName); else unfollowButton">Follow</a>
+            <ng-template #unfollowButton><a class="btn btn-sm btn-info mr-4"
+                style="color: white;">Unfollow</a></ng-template>
             <a (click)="initiateChat()" class="btn btn-sm btn-default float-right" style="color: white;">Message</a>
           </div>
         </div>
@@ -146,8 +150,10 @@
             <h6 class="heading-small text-muted mb-4">About {{ user.id === userJwt!.id ? 'me' : user.userName }}</h6>
             <div class="pl-lg-4">
               <div class="form-group focused">
-                <textarea rows="4" [ngClass]="{'non-resizeable-textarea': user.id !== userJwt?.id}" class="form-control form-control-alternative non-resizeable-textarea" placeholder="A few words about you ..."
-                  [disabled]="user.id !== userJwt!.id" >Some descriptions here just for example</textarea>
+                <textarea rows="4" [ngClass]="{'non-resizeable-textarea': user.id !== userJwt?.id}"
+                  class="form-control form-control-alternative non-resizeable-textarea"
+                  placeholder="A few words about you ..."
+                  [disabled]="user.id !== userJwt!.id">Some descriptions here just for example</textarea>
               </div>
             </div>
           </form>

@@ -73,6 +73,11 @@ import { PasswordComponent } from './components/account/restore-password/restore
       useClass: JwtInterceptor,
       // useClass: HttpInterceptorService,
       multi: true // This is required to allow multiple interceptors
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true // This is required to allow multiple interceptors
     }
   ],
   bootstrap: [AppComponent]
