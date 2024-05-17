@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/_services/news.service';
+import { News } from 'src/app/models/news/news';
 import { TwitterTimelinePost } from 'src/app/models/twitter/twitterTimeline/twitterTimelinePost';
 
 @Component({
@@ -9,37 +10,36 @@ import { TwitterTimelinePost } from 'src/app/models/twitter/twitterTimeline/twit
 })
 export class SocialMediaPostsComponent implements OnInit {
 
-  twitterPosts: TwitterTimelinePost[] = [];
+  isOutOfRequest: boolean = false;
+  news: News[] = [];
+
   pageSize: number = 4;
   currentPage: number = 1;
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    // this.getTwitterPostsFromUserTimeline(); // Real Data
-    this.generateTwitterPostMockData(); // Fake Data
+    this.loadYahooNews();
   }
 
-  getTwitterPostsFromUserTimeline() {
-    this.newsService.getTwitterPostsFromUserTimeline().subscribe(
-      (tweets: TwitterTimelinePost[]) => {
-        console.log(tweets);
-        this.twitterPosts = tweets;
-      },
-      (error) => {
-        console.log(error);
+  loadYahooNews() {
+    this.news = this.newsService.generateMockNewsArray(6);
+    this.newsService.getLatestNews('Stock Market').subscribe((news: News[]) => {
+      if(news) {
+        this.news = news;
       }
-    );
+      console.log(this.news);
+    }, (error) => {
+      this.isOutOfRequest = true;
+      this.news = this.newsService.generateMockNewsArray(8);
+      console.log(error);
+    });
   }
 
-  generateTwitterPostMockData() {
-    this.twitterPosts = this.newsService.generateTwitterTimelinePostsMockData(10);
-  }
-
-  getCurrentTwitterPosts(): TwitterTimelinePost[] {
+  getCurrentTwitterPosts(): News[] {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    return this.twitterPosts.slice(startIndex, endIndex);
+    return this.news.slice(startIndex, endIndex);
   }
 
   previousPage() {
@@ -49,14 +49,14 @@ export class SocialMediaPostsComponent implements OnInit {
   }
 
   nextPage() {
-    const totalPages = Math.ceil(this.twitterPosts.length / this.pageSize);
+    const totalPages = Math.ceil(this.news.length / this.pageSize);
     if (this.currentPage < totalPages) {
       this.currentPage++;
     }
   }
 
   hasNextPage(): boolean {
-    const totalPages = Math.ceil(this.twitterPosts.length / this.pageSize);
+    const totalPages = Math.ceil(this.news.length / this.pageSize);
     return this.currentPage < totalPages;
   }
 
