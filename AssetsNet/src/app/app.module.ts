@@ -26,6 +26,7 @@ import { FollowersModalComponent } from './_modals/followers/followers-modal/fol
 import { FollowingsModalComponent } from './_modals/followings/followings-modal/followings-modal.component';
 import { UpgradeTariffPlanComponent } from './_modals/tariffplan/upgrade-tariff-plan/upgrade-tariff-plan.component';
 import { UsersSearchComponent } from './_modals/user/users-search/users-search.component';
+import { StockTickerComponent } from './stock-ticker/stock-ticker.component';
 import { PasswordComponent } from './components/account/restore-password/restore-password.component';
 
 @NgModule({
@@ -46,6 +47,7 @@ import { PasswordComponent } from './components/account/restore-password/restore
     FollowingsModalComponent,
     UpgradeTariffPlanComponent,
     UsersSearchComponent,
+    StockTickerComponent
     PasswordComponent
   ],
   imports: [

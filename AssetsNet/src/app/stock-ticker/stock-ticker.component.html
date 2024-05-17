@@ -1,0 +1,22 @@
+<div class="styling ticker-tape-container">
+  <div class="ticker-tape primary">
+    <div class="stock" *ngFor="let stock of stocks">
+      {{ stock.name }} {{ stock.close }}
+      <span [ngClass]="getChangePercentClass(stock)">
+        <span *ngIf="+stock.percentChange > 0" class="up-arrow"></span>
+        <span *ngIf="+stock.percentChange < 0" class="down-arrow"></span>
+        <span class="percentage">{{ +stock.percentChange | number:'1.2-2' }}%</span>
+      </span>
+    </div>
+  </div>
+  <div class="ticker-tape secondary" aria-hidden="true" >
+    <div class="stock" *ngFor="let stock of stocks">
+      {{ stock.name }} {{ stock.close }}
+      <span [ngClass]="getChangePercentClass(stock)">
+        <span *ngIf="+stock.percentChange > 0" class="up-arrow"></span>
+        <span *ngIf="+stock.percentChange < 0" class="down-arrow"></span>
+        <span class="percentage">{{ +stock.percentChange | number:'1.2-2' }}%</span>
+      </span>
+    </div>
+  </div>
+</div>
