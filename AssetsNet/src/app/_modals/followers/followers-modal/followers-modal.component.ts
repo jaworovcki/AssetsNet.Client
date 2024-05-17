@@ -15,7 +15,7 @@ export class FollowersModalComponent implements OnInit {
   userIdFromRoute: string = '';
   user: User | null = null;
 
-  constructor(private usersService: UsersService, @Inject(MAT_DIALOG_DATA) public data: { userId: string }, private toastr: ToastrService ) { }
+  constructor(public usersService: UsersService, @Inject(MAT_DIALOG_DATA) public data: { userId: string }, private toastr: ToastrService ) { }
 
   followers: User[] = [];
 
@@ -30,6 +30,9 @@ export class FollowersModalComponent implements OnInit {
     return text.substring(0, limit) + '...';
   }
 
+  unfollowUser(){
+
+  }
 
   followUser() {
     if(!this.userIdFromRoute) {
