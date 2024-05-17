@@ -9,11 +9,11 @@
         <div class="user mt-3" *ngFor="let follower of followers">
             <div class="user-wrapper">
                 <div class="creds-wrapper">
-                    <img class="profile-photo" *ngIf="!follower.photoUrl" width="40" height="40"
+                    <img class="profile-photo" *ngIf="!follower.profilePhotoUrl" width="40" height="40"
                         src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
                         alt="profile-picture">
-                    <img class="profile-photo" *ngIf="follower.photoUrl" width="40" height="40"
-                        src="{{follower.photoUrl}}" alt="profile-picture">
+                    <img class="profile-photo" *ngIf="follower.profilePhotoUrl" width="40" height="40"
+                        src="{{follower.profilePhotoUrl}}" alt="profile-picture">
                         <a style="text-decoration: none;" href="users/{{follower.id}}"><span class="username ms-1">{{ truncate(follower.userName, 10) }}</span></a>
                         </div>
                         <div class="action-buttons">
