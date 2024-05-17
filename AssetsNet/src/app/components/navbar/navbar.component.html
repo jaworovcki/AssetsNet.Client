@@ -8,6 +8,7 @@
       <a href = "#" (click)="toggleSidebar()">Whatchlist</a>
       <a routerLink="/analysis" (click)="toggleSidebar()">Analysis</a>
       <a routerLink="/users/{{(accountService.currentUser$ | async)?.id}}" (click)="toggleSidebar()">Profile</a>
+      <a routerLink="/login" (click)="toggleSidebar()" (click)="logout()">Logout</a>
       <button type="button" class="btn-close" aria-label="Close" (click)="toggleSidebar()"></button>
     </div>
   </div>
