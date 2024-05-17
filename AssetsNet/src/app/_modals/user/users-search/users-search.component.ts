@@ -35,7 +35,7 @@ export class UsersSearchComponent {
     this.getUser();
   }
 
-  getUser() {
+    getUser() {
     this.userIdFromRoute = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
 
     if (this.userIdFromRoute) {

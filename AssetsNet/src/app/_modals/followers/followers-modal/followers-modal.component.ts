@@ -4,6 +4,7 @@ import { UsersService } from 'src/app/_services/users.service';
 import { User } from 'src/app/models/user/user';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
+import { FoundUser } from 'src/app/models/user/foundUser';
 
 @Component({
   selector: 'app-followers-modal',
