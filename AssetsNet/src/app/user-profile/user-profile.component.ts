@@ -11,6 +11,7 @@ import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
 import { UsersSearchComponent } from '../_modals/user/users-search/users-search.component';
 import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-profile',
@@ -24,11 +25,14 @@ export class UserProfileComponent implements OnInit {
   isChatVisible: boolean = false;
   conversations: Message[] = [];
   recipient: User | null = null;
+  selectedFile: File | null = null;
+  selectedImage!: SafeResourceUrl;
 
   userIdFromRoute: string = '';
 
   constructor(public dialogRef: MatDialog, public usersService: UsersService, private accountService: AccountService,
-    private activatedRoute: ActivatedRoute, private messagesService: MessagesService, private toastr: ToastrService) {
+    private activatedRoute: ActivatedRoute, private messagesService: MessagesService, private toastr: ToastrService,
+    private sanitizer: DomSanitizer) {
     this.accountService.currentUser$.subscribe((userJwt) => {
       this.userJwt = userJwt;
     });
@@ -124,5 +128,59 @@ export class UserProfileComponent implements OnInit {
       this.recipient = user;
       this.isChatVisible = true;
     });
+  }
+
+  changeUserProfileImage() {
+    const formData = new FormData();
+
+    formData.append('profilePhoto', this.selectedFile!);
+
+    this.usersService.changeProfilePhoto(formData).subscribe({
+      next: (response) => {
+        if (!this.user) {
+          return;
+        }
+        let userJwtWithUpdatedPhotoUrl = this.userJwt;
+        userJwtWithUpdatedPhotoUrl!.profilePhotoUrl = response.photoUrl;
+
+        this.user.profilePhotoUrl = response.photoUrl
+        this.accountService.setCurrentUser(userJwtWithUpdatedPhotoUrl!);
+
+        this.toastr.info('Profile photo changed successfully');
+      },
+      error: (error) => {
+        this.toastr.error(error.error);
+        console.log(error);
+      }
+    });
+  }
+
+  openFileInput() {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
+  }
+
+  onSelect(event: any) {
+    const files = event.target.files || event.dataTransfer.files;
+
+    if (!files) {
+      return;
+    }
+
+    this.selectedFile = files[0];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(e.target.result);
+        this.selectedImage = imageUrl;
+      };
+      reader.readAsDataURL(file);
+    }
+    this.changeUserProfileImage();
   }
 }

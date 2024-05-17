@@ -4,11 +4,13 @@
       <div class="card card-profile shadow">
         <div class="row justify-content-center">
           <div class="col-lg-3 order-lg-2">
-            <div class="card-profile-image">
-              <a href="#">
+            <input *ngIf="userJwt?.id === user.id" type="file" id="fileInput" (change)="onSelect($event)"
+            style="display: none;" />
+            <div class="card-profile-image" (click)="openFileInput()" style="cursor: pointer;">
+              <a>
                 <img width="300" height="200" style="border-radius: 50%;object-fit: cover;" class="profile-photo"
-                  *ngIf="user?.photoUrl" src="{{user.photoUrl}}" alt="">
-                <img class="profile-photo" *ngIf="!user?.photoUrl"
+                  *ngIf="user?.profilePhotoUrl" src="{{user.profilePhotoUrl}}" alt="">
+                <img class="profile-photo" *ngIf="!user?.profilePhotoUrl"
                   src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
                   class="rounded-circle">
               </a>
