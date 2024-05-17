@@ -49,7 +49,6 @@ export class AccountService {
   setCurrentUser(user: UserJwt) {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
-    this.usersService.getFollowedUsernames();
     this.setUserRoles(user);
   }
 
