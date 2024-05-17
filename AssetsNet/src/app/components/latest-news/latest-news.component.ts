@@ -12,7 +12,7 @@ export class LatestNewsComponent implements OnInit {
 
   news: News[] = [];
 
-  newsApiNews: NewsApiArticle[] = [];
+  isOutOfRequest: boolean = false;
 
   currentPage: number = 1;
   pageSize: number = 3;
@@ -21,7 +21,9 @@ export class LatestNewsComponent implements OnInit {
     { name: "Google", value: "Google" },
     { name: "Microsoft", value: "Microsoft" },
     { name: "Readdle", value: "Readdle" },
-    { name: "Apple", value: "Apple" },
+    { name: "Amazon", value: "Amazon" },
+    { name: "Netflix", value: "Netflix" },
+    { name: "Walmart", value: "Walmart" },
   ];
 
   selectedCompany: { name: string, value: string } = this.availableCompanies[0];
@@ -29,43 +31,32 @@ export class LatestNewsComponent implements OnInit {
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    // this.newsService.getNewsApiNews("Apple").subscribe((resp) => {
-    //   console.log(resp);
-    // })
-    // this.loadNewsApiNews()
-    this.loadYahooNews();
+    this.loadYahooNews(); // TODO: Remove commented method call on prod
   }
 
   loadYahooNews() {
     this.news = this.newsService.generateMockNewsArray(6);
-    // this.newsService.getLatestNews(this.selectedCompany?.value).subscribe((news: News[]) => {
-    //   if(news) {
-    //     this.news = news;
-    //   }
-    //   console.log(this.news);
-    // }, (error) => {
-    //   this.news = this.newsService.generateMockNewsArray(6);
-    //   console.log(error);
-    // });
-  }
-
-  loadNewsApiNews() {
-    this.newsService.getNewsApiNews(this.selectedCompany?.value).subscribe((news) => {
-      this.newsApiNews = news;
+    this.newsService.getLatestNews(this.selectedCompany?.value).subscribe((news: News[]) => {
+      if(news) {
+        this.news = news;
+      }
+      console.log(this.news);
     }, (error) => {
+      this.isOutOfRequest = true;
+      this.news = this.newsService.generateMockNewsArray(6);
       console.log(error);
-    })
+    });
   }
 
   onCompanySelected(selectedCompany: { name: string, value: string }) {
     this.selectedCompany = selectedCompany;
-    this.loadNewsApiNews();
+    this.loadYahooNews();
   }
 
-  getCurrentPageNews(): NewsApiArticle[] {
+  getCurrentPageNews(): News[] {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    return this.newsApiNews.slice(startIndex, endIndex);
+    return this.news.slice(startIndex, endIndex);
   }
 
 
@@ -76,36 +67,18 @@ export class LatestNewsComponent implements OnInit {
   }
 
   nextPage() {
-    const totalPages = Math.ceil(this.newsApiNews.length / this.pageSize);
+    const totalPages = Math.ceil(this.news.length / this.pageSize);
     if (this.currentPage < totalPages) {
       this.currentPage++;
     }
   }
 
   hasNextPage(): boolean {
-    const totalPages = Math.ceil(this.newsApiNews.length / this.pageSize);
+    const totalPages = Math.ceil(this.news.length / this.pageSize);
     return this.currentPage < totalPages;
   }
 
   hasPreviousPage(): boolean {
     return this.currentPage > 1;
-  }
-
-  nextPageFake() {
-    const totalPages = Math.ceil(this.news.length / this.pageSize);
-    if (this.currentPage < totalPages) {
-      this.currentPage++;
-    }
-  }
-
-  hasNextPageFake(): boolean {
-    const totalPages = Math.ceil(this.news.length / this.pageSize);
-    return this.currentPage < totalPages;
-  }
-
-  getCurrentPageNewsFake(): News[] {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    return this.news.slice(startIndex, endIndex);
   }
 }
