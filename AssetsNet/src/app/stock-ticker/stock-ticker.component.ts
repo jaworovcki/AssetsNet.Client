@@ -32,6 +32,7 @@ export class StockTickerComponent implements OnInit {
       console.log(stocks);
       
     }, (error) => {
+      this.getMockStockData();
       console.log(error);
     });
   }
