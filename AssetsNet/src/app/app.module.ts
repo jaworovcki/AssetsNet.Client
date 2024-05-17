@@ -27,6 +27,7 @@ import { FollowingsModalComponent } from './_modals/followings/followings-modal/
 import { UpgradeTariffPlanComponent } from './_modals/tariffplan/upgrade-tariff-plan/upgrade-tariff-plan.component';
 import { UsersSearchComponent } from './_modals/user/users-search/users-search.component';
 import { StockTickerComponent } from './stock-ticker/stock-ticker.component';
+import { PasswordComponent } from './components/account/restore-password/restore-password.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { StockTickerComponent } from './stock-ticker/stock-ticker.component';
     UpgradeTariffPlanComponent,
     UsersSearchComponent,
     StockTickerComponent
+    PasswordComponent
   ],
   imports: [
     BrowserModule,

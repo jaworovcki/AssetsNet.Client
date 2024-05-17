@@ -46,30 +46,32 @@ input, select {
 
 .target-stock-name {
   margin-left: 10px;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 20px;
-  text-decoration: underline;
+  text-decoration: bold;
 }
 
 .stock-forecast-response {
-  padding: 6px;
+  position: relative;
+  padding: 10px;
   overflow: none;
-  max-width: 800px;
-  min-width: 700px;
-  min-height: 200px;
-  background-color: rgb(246, 244, 244);
-  border: 1px solid #b8b7b7;
+  //min-width: 600px;
+  min-height: 100px;
+  border: 2px solid black;
   border-radius: 10px;
+  margin-bottom: 25px;
 }
 
 .response-title {
+  padding-top: 20px;
+  align-self: start;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .stock-response {
-  font-weight: 300px;
-  font-size: 15px;
+  font-weight: 300;
+  font-size: 18px;
 }
 
 .stock-box {
@@ -100,11 +102,16 @@ input, select {
   font-weight: 500;
 }
 
+.gpt {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0.2;
+}
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   .stock-forecast-response {
     min-width: 330px;
-    
   }
 
   input, select {
@@ -125,5 +132,5 @@ input, select {
 
   .welcome-message {
     font-size: 30px;
-  }  
+  }
 }

@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { UserJwt } from '../models/user/userJwt';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AccountService {
   private userRolesSource = new BehaviorSubject<string[]>([]);
   userRoles$ = this.userRolesSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private usersService: UsersService) { }
 
   register(model: any) {
     return this.http.post<UserJwt>(this.baseUrl + 'account/register', model).pipe(
@@ -48,7 +49,6 @@ export class AccountService {
   setCurrentUser(user: UserJwt) {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
-
     this.setUserRoles(user);
   }
 
@@ -59,5 +59,10 @@ export class AccountService {
 
   setUserRoles(userJwt: UserJwt) {
     this.userRolesSource.next(userJwt.roles);
+  }
+
+  resetPassword(email: string): Observable<any> {
+    const header = new HttpHeaders().set('Content-type', 'application/json');
+    return this.http.post(this.baseUrl + "account/send-password-restore-email", JSON.stringify(email), { headers: header});
   }
 }

@@ -16,10 +16,12 @@
                             alt="profile-picture">
                         <img class="profile-photo" *ngIf="foundUser.profilePhotoUrl" width="40" height="40"
                             src="{{foundUser.profilePhotoUrl}}" alt="profile-picture">
-                        <span class="username ms-1">{{foundUser.userName}}</span>
+                            <a style="text-decoration: none;" href="users/{{foundUser.id}}"><span class="username ms-1">{{ truncate(foundUser.userName, 10) }}</span></a>
                     </div>
                     <div class="action-buttons">
-                        <a href="users/{{foundUser.id}}"><button>Profile</button></a>
+                        <button (click)="followUser(foundUser)"
+                            *ngIf="!(usersService.followedUsernames$ | async)?.includes( foundUser.userName); else unfollowButton">Follow</button>
+                          <ng-template #unfollowButton><button>Unfollow</button></ng-template>
                     </div>
                 </div>
             </div>

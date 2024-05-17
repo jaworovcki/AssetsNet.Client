@@ -44,3 +44,13 @@
 .profile-photo {
     border-radius: 50%;
 }
+
+@media (max-width: 550px){
+    .user-wrapper{
+        width: 100%;
+    }
+    .users-list{
+        width:100%;
+    }
+    
+}

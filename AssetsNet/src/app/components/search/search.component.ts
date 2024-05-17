@@ -57,18 +57,14 @@ export class SearchComponent implements OnInit {
   }
 
   getStockNames() {
-    if (this.stocksService.checkIfStockNamesExistsInLocalStorage()) {
-      this.stockNames = JSON.parse(localStorage.getItem('stockNames')!);
-    } else {
-      this.stocksService.getExchangeSymbols().subscribe({
-        next: (symbols) => {
-          this.stockNames = this.stocksService.saveStockNames(symbols);
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
-    }
+    this.stocksService.getExchangeSymbols().subscribe({
+      next: (stockNames) => {
+        this.stockNames = stockNames;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   searchStocksByName(stockName: string): string[] {
@@ -157,29 +153,20 @@ export class SearchComponent implements OnInit {
 
   upgradeTariffPlan() {
     let order = this.upgradeTariffService.getOrderForUpgradeFromLocalStorage();
-    this.paymentService.getSessionState(order.orderId).subscribe({
-      next: (state : PaymentState) => {
-        if (state.paymentState === 3) {
-          this.upgradeTariffPlanRequest.tariffPlan = order.tariffPlan;
-          this.upgradeTariffPlanRequest.paymentState = state.paymentState;
-          this.upgradeTariffService.upgradeTariffPlan(this.upgradeTariffPlanRequest).subscribe({
-            next: (response) => {
-              console.log(response);
-              this.upgradeTariffService.removeOrderForUpgradeFromLocalStorage();
-              this.toastService.success('Tariff plan successfully upgraded!');
-            },
-            error: (error) => {
-              console.log(error);
-            }
-          });
-        } else {
-          this.toastService.error('Payment not completed!');
-        }
+    if(!order) {
+      return;
+    }
+    this.upgradeTariffPlanRequest.tariffPlan = order.tariffPlan;
+    this.upgradeTariffPlanRequest.paymentState = 3;
+    this.upgradeTariffService.upgradeTariffPlan(this.upgradeTariffPlanRequest).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.upgradeTariffService.removeOrderForUpgradeFromLocalStorage();
+        this.toastService.success('Tariff plan successfully upgraded!');
       },
       error: (error) => {
         console.log(error);
       }
     });
   }
-
 }

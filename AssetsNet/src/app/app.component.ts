@@ -3,6 +3,7 @@ import { UserJwt } from './models/user/userJwt';
 import { AccountService } from './_services/account.service';
 import { Router } from '@angular/router';
 import { LoadingSpinnerService } from './_services/loading-spinner.service';
+import { UsersService } from './_services/users.service';
 import { SidebarService } from './_services/sidebar.service';
 
 @Component({
@@ -12,15 +13,19 @@ import { SidebarService } from './_services/sidebar.service';
 })
 export class AppComponent implements OnInit {
   sidebarActive = false;
-  constructor(private accountService: AccountService, public spinnerService: LoadingSpinnerService, private sidebarService: SidebarService) { }
 
+  constructor(private accountService: AccountService,
+    public usersService: UsersService,
+    public spinnerService: LoadingSpinnerService,
+    private sidebarService: SidebarService) { }
 
   ngOnInit(): void {
     this.setCurrentUser();
     this.sidebarService.sidebarActive$.subscribe(active => {
       this.sidebarActive = active;
-  });
+    });
   }
+
   setCurrentUser() {
     const user: UserJwt = JSON.parse(localStorage.getItem('user')!);
     if (user) {
