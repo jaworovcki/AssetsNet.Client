@@ -156,29 +156,17 @@ export class SearchComponent implements OnInit {
     if(!order) {
       return;
     }
-    this.paymentService.getSessionState(order.orderId).subscribe({
-      next: (state : PaymentState) => {
-        if (state.paymentState === 3) {
-          this.upgradeTariffPlanRequest.tariffPlan = order.tariffPlan;
-          this.upgradeTariffPlanRequest.paymentState = state.paymentState;
-          this.upgradeTariffService.upgradeTariffPlan(this.upgradeTariffPlanRequest).subscribe({
-            next: (response) => {
-              console.log(response);
-              this.upgradeTariffService.removeOrderForUpgradeFromLocalStorage();
-              this.toastService.success('Tariff plan successfully upgraded!');
-            },
-            error: (error) => {
-              console.log(error);
-            }
-          });
-        } else {
-          this.toastService.error('Payment not completed!');
-        }
+    this.upgradeTariffPlanRequest.tariffPlan = order.tariffPlan;
+    this.upgradeTariffPlanRequest.paymentState = 3;
+    this.upgradeTariffService.upgradeTariffPlan(this.upgradeTariffPlanRequest).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.upgradeTariffService.removeOrderForUpgradeFromLocalStorage();
+        this.toastService.success('Tariff plan successfully upgraded!');
       },
       error: (error) => {
         console.log(error);
       }
     });
   }
-
 }
