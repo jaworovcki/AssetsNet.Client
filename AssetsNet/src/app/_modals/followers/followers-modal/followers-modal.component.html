@@ -17,7 +17,7 @@
                         <a style="text-decoration: none;" href="users/{{follower.id}}"><span class="username ms-1">{{ truncate(follower.userName, 10) }}</span></a>
                         </div>
                         <div class="action-buttons">
-                            <button (click)="followUser()"
+                            <button (click)="followUser(follower)"
                                 *ngIf="!(usersService.followedUsernames$ | async)?.includes( follower.userName); else unfollowButton">Follow</button>
                               <ng-template #unfollowButton><button>Unfollow</button></ng-template>
                         </div>

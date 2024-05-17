@@ -51,20 +51,10 @@ export class FollowersModalComponent implements OnInit {
 
   }
 
-  followUser() {
-    if(!this.userIdFromRoute) {
-      this.toastr.error('An error occured.Reload page');
-      return;
-    }
-
-    if(!this.user) {
-      this.toastr.error('An error occured.Reload page');
-      return;
-    }
-
-    this.usersService.followUserById(this.userIdFromRoute, this.user?.userName).subscribe((response) => {
+  followUser(follower: User) {
+    this.usersService.followUserById(follower.id, follower.userName).subscribe((response) => {
       console.log(response);
-      this.toastr.info('Successfully subscribed');
+      this.toastr.info('Followed ' + follower.userName);
     }, (error) => {
       this.toastr.error(error.error);
       console.log(error);

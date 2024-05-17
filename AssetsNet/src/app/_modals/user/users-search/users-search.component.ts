@@ -49,11 +49,13 @@ export class UsersSearchComponent {
     }
   }
 
-  followUser() {
-    if(!this.userIdFromRoute) {
-      this.toastr.error('An error occured.Reload page');
-      return;
-    }
+  followUser(foundUser:FoundUser) {
+    this.usersService.followUserById(foundUser.id, foundUser.userName).subscribe((response) => {
+      this.toastr.info('Followed ' + foundUser.userName);
+    }, (error) => {
+      this.toastr.error(error.error);
+      console.log(error);
+    });
   }
 
   searchUsers() {
