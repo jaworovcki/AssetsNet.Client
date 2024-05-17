@@ -6,6 +6,7 @@ import { FoundUser } from '../models/user/foundUser';
 import { BehaviorSubject, map, take } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Photo } from '../models/photo/photo';
+import { UserInfo } from '../models/user/userInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -58,5 +59,9 @@ export class UsersService {
 
   changeProfilePhoto(model: any) {
     return this.http.post<Photo>(this.baseUrl + 'users/upload-profile-photo', model);
+  }
+
+  updateUsersInfo(userInfo: UserInfo) {
+    return this.http.put<User>(this.baseUrl + 'users/update-user-info',userInfo);
   }
 }

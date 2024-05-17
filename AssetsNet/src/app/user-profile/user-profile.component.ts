@@ -12,6 +12,7 @@ import { Message } from '../models/message';
 import { UsersSearchComponent } from '../_modals/user/users-search/users-search.component';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { UserInfo } from '../models/user/userInfo';
 
 @Component({
   selector: 'app-user-profile',
@@ -27,6 +28,7 @@ export class UserProfileComponent implements OnInit {
   recipient: User | null = null;
   selectedFile: File | null = null;
   selectedImage!: SafeResourceUrl;
+  userInfo: UserInfo | null = null;
 
   userIdFromRoute: string = '';
 
@@ -97,6 +99,7 @@ export class UserProfileComponent implements OnInit {
       this.usersService.getUserById(this.userIdFromRoute).subscribe((user) => {
         this.user = user;
         this.recipient = user;
+        this.userInfo = new UserInfo(user.userName, user.email, user.firstName ?? '', user.lastName ?? '', user.description ?? '');
         console.log(user);
       }, (error) => {
         console.log(error);
@@ -182,5 +185,39 @@ export class UserProfileComponent implements OnInit {
       reader.readAsDataURL(file);
     }
     this.changeUserProfileImage();
+  }
+
+  updateUserInfo() {
+    if (!this.userInfo) {
+      return;
+    }
+
+    this.usersService.updateUsersInfo(this.userInfo).subscribe({
+      next: (response) => {
+        console.log("RESPONSE")
+        console.log(response);
+
+        if (!this.user) {
+          return;
+        }
+
+        let updatedUserJwt = this.userJwt;
+        updatedUserJwt!.firstName = response.firstName;
+        updatedUserJwt!.lastName = response.lastName;
+        updatedUserJwt!.description = response.description;
+        updatedUserJwt!.email = response.email;
+        updatedUserJwt!.username = response.userName;
+
+        this.user = response;
+        this.accountService.setCurrentUser(updatedUserJwt!);
+        
+        this.toastr.info('User info updated successfully');
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error(error.error);
+      }
+    });
+
   }
 }
