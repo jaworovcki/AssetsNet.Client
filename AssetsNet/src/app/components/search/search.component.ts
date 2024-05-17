@@ -57,18 +57,14 @@ export class SearchComponent implements OnInit {
   }
 
   getStockNames() {
-    if (this.stocksService.checkIfStockNamesExistsInLocalStorage()) {
-      this.stockNames = JSON.parse(localStorage.getItem('stockNames')!);
-    } else {
-      this.stocksService.getExchangeSymbols().subscribe({
-        next: (symbols) => {
-          this.stockNames = this.stocksService.saveStockNames(symbols);
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
-    }
+    this.stocksService.getExchangeSymbols().subscribe({
+      next: (stockNames) => {
+        this.stockNames = stockNames;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   searchStocksByName(stockName: string): string[] {

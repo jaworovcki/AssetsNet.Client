@@ -11,6 +11,8 @@ import { MessagesService } from '../_services/messages.service';
 import { Message } from '../models/message';
 import { UsersSearchComponent } from '../_modals/user/users-search/users-search.component';
 import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { UserInfo } from '../models/user/userInfo';
 
 @Component({
   selector: 'app-user-profile',
@@ -24,11 +26,15 @@ export class UserProfileComponent implements OnInit {
   isChatVisible: boolean = false;
   conversations: Message[] = [];
   recipient: User | null = null;
+  selectedFile: File | null = null;
+  selectedImage!: SafeResourceUrl;
+  userInfo: UserInfo | null = null;
 
   userIdFromRoute: string = '';
 
   constructor(public dialogRef: MatDialog, public usersService: UsersService, private accountService: AccountService,
-    private activatedRoute: ActivatedRoute, private messagesService: MessagesService, private toastr: ToastrService) {
+    private activatedRoute: ActivatedRoute, private messagesService: MessagesService, private toastr: ToastrService,
+    private sanitizer: DomSanitizer) {
     this.accountService.currentUser$.subscribe((userJwt) => {
       this.userJwt = userJwt;
     });
@@ -93,6 +99,7 @@ export class UserProfileComponent implements OnInit {
       this.usersService.getUserById(this.userIdFromRoute).subscribe((user) => {
         this.user = user;
         this.recipient = user;
+        this.userInfo = new UserInfo(user.userName, user.email, user.firstName ?? '', user.lastName ?? '', user.description ?? '');
         console.log(user);
       }, (error) => {
         console.log(error);
@@ -124,5 +131,93 @@ export class UserProfileComponent implements OnInit {
       this.recipient = user;
       this.isChatVisible = true;
     });
+  }
+
+  changeUserProfileImage() {
+    const formData = new FormData();
+
+    formData.append('profilePhoto', this.selectedFile!);
+
+    this.usersService.changeProfilePhoto(formData).subscribe({
+      next: (response) => {
+        if (!this.user) {
+          return;
+        }
+        let userJwtWithUpdatedPhotoUrl = this.userJwt;
+        userJwtWithUpdatedPhotoUrl!.profilePhotoUrl = response.photoUrl;
+
+        this.user.profilePhotoUrl = response.photoUrl
+        this.accountService.setCurrentUser(userJwtWithUpdatedPhotoUrl!);
+
+        this.toastr.info('Profile photo changed successfully');
+      },
+      error: (error) => {
+        this.toastr.error(error.error);
+        console.log(error);
+      }
+    });
+  }
+
+  openFileInput() {
+    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
+  }
+
+  onSelect(event: any) {
+    const files = event.target.files || event.dataTransfer.files;
+
+    if (!files) {
+      return;
+    }
+
+    this.selectedFile = files[0];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(e.target.result);
+        this.selectedImage = imageUrl;
+      };
+      reader.readAsDataURL(file);
+    }
+    this.changeUserProfileImage();
+  }
+
+  updateUserInfo() {
+    if (!this.userInfo) {
+      return;
+    }
+
+    this.usersService.updateUsersInfo(this.userInfo).subscribe({
+      next: (response) => {
+        console.log("RESPONSE")
+        console.log(response);
+
+        if (!this.user) {
+          return;
+        }
+
+        let updatedUserJwt = this.userJwt;
+        updatedUserJwt!.firstName = response.firstName;
+        updatedUserJwt!.lastName = response.lastName;
+        updatedUserJwt!.description = response.description;
+        updatedUserJwt!.email = response.email;
+        updatedUserJwt!.username = response.userName;
+
+        this.user = response;
+        this.accountService.setCurrentUser(updatedUserJwt!);
+        
+        this.toastr.info('User info updated successfully');
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error(error.error);
+      }
+    });
+
   }
 }
