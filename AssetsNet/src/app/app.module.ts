@@ -47,7 +47,7 @@ import { PasswordComponent } from './components/account/restore-password/restore
     FollowingsModalComponent,
     UpgradeTariffPlanComponent,
     UsersSearchComponent,
-    StockTickerComponent
+    StockTickerComponent,
     PasswordComponent
   ],
   imports: [
