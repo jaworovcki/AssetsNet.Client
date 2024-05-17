@@ -26,6 +26,7 @@ import { FollowersModalComponent } from './_modals/followers/followers-modal/fol
 import { FollowingsModalComponent } from './_modals/followings/followings-modal/followings-modal.component';
 import { UpgradeTariffPlanComponent } from './_modals/tariffplan/upgrade-tariff-plan/upgrade-tariff-plan.component';
 import { UsersSearchComponent } from './_modals/user/users-search/users-search.component';
+import { PasswordComponent } from './components/account/restore-password/restore-password.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UsersSearchComponent } from './_modals/user/users-search/users-search.c
     FollowersModalComponent,
     FollowingsModalComponent,
     UpgradeTariffPlanComponent,
-    UsersSearchComponent
+    UsersSearchComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,
