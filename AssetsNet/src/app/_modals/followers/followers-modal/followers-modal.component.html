@@ -14,11 +14,13 @@
                         alt="profile-picture">
                     <img class="profile-photo" *ngIf="follower.profilePhotoUrl" width="40" height="40"
                         src="{{follower.profilePhotoUrl}}" alt="profile-picture">
-                    <span class="username ms-1">{{follower.userName}}</span>
-                </div>
-                <div class="action-buttons">
-                    <a href="/users/{{follower.id}}"><button>Profile</button></a>
-                </div>
+                        <a style="text-decoration: none;" href="users/{{follower.id}}"><span class="username ms-1">{{ truncate(follower.userName, 10) }}</span></a>
+                        </div>
+                        <div class="action-buttons">
+                            <button (click)="followUser(follower)"
+                                *ngIf="!(usersService.followedUsernames$ | async)?.includes( follower.userName); else unfollowButton">Follow</button>
+                              <ng-template #unfollowButton><button>Unfollow</button></ng-template>
+                        </div>
             </div>
         </div>
     </div>
