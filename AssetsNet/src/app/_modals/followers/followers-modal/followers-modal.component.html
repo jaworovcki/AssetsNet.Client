@@ -18,7 +18,7 @@
                         </div>
                         <div class="action-buttons">
                             <button (click)="followUser()"
-                                *ngIf="!(usersService.followedUsernames$ | async)?.includes( foundUser.userName); else unfollowButton">Follow</button>
+                                *ngIf="!(usersService.followedUsernames$ | async)?.includes( follower.userName); else unfollowButton">Follow</button>
                               <ng-template #unfollowButton><button>Unfollow</button></ng-template>
                         </div>
             </div>
